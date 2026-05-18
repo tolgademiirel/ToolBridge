@@ -130,24 +130,30 @@ Full publish hazırlığı için:
 ## 📁 Proje Yapısı
 
 ```text
-MusicShell.sln
-publish.ps1
-setup_external_tools.ps1
-setup_libreoffice_portable.ps1
-setup_imagemagick_portable.ps1
-setup_7zip_build_tool.ps1
-src/
-  MusicShell.Wpf/
-    App.xaml
-    MainWindow.xaml
-    Assets/
-    Docs/
-    Infrastructure/
-    Models/
-    Services/
-    ViewModels/
-    Tools/
+ToolBridge/
+├─ README.md
+├─ MusicShell.sln
+├─ publish.ps1
+├─ scripts/
+│  ├─ setup_external_tools.ps1
+│  ├─ setup_7zip_build_tool.ps1
+│  ├─ setup_imagemagick_portable.ps1
+│  ├─ setup_libreoffice_portable.ps1
+│  └─ setup_firewall_toolbridge_presence.ps1
+└─ src/
+   └─ MusicShell.Wpf/
+      ├─ Assets/
+      ├─ Docs/
+      ├─ Infrastructure/
+      ├─ Models/
+      ├─ Services/
+      ├─ ViewModels/
+      ├─ Tools/
+      ├─ App.xaml
+      └─ MainWindow.xaml
 ```
+
+Kök dizinde yalnızca proje giriş dosyaları tutulur. Yardımcı PowerShell scriptleri `scripts/` klasörü altında toplanmıştır.
 
 ---
 
@@ -164,7 +170,7 @@ ToolBridge çalışan bilgisayarlar aynı yerel ağda olduklarında UDP broadcas
 Firewall izin scripti:
 
 ```powershell
-powershell.exe -ExecutionPolicy Bypass -File .\setup_firewall_toolbridge_presence.ps1
+powershell.exe -ExecutionPolicy Bypass -File .\scripts\setup_firewall_toolbridge_presence.ps1
 ```
 
 ---
