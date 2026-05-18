@@ -1,0 +1,13 @@
+bin/
+obj/
+.vs/
+*.user
+*.suo
+*.cache
+TestResults/
+artifacts/
+# ToolBridge generated output
+publish/
+build_tools/
+*.zip
+*.log

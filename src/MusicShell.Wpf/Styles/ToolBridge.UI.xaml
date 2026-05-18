@@ -1,0 +1,115 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!-- ToolBridge UI Tokens: sekmeler arasında aynı punto, boşluk ve kart davranışı için merkezi kaynak. -->
+    <sys:Double xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="TbFontSizePageTitle">28</sys:Double>
+    <sys:Double xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="TbFontSizeSectionTitle">20</sys:Double>
+    <sys:Double xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="TbFontSizeBody">13</sys:Double>
+    <sys:Double xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="TbFontSizeSmall">12</sys:Double>
+    <sys:Double xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="TbButtonHeight">32</sys:Double>
+    <sys:Double xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="TbIconButtonSize">32</sys:Double>
+    <CornerRadius x:Key="TbCardRadius">8</CornerRadius>
+    <CornerRadius x:Key="TbPanelRadius">12</CornerRadius>
+    <Thickness x:Key="TbCardPadding">22</Thickness>
+    <Thickness x:Key="TbRowPadding">12,8</Thickness>
+
+    <Style x:Key="TbSectionTitleTextBlockStyle" TargetType="TextBlock">
+        <Setter Property="FontFamily" Value="{StaticResource DisplayFont}" />
+        <Setter Property="FontSize" Value="{StaticResource TbFontSizeSectionTitle}" />
+        <Setter Property="FontWeight" Value="SemiBold" />
+        <Setter Property="Foreground" Value="{DynamicResource PrimaryTextBrush}" />
+    </Style>
+
+    <Style x:Key="TbBodyTextBlockStyle" TargetType="TextBlock">
+        <Setter Property="FontFamily" Value="{StaticResource AppFont}" />
+        <Setter Property="FontSize" Value="{StaticResource TbFontSizeBody}" />
+        <Setter Property="FontWeight" Value="Regular" />
+        <Setter Property="Foreground" Value="{DynamicResource MutedTextBrush}" />
+        <Setter Property="TextWrapping" Value="Wrap" />
+    </Style>
+
+    <Style x:Key="TbSmallMutedTextBlockStyle" TargetType="TextBlock" BasedOn="{StaticResource TbBodyTextBlockStyle}">
+        <Setter Property="FontSize" Value="{StaticResource TbFontSizeSmall}" />
+        <Setter Property="FontWeight" Value="SemiBold" />
+    </Style>
+
+    <Style x:Key="TbCardBorderStyle" TargetType="Border">
+        <Setter Property="Background" Value="{DynamicResource PanelBrush}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource LineBrush}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="CornerRadius" Value="{StaticResource TbCardRadius}" />
+        <Setter Property="Padding" Value="{StaticResource TbCardPadding}" />
+    </Style>
+
+    <Style x:Key="TbSoftPanelBorderStyle" TargetType="Border">
+        <Setter Property="Background" Value="{DynamicResource PanelMutedBrush}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource LineBrush}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="CornerRadius" Value="{StaticResource TbPanelRadius}" />
+    </Style>
+
+    <Style x:Key="TbListHeaderTextBlockStyle" TargetType="TextBlock">
+        <Setter Property="FontSize" Value="{StaticResource TbFontSizeBody}" />
+        <Setter Property="FontWeight" Value="SemiBold" />
+        <Setter Property="Foreground" Value="{DynamicResource PrimaryTextBrush}" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+    </Style>
+
+    <Style x:Key="TbListRowTextBlockStyle" TargetType="TextBlock">
+        <Setter Property="FontSize" Value="{StaticResource TbFontSizeBody}" />
+        <Setter Property="FontWeight" Value="SemiBold" />
+        <Setter Property="Foreground" Value="{DynamicResource PrimaryTextBrush}" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="TextTrimming" Value="CharacterEllipsis" />
+    </Style>
+
+    <Style x:Key="TbListRowMutedTextBlockStyle" TargetType="TextBlock" BasedOn="{StaticResource TbListRowTextBlockStyle}">
+        <Setter Property="FontSize" Value="{StaticResource TbFontSizeSmall}" />
+        <Setter Property="Foreground" Value="{DynamicResource MutedTextBrush}" />
+    </Style>
+
+    <Style x:Key="TbIconOnlyButtonStyle" TargetType="Button" BasedOn="{StaticResource ShadcnGhostButtonStyle}">
+        <Setter Property="Width" Value="{StaticResource TbIconButtonSize}" />
+        <Setter Property="Height" Value="{StaticResource TbIconButtonSize}" />
+        <Setter Property="Padding" Value="0" />
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+    </Style>
+
+    <Style x:Key="TbActionButtonStyle" TargetType="Button" BasedOn="{StaticResource ShadcnButtonStyle}">
+        <Setter Property="Height" Value="{StaticResource TbButtonHeight}" />
+        <Setter Property="Padding" Value="14,0" />
+        <Setter Property="FontSize" Value="{StaticResource TbFontSizeBody}" />
+    </Style>
+
+    <Style x:Key="TbSecondaryActionButtonStyle" TargetType="Button" BasedOn="{StaticResource ShadcnSecondaryButtonStyle}">
+        <Setter Property="Height" Value="{StaticResource TbButtonHeight}" />
+        <Setter Property="Padding" Value="14,0" />
+        <Setter Property="FontSize" Value="{StaticResource TbFontSizeBody}" />
+    </Style>
+
+    <Style x:Key="TbTransferProgressBarStyle" TargetType="ProgressBar">
+        <Setter Property="Height" Value="6" />
+        <Setter Property="Minimum" Value="0" />
+        <Setter Property="Maximum" Value="100" />
+        <Setter Property="Background" Value="{DynamicResource PanelMutedBrush}" />
+        <Setter Property="Foreground" Value="{DynamicResource AccentBrush}" />
+        <Setter Property="BorderBrush" Value="Transparent" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ProgressBar">
+                    <Grid x:Name="TemplateRoot" SnapsToDevicePixels="True">
+                        <Border x:Name="PART_Track"
+                                Background="{TemplateBinding Background}"
+                                CornerRadius="3" />
+                        <Border x:Name="PART_Indicator"
+                                Background="{TemplateBinding Foreground}"
+                                CornerRadius="3"
+                                HorizontalAlignment="Left" />
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

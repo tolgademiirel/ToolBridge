@@ -1,0 +1,5 @@
+https://chromewebstore.google.com/detail/downloads-router/fgkboeogiiklpklnjgdiaghaiehcknjo?pli=1
+
+-Domain adresini belirle.
+-Klasörü göster.
+-Yazdır.
