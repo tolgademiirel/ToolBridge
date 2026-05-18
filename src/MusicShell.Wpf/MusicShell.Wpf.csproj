@@ -20,12 +20,6 @@
     <FileVersion>1.0.0.0</FileVersion>
     <InformationalVersion>1.0.0</InformationalVersion>
   </PropertyGroup>
-  <ItemGroup>
-    <None Include="README_URETICI_BILGISI.txt" Condition="Exists('README_URETICI_BILGISI.txt')">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </None>
-  </ItemGroup>
 
   <ItemGroup>
     <Resource Include="Assets\toolbridge-icon.png" />
@@ -33,33 +27,24 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="Tools\SumatraPDF.exe" Condition="Exists('Tools\SumatraPDF.exe')">
+    <None Include="README_URETICI_BILGISI.txt" Condition="Exists('README_URETICI_BILGISI.txt')">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </None>
-    <None Include="Tools\Docnet.Core.dll" Condition="Exists('Tools\Docnet.Core.dll')">
+  </ItemGroup>
+
+  <!--
+    Convert ve yazdırma motorları publish çıktısına eksiksiz taşınır.
+    Bu kural SumatraPDF, LibreOfficePortable, ImageMagick, 7-Zip, FFmpeg,
+    Calibre, Inkscape, FontForge, Docnet.Core/pdfium ve Tools altındaki
+    diğer yardımcı dosyaların tamamını kapsar.
+  -->
+  <ItemGroup>
+    <None Include="Tools\**\*" Condition="Exists('Tools')">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </None>
-    <None Include="Tools\pdfium.dll" Condition="Exists('Tools\pdfium.dll')">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </None>
-    <None Include="Tools\Docnet.LICENSE.txt" Condition="Exists('Tools\Docnet.LICENSE.txt')">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </None>
-    <None Include="Tools\ImageMagick\**\*" Condition="Exists('Tools\ImageMagick')">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </None>
-    <None Include="Tools\LibreOfficePortable\**\*" Condition="Exists('Tools\LibreOfficePortable')">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </None>
-    <None Include="Tools\Packages\*.txt" Condition="Exists('Tools\Packages')">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <Link>Tools\%(RecursiveDir)%(Filename)%(Extension)</Link>
+      <TargetPath>Tools\%(RecursiveDir)%(Filename)%(Extension)</TargetPath>
     </None>
   </ItemGroup>
 </Project>
