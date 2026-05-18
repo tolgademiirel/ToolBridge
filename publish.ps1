@@ -162,7 +162,7 @@ Write-Host "Project: $project" -ForegroundColor Green
 Write-Host "Output executable: $expectedExeName" -ForegroundColor Green
 Write-Host "Package mode: $(if ($includeLibreOffice) { 'FULL - LibreOffice required' } else { 'LITE - LibreOffice optional' })" -ForegroundColor Green
 
-$externalToolsSetup = Join-Path $root 'setup_external_tools.ps1'
+$externalToolsSetup = Join-Path $root 'scripts\setup_external_tools.ps1'
 if ((-not $SkipExternalTools) -and (Test-Path $externalToolsSetup)) {
     Write-Host "Portable tools are being prepared..." -ForegroundColor Cyan
     $externalArgs = @()
@@ -231,7 +231,7 @@ Invoke-CheckedCommand 'dotnet publish...' {
         -o $publishOutput
 }
 
-$firewallScript = Join-Path $root 'setup_firewall_toolbridge_presence.ps1'
+$firewallScript = Join-Path $root 'scripts\setup_firewall_toolbridge_presence.ps1'
 if (Test-Path $firewallScript) {
     Copy-Item $firewallScript -Destination (Join-Path $publishOutput 'setup_firewall_toolbridge_presence.ps1') -Force
 }
