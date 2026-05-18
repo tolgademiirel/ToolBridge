@@ -6,8 +6,23 @@ obj/
 *.cache
 TestResults/
 artifacts/
+
 # ToolBridge generated output
 publish/
 build_tools/
 *.zip
 *.log
+
+# Local tool binaries prepared during publish/setup
+src/MusicShell.Wpf/Tools/ImageMagick/
+src/MusicShell.Wpf/Tools/LibreOfficePortable/
+src/MusicShell.Wpf/Tools/Packages/
+src/MusicShell.Wpf/Tools/*.exe
+src/MusicShell.Wpf/Tools/*.dll
+src/MusicShell.Wpf/Tools/*.zip
+src/MusicShell.Wpf/Tools/*.rar
+
+# Local backup folders/files
+*backup*/
+*.bak*
+*.before_*
