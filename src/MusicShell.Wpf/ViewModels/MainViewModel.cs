@@ -8475,7 +8475,7 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
             return extension switch
             {
                 ".pdf" => TryPrintPdfSilently(filePath, printer, out errorMessage),
-                ".doc" or ".docx" or ".rtf" => TryPrintWordDocument(filePath, printer.QueueValue, out errorMessage),
+                ".doc" or ".docx" or ".rtf" => TryPrintWordDocument(filePath, printer, out errorMessage),
                 ".xls" or ".xlsx" or ".csv" => TryPrintExcelDocument(filePath, printer.QueueValue, out errorMessage),
                 ".ppt" or ".pptx" => TryPrintPowerPointDocument(filePath, printer.QueueValue, out errorMessage),
                 ".png" or ".jpg" or ".jpeg" or ".bmp" or ".gif" or ".tif" or ".tiff" => TryPrintImageDirect(filePath, printer.QueueValue, out errorMessage),
@@ -9132,7 +9132,122 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
         return "A4";
     }
 
-    private bool TryPrintWordDocument(string filePath, string printerQueueName, out string errorMessage)
+    private bool TryPrintWordDocument(string filePath, PrinterDeviceItem printer, out string errorMessage)
+    {
+        // DOC/DOCX/RTF printing first tries a temporary PDF bridge.
+        // If that fails, ToolBridge falls back to Microsoft Word COM printing.
+        if (TryPrintOfficeDocumentViaTemporaryPdf(filePath, printer, "Word", out var pdfBridgeError))
+        {
+            errorMessage = string.Empty;
+            return true;
+        }
+
+        if (TryPrintWordDocumentWithMicrosoftWord(filePath, printer.QueueValue, out var wordError))
+        {
+            errorMessage = string.Empty;
+            return true;
+        }
+
+        errorMessage = BuildOfficePrintError("Word", filePath, pdfBridgeError, wordError);
+        return false;
+    }
+
+    private bool TryPrintOfficeDocumentViaTemporaryPdf(string filePath, PrinterDeviceItem printer, string documentType, out string errorMessage)
+    {
+        errorMessage = string.Empty;
+
+        var libreOfficePath = FindLibreOfficeExecutable();
+        if (string.IsNullOrWhiteSpace(libreOfficePath))
+        {
+            errorMessage = "LibreOffice bulunamadi. Gecici PDF yazdirma akisi calistirilamadi.";
+            return false;
+        }
+
+        var tempFolder = Path.Combine(Path.GetTempPath(), "ToolBridgePrintPdf", Guid.NewGuid().ToString("N"));
+
+        try
+        {
+            Directory.CreateDirectory(tempFolder);
+
+            var arguments = $"--headless --nologo --nofirststartwizard --convert-to pdf --outdir {Quote(tempFolder)} {Quote(filePath)}";
+            if (!RunHiddenProcess(libreOfficePath, arguments, 180000, out var standardOutput, out var standardError, out var exitCode))
+            {
+                errorMessage = $"{documentType} icin gecici PDF donusturme islemi baslatilamadi.";
+                return false;
+            }
+
+            var pdfPath = Directory.GetFiles(tempFolder, "*.pdf", SearchOption.AllDirectories).FirstOrDefault();
+            if (exitCode != 0 || string.IsNullOrWhiteSpace(pdfPath) || !File.Exists(pdfPath))
+            {
+                var detail = !string.IsNullOrWhiteSpace(standardError) ? standardError : standardOutput;
+                errorMessage = string.IsNullOrWhiteSpace(detail)
+                    ? $"{documentType} icin gecici PDF uretilemedi. LibreOffice cikis kodu: {exitCode}."
+                    : $"{documentType} icin gecici PDF uretilemedi. LibreOffice cikis kodu: {exitCode}. {CleanOfficePrintError(detail)}";
+                return false;
+            }
+
+            if (!TryPrintPdfSilently(pdfPath, printer, out var pdfPrintError))
+            {
+                errorMessage = $"{documentType} gecici PDF'e cevrildi ancak PDF yazdirilamadi. {CleanOfficePrintError(pdfPrintError)}";
+                return false;
+            }
+
+            return true;
+        }
+        catch (Exception ex)
+        {
+            errorMessage = $"{documentType} icin gecici PDF yazdirma akisi basarisiz oldu: {CleanOfficePrintError(ex.Message)}";
+            return false;
+        }
+        finally
+        {
+            TryDeleteDirectory(tempFolder);
+        }
+    }
+
+    private static string BuildOfficePrintError(string documentType, string filePath, string pdfBridgeError, string officeError)
+    {
+        var fileName = Path.GetFileName(filePath);
+        var pdfText = CleanOfficePrintError(pdfBridgeError);
+        var officeText = CleanOfficePrintError(officeError);
+
+        if (string.IsNullOrWhiteSpace(pdfText) && string.IsNullOrWhiteSpace(officeText))
+        {
+            return $"{fileName} yazdirilamadi. {documentType} belgesi gecici PDF'e cevrilemedi ve Microsoft Office ile yazdirilamadi.";
+        }
+
+        if (string.IsNullOrWhiteSpace(pdfText))
+        {
+            return $"{fileName} yazdirilamadi. Microsoft {documentType}: {officeText}";
+        }
+
+        if (string.IsNullOrWhiteSpace(officeText))
+        {
+            return $"{fileName} yazdirilamadi. Gecici PDF akisi: {pdfText}";
+        }
+
+        return $"{fileName} yazdirilamadi. Gecici PDF akisi: {pdfText} Microsoft {documentType}: {officeText}";
+    }
+
+    private static string CleanOfficePrintError(string? errorMessage)
+    {
+        if (string.IsNullOrWhiteSpace(errorMessage))
+        {
+            return string.Empty;
+        }
+
+        var cleaned = Regex.Replace(errorMessage, @"\s+", " ").Trim();
+
+        const int maxLength = 420;
+        if (cleaned.Length <= maxLength)
+        {
+            return cleaned;
+        }
+
+        return cleaned[..maxLength] + "...";
+    }
+
+    private bool TryPrintWordDocumentWithMicrosoftWord(string filePath, string printerQueueName, out string errorMessage)
     {
         errorMessage = string.Empty;
         dynamic? word = null;
@@ -9143,14 +9258,14 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
             var wordType = Type.GetTypeFromProgID("Word.Application");
             if (wordType is null)
             {
-                errorMessage = "Microsoft Word yüklü değil.";
+                errorMessage = "Microsoft Word yuklu degil.";
                 return false;
             }
 
             word = Activator.CreateInstance(wordType);
             if (word is null)
             {
-                errorMessage = "Microsoft Word başlatılamadı.";
+                errorMessage = "Microsoft Word baslatilamadi.";
                 return false;
             }
 
