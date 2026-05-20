@@ -1,0 +1,52 @@
+{
+  "schemaVersion": 1,
+  "application": "ToolBridge",
+  "notes": "Harici araclar repository icine commit edilmez. Full publish veya release asset uzerinden yonetilir.",
+  "tools": [
+    {
+      "name": "LibreOffice Portable",
+      "requiredForFullPublish": true,
+      "purpose": "Office belge donusturme ve alternatif yazdirma akisi",
+      "expectedPath": "src/MusicShell.Wpf/Tools/LibreOfficePortable/App/libreoffice/program/soffice.exe",
+      "publishPath": "Tools/LibreOfficePortable/App/libreoffice/program/soffice.exe",
+      "version": "manual",
+      "sha256": "manual"
+    },
+    {
+      "name": "ImageMagick",
+      "requiredForFullPublish": false,
+      "purpose": "Gorsel donusturme",
+      "expectedPath": "src/MusicShell.Wpf/Tools/ImageMagick/magick.exe",
+      "publishPath": "Tools/ImageMagick/magick.exe",
+      "version": "manual",
+      "sha256": "manual"
+    },
+    {
+      "name": "SumatraPDF",
+      "requiredForFullPublish": false,
+      "purpose": "Sessiz PDF yazdirma",
+      "expectedPath": "src/MusicShell.Wpf/Tools/SumatraPDF.exe",
+      "publishPath": "Tools/SumatraPDF.exe",
+      "version": "manual",
+      "sha256": "manual"
+    },
+    {
+      "name": "pdfium.dll",
+      "requiredForFullPublish": false,
+      "purpose": "PDF render ve PDF birlestirme fallback akisi",
+      "expectedPath": "src/MusicShell.Wpf/Tools/pdfium.dll",
+      "publishPath": "Tools/pdfium.dll",
+      "version": "manual",
+      "sha256": "manual"
+    },
+    {
+      "name": "7-Zip",
+      "requiredForFullPublish": false,
+      "purpose": "ZIP paket olusturma ve build yardimci islemleri",
+      "expectedPath": "build_tools/7zip/7z.exe",
+      "publishPath": "not packaged by default",
+      "version": "manual",
+      "sha256": "manual"
+    }
+  ]
+}
