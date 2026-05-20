@@ -69,6 +69,12 @@ Full publish paketinde aşağıdaki motorlar kullanılabilir:
 
 > Harici araçlar repository içine normal commit edilmez. Full publish paketinde veya release asset olarak yönetilir.
 
+Harici araçların beklenen yolları ve manuel doğrulama bilgileri için:
+
+```text
+tools-manifest.json
+```
+
 ---
 
 ## 📦 Full Publish
@@ -93,17 +99,25 @@ ToolBridge_Full_publish_win-x64.zip
 
 Full publish paketinde `publish\Tools` klasörü de oluşur ve gerekli harici motorlar buradan çalışır.
 
+Lite paket veya CI smoke test için:
+
+```powershell
+powershell.exe -ExecutionPolicy Bypass -File .\publish.ps1 -Runtime win-x64 -Lite -SkipExternalTools -NoStrictToolCheck
+```
+
 ---
 
 ## 🧪 Geliştirici Modunda Çalıştırma
 
 ```powershell
-dotnet restore .\MusicShell.sln
-dotnet build .\MusicShell.sln
+dotnet restore .\ToolBridge.sln
+dotnet build .\ToolBridge.sln
 dotnet run --project .\src\MusicShell.Wpf\MusicShell.Wpf.csproj
 ```
 
-Alternatif olarak `MusicShell.sln` dosyasını Visual Studio 2022 ile açıp `F5` tuşuna basabilirsiniz.
+Alternatif olarak `ToolBridge.sln` dosyasını Visual Studio 2022 ile açıp `F5` tuşuna basabilirsiniz.
+
+> Not: Geriye uyumluluk için `MusicShell.sln` dosyası korunur. Yeni kullanımda önerilen çözüm dosyası `ToolBridge.sln` dosyasıdır.
 
 ---
 
@@ -132,8 +146,15 @@ Full publish hazırlığı için:
 ```text
 ToolBridge/
 ├─ README.md
+├─ ToolBridge.sln
 ├─ MusicShell.sln
 ├─ publish.ps1
+├─ tools-manifest.json
+├─ docs/
+│  └─ ARCHITECTURE.md
+├─ .github/
+│  └─ workflows/
+│     └─ dotnet-build.yml
 ├─ scripts/
 │  ├─ setup_external_tools.ps1
 │  ├─ setup_7zip_build_tool.ps1
@@ -162,16 +183,41 @@ Kök dizinde yalnızca proje giriş dosyaları tutulur. Yardımcı PowerShell sc
 ToolBridge çalışan bilgisayarlar aynı yerel ağda olduklarında UDP broadcast ile birbirini görür.
 
 - UDP port: `47892`
+- TCP transfer portu: `47893`
 - Uygulama açılınca kullanıcı online görünür.
 - Uygulama kapanınca offline paketi gönderilir.
 - Offline paketi alınamazsa kullanıcı kısa süre içinde listeden düşer.
-- Windows Firewall UDP broadcast trafiğini engellerse ToolBridge veya UDP `47892` için izin verilmelidir.
+- Windows Firewall UDP broadcast veya TCP transfer trafiğini engellerse ToolBridge için izin verilmelidir.
 
 Firewall izin scripti:
 
 ```powershell
 powershell.exe -ExecutionPolicy Bypass -File .\scripts\setup_firewall_toolbridge_presence.ps1
 ```
+
+---
+
+## 🧹 Transfer Staging Temizliği
+
+Gelen transferler önce yerel uygulama veri klasöründeki staging alanına alınır. Uygulama açılışında 24 saatten eski staging klasörleri otomatik temizlenir.
+
+İlgili servis:
+
+```text
+src/MusicShell.Wpf/Services/TransferStagingCleanupService.cs
+```
+
+---
+
+## 🧱 Mimari Notlar
+
+Bakım ve refactor planı için:
+
+```text
+docs/ARCHITECTURE.md
+```
+
+Bu dokümanda `MainViewModel` içindeki sorumlulukların servis bazlı ayrılması, PDF birleştirme stratejisi ve staging temizliği notları bulunur.
 
 ---
 
@@ -197,6 +243,18 @@ GitHub Releases > Release asset olarak ZIP yükleme
 
 ---
 
+## ✅ CI / Build Kontrolü
+
+GitHub Actions workflow dosyası eklenmiştir:
+
+```text
+.github/workflows/dotnet-build.yml
+```
+
+Workflow; `ToolBridge.sln` üzerinden restore/build yapar ve lite publish smoke test çalıştırır.
+
+---
+
 ## 🧭 Yol Haritası
 
 - Daha gelişmiş hata raporlama ekranı
@@ -205,6 +263,8 @@ GitHub Releases > Release asset olarak ZIP yükleme
 - Merkezi ayar profili desteği
 - Daha detaylı log görüntüleme arayüzü
 - Mac/Linux desteği için alternatif UI araştırması
+- `MainViewModel` sorumluluklarının servis bazlı ayrılması
+- PDF birleştirme için kayıpsız merge yönteminin ana akışa alınması
 
 ---
 
