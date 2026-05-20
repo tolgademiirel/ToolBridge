@@ -5,6 +5,7 @@ using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Media;
 using MusicShell.Infrastructure;
+using MusicShell.Services;
 
 namespace MusicShell;
 
@@ -16,6 +17,7 @@ public partial class App
         ApplyHiddenScrollerChrome();
 
         AppLogger.CleanupOldLogs(keepDays: 30);
+        TransferStagingCleanupService.CleanupOldIncomingStagingFolders(TimeSpan.FromHours(24));
         AppLogger.Log("ToolBridge başlatıldı.");
 
         DispatcherUnhandledException += (_, args) =>
