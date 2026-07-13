@@ -16,7 +16,7 @@ Arayüz uçtan uca modern kurumsal tasarım sistemine geçirildi; hiçbir işlev
 - **Koyu tema**: yeni koyu palet (#101318 zemin, #171B22 kart, mavi #3B82F6 aksan); açık/koyu geçişi `ApplyVisualTheme` ile aynı mekanizmada.
 - **Diğer**: Ham TextBox'lar ortak input desenine geçirildi; tekrarlanan ikon Path'leri Geometry resource oldu; app.manifest'e PerMonitorV2 DPI + longPathAware eklendi.
 
-Tam yedek: `D:\PROJE DOSYALARIM\ToolBridge_YEDEK_2026-07-03`
+
 
 ## İçerik
 
