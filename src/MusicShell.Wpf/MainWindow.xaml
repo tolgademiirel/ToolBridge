@@ -55,23 +55,20 @@
                                SnapsToDevicePixels="True" />
                         <TextBlock Text="ToolBridge"
                                    FontFamily="{StaticResource MenuFont}"
-                                   FontSize="22"
-                                   FontWeight="Bold"
+                                   FontSize="18"
+                                   FontWeight="SemiBold"
                                    Foreground="{DynamicResource PrimaryTextBrush}"
                                    VerticalAlignment="Center"
                                    Margin="10,0,0,0" />
                     </StackPanel>
 
-                    <Border Background="{DynamicResource PanelAltBrush}"
+                    <Border Background="Transparent"
                             BorderBrush="{DynamicResource LineBrush}"
                             BorderThickness="1"
-                            CornerRadius="8"
+                            CornerRadius="10"
                             Padding="8"
                             Margin="0,0,0,2"
                             ClipToBounds="False">
-                        <Border.Effect>
-                            <DropShadowEffect BlurRadius="18" ShadowDepth="4" Opacity="0.06" Color="#000000" />
-                        </Border.Effect>
                         <ItemsControl ItemsSource="{Binding PrimaryNavigation}">
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
@@ -90,7 +87,7 @@
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
-                        <TextBlock Text="Online Kullanıcılar"
+                        <TextBlock Text="ONLINE KULLANICILAR"
                                    Foreground="{DynamicResource MutedTextBrush}"
                                    FontSize="12"
                                    FontWeight="SemiBold"
@@ -123,7 +120,7 @@
                                         <Border Width="8"
                                                 Height="8"
                                                 CornerRadius="4"
-                                                Background="#22A55A"
+                                                Background="{DynamicResource SuccessBrush}"
                                                 HorizontalAlignment="Center"
                                                 VerticalAlignment="Center" />
                                         <TextBlock Grid.Column="1"
@@ -137,7 +134,7 @@
                                                 Width="10"
                                                 Height="10"
                                                 CornerRadius="5"
-                                                Background="#D97706"
+                                                Background="{DynamicResource WarningBrush}"
                                                 Margin="8,0,2,0"
                                                 Visibility="{Binding TransferNotificationVisibility}"
                                                 ToolTip="{Binding TransferNotificationText}"
@@ -174,7 +171,7 @@
                             <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
                         <StackPanel>
-                            <TextBlock Text="{Binding SelectedPageTitle}" FontFamily="{StaticResource DisplayFont}" FontSize="40" FontWeight="SemiBold" Foreground="{DynamicResource PrimaryTextBrush}" />
+                            <TextBlock Text="{Binding SelectedPageTitle}" FontFamily="{StaticResource DisplayFont}" FontSize="26" FontWeight="SemiBold" Foreground="{DynamicResource PrimaryTextBrush}" />
                             <TextBlock Text="{Binding SelectedPageSubtitle}"
                                        Foreground="{DynamicResource MutedTextBrush}"
                                        FontSize="13"
@@ -188,8 +185,8 @@
                     <Border Background="{DynamicResource PanelBrush}"
                             BorderBrush="{DynamicResource LineBrush}"
                             BorderThickness="1"
-                            CornerRadius="8"
-                            Padding="22"
+                            CornerRadius="12"
+                            Padding="20"
                             Margin="0,26,0,6"
                             Effect="{StaticResource SoftShadow}"
                             AllowDrop="True"
@@ -214,7 +211,7 @@
                                 </Grid.ColumnDefinitions>
                                 <Border Width="46"
                                         Height="46"
-                                        CornerRadius="8"
+                                        CornerRadius="10"
                                         Background="{Binding ActiveAccentSoftBrush}"
                                         BorderBrush="{Binding ActiveAccentBorderBrush}"
                                         BorderThickness="1"
@@ -230,8 +227,8 @@
                                     <TextBlock Text="Dosya Yükle"
                                        FontFamily="{StaticResource DisplayFont}"
                                                Foreground="{DynamicResource PrimaryTextBrush}"
-                                               FontSize="20"
-                                               FontWeight="Bold" />
+                                               FontSize="17"
+                                               FontWeight="SemiBold" />
                                     <TextBlock Text="Yazdırma işlemi için dosyanızı seçin veya bu alana sürükleyip bırakın."
                                                Foreground="{DynamicResource MutedTextBrush}"
                                                FontSize="13"
@@ -248,25 +245,26 @@
                             </Grid>
 
                             <Border Background="{DynamicResource PanelMutedBrush}"
-                                    CornerRadius="8"
+                                    CornerRadius="10"
                                     Margin="0,18,0,0"
                                     Padding="0"
                                     AllowDrop="True"
                                     DragOver="UploadDropzone_DragOver"
                                     Drop="UploadDropzone_Drop">
                                 <Grid MinHeight="164">
-                                    <Rectangle RadiusX="8"
-                                               RadiusY="8"
-                                               Stroke="{DynamicResource LineBrush}"
+                                    <Rectangle RadiusX="10"
+                                               RadiusY="10"
+                                               Stroke="{DynamicResource MutedTextBrush}"
+                                               Opacity="0.6"
                                                StrokeThickness="1.5"
-                                               StrokeDashArray="5 4"
+                                               StrokeDashArray="6 4"
                                                Fill="Transparent" />
                                     <StackPanel HorizontalAlignment="Center"
                                                 VerticalAlignment="Center"
                                                 TextBlock.TextAlignment="Center">
                                         <Border Width="52"
                                                 Height="52"
-                                                CornerRadius="8"
+                                                CornerRadius="10"
                                                 Background="{DynamicResource PanelBrush}"
                                                 BorderBrush="{DynamicResource LineBrush}"
                                                 BorderThickness="1"
@@ -313,7 +311,7 @@
                                 </Grid.ColumnDefinitions>
                                 <TextBlock Text="{Binding UploadFileCountText}"
                                            Foreground="{DynamicResource PrimaryTextBrush}"
-                                           FontSize="14"
+                                           FontSize="13"
                                            FontWeight="SemiBold"
                                            VerticalAlignment="Center" />
                                 <Button Grid.Column="1"
@@ -338,7 +336,7 @@
                             <Border Background="{DynamicResource PanelMutedBrush}"
                                     BorderBrush="{DynamicResource LineBrush}"
                                     BorderThickness="1"
-                                    CornerRadius="8"
+                                    CornerRadius="10"
                                     Margin="0,10,0,0"
                                     Padding="6">
                                 <ScrollViewer MaxHeight="280"
@@ -400,7 +398,7 @@
                                                                 CommandParameter="{Binding}">
                                                             <Viewbox Width="15" Height="15" Stretch="Uniform">
                                                                 <Path Fill="{DynamicResource MutedTextBrush}"
-                                                                      Data="M6,2 L10,2 L11,3 L14,3 L14,5 L2,5 L2,3 L5,3 Z M4,6 L12,6 L11.25,14 L4.75,14 Z M6,7.5 L7,7.5 L7,12.5 L6,12.5 Z M9,7.5 L10,7.5 L10,12.5 L9,12.5 Z" />
+                                                                      Data="{StaticResource IconTrashGeometry}" />
                                                             </Viewbox>
                                                         </Button>
                                                     </Grid>
@@ -440,8 +438,8 @@
                         <Border Background="{DynamicResource PanelBrush}"
                                 BorderBrush="{DynamicResource LineBrush}"
                                 BorderThickness="1"
-                                CornerRadius="8"
-                                Padding="22"
+                                CornerRadius="12"
+                                Padding="20"
                                 Effect="{StaticResource SoftShadow}">
                             <Grid>
                                 <Grid.ColumnDefinitions>
@@ -461,7 +459,7 @@
                                         <StackPanel Grid.Column="0">
                                             <TextBlock Text="Dosya Gönder"
                                                        FontFamily="{StaticResource DisplayFont}"
-                                                       FontSize="20"
+                                                       FontSize="17"
                                                        FontWeight="SemiBold"
                                                        Foreground="{DynamicResource PrimaryTextBrush}" />
                                             <TextBlock Text="Online personele göndereceğiniz dosya ve dokümanları bu alanda hazırlayın."
@@ -501,17 +499,20 @@
                                             Height="172">
                                         <Grid>
                                             <Rectangle Fill="{DynamicResource PanelMutedBrush}"
-                                                       Stroke="{DynamicResource LineBrush}"
-                                                       StrokeThickness="1.4"
-                                                       StrokeDashArray="4 4"
-                                                       RadiusX="12"
-                                                       RadiusY="12" />
+                                                       RadiusX="10"
+                                                       RadiusY="10" />
+                                            <Rectangle Stroke="{DynamicResource MutedTextBrush}"
+                                                       StrokeThickness="1.2"
+                                                       StrokeDashArray="6 4"
+                                                       Opacity="0.6"
+                                                       RadiusX="10"
+                                                       RadiusY="10" />
                                             <StackPanel HorizontalAlignment="Center"
                                                         VerticalAlignment="Center"
                                                         MaxWidth="430">
                                                 <Border Width="38"
                                                         Height="38"
-                                                        CornerRadius="9"
+                                                        CornerRadius="10"
                                                         Background="{DynamicResource PanelBrush}"
                                                         BorderBrush="{DynamicResource LineBrush}"
                                                         BorderThickness="1"
@@ -529,7 +530,7 @@
                                                 </Border>
                                                 <TextBlock Text="Dosya seç veya sürükle-bırak"
                                                            Foreground="{DynamicResource PrimaryTextBrush}"
-                                                           FontSize="16"
+                                                           FontSize="15"
                                                            FontWeight="SemiBold"
                                                            TextAlignment="Center" />
                                                 <TextBlock Text="Dosya Seç ekranında Ctrl+A ile toplu seçim yapılabilir."
@@ -558,7 +559,7 @@
 
                                     <Border BorderBrush="{DynamicResource LineBrush}"
                                             BorderThickness="1"
-                                            CornerRadius="8"
+                                            CornerRadius="10"
                                             Background="{DynamicResource PanelMutedBrush}">
                                         <StackPanel>
                                             <Grid Height="38" Background="{DynamicResource PanelAltBrush}">
@@ -578,7 +579,8 @@
                                                 <ItemsControl ItemsSource="{Binding ConvertTransferFiles}">
                                                     <ItemsControl.ItemTemplate>
                                                         <DataTemplate>
-                                                            <Grid MinHeight="44" Background="{DynamicResource PanelBrush}">
+                                                            <Border Background="{DynamicResource PanelBrush}" CornerRadius="8" Margin="3,3">
+                                                            <Grid MinHeight="44">
                                                                 <Grid.ColumnDefinitions>
                                                                     <ColumnDefinition Width="*" />
                                                                     <ColumnDefinition Width="110" />
@@ -608,10 +610,11 @@
                                                                         CommandParameter="{Binding}">
                                                                     <Viewbox Width="14" Height="14" Stretch="Uniform">
                                                                         <Path Fill="{DynamicResource MutedTextBrush}"
-                                                                              Data="M6,2 L10,2 L11,3 L14,3 L14,5 L2,5 L2,3 L5,3 Z M4,6 L12,6 L11.25,14 L4.75,14 Z M6,7.5 L7,7.5 L7,12.5 L6,12.5 Z M9,7.5 L10,7.5 L10,12.5 L9,12.5 Z" />
+                                                                              Data="{StaticResource IconTrashGeometry}" />
                                                                     </Viewbox>
                                                                 </Button>
                                                             </Grid>
+                                                            </Border>
                                                         </DataTemplate>
                                                     </ItemsControl.ItemTemplate>
                                                 </ItemsControl>
@@ -632,12 +635,12 @@
                                         Background="{DynamicResource PanelMutedBrush}"
                                         BorderBrush="{DynamicResource LineBrush}"
                                         BorderThickness="1"
-                                        CornerRadius="12"
+                                        CornerRadius="10"
                                         Padding="18">
                                     <StackPanel>
                                         <TextBlock Text="Online Personeller"
                                                    FontFamily="{StaticResource DisplayFont}"
-                                                   FontSize="20"
+                                                   FontSize="15"
                                                    FontWeight="SemiBold"
                                                    Foreground="{DynamicResource PrimaryTextBrush}" />
                                         <TextBlock Text="Alıcıyı seçin, dosyaları ekleyin ve Gönder butonuna basın."
@@ -681,7 +684,7 @@
                                                         <Border MinHeight="38"
                                                                 Margin="0,0,0,7"
                                                                 Padding="10,0"
-                                                                CornerRadius="9"
+                                                                CornerRadius="8"
                                                                 Cursor="Hand"
                                                                 ToolTip="{Binding TransferStatusText}"
                                                                 MouseLeftButtonDown="TransferRecipientItem_MouseLeftButtonDown">
@@ -695,7 +698,7 @@
                                                                             <Setter Property="Background" Value="{DynamicResource PanelAltBrush}" />
                                                                         </Trigger>
                                                                         <DataTrigger Binding="{Binding IsSelectedForTransfer}" Value="True">
-                                                                            <Setter Property="BorderBrush" Value="#3B82F6" />
+                                                                            <Setter Property="BorderBrush" Value="{DynamicResource AccentBrush}" />
                                                                             <Setter Property="BorderThickness" Value="2" />
                                                                             <Setter Property="Background" Value="{DynamicResource PanelBrush}" />
                                                                         </DataTrigger>
@@ -711,7 +714,7 @@
                                                                 <Border Width="8"
                                                                         Height="8"
                                                                         CornerRadius="4"
-                                                                        Background="#16A34A"
+                                                                        Background="{DynamicResource SuccessBrush}"
                                                                         Opacity="0.85"
                                                                         HorizontalAlignment="Left"
                                                                         VerticalAlignment="Center" />
@@ -726,7 +729,7 @@
                                                                         Width="9"
                                                                         Height="9"
                                                                         CornerRadius="5"
-                                                                        Background="#D97706"
+                                                                        Background="{DynamicResource WarningBrush}"
                                                                         Opacity="0.8"
                                                                         Visibility="{Binding TransferNotificationVisibility}"
                                                                         ToolTip="{Binding TransferNotificationText}"
@@ -758,8 +761,8 @@
                         <Border Background="{DynamicResource PanelBrush}"
                                 BorderBrush="{DynamicResource LineBrush}"
                                 BorderThickness="1"
-                                CornerRadius="8"
-                                Padding="22"
+                                CornerRadius="12"
+                                Padding="20"
                                 Margin="0,24,0,0"
                                 Effect="{StaticResource SoftShadow}">
                             <StackPanel>
@@ -771,7 +774,7 @@
                                     <StackPanel>
                                         <TextBlock Text="Transfer Geçmişi"
                                                    FontFamily="{StaticResource DisplayFont}"
-                                                   FontSize="20"
+                                                   FontSize="17"
                                                    FontWeight="SemiBold"
                                                    Foreground="{DynamicResource PrimaryTextBrush}" />
                                         <TextBlock Text="Transfer geçmişindeki dosyayı açabilir, Yazdırma sekmesine alabilir veya doğrudan yazdırabilirsiniz."
@@ -797,7 +800,7 @@
 
                                 <Border BorderBrush="{DynamicResource LineBrush}"
                                         BorderThickness="1"
-                                        CornerRadius="0"
+                                        CornerRadius="10"
                                         Background="{DynamicResource PanelMutedBrush}"
                                         Margin="0,18,0,0">
                                     <StackPanel>
@@ -847,7 +850,7 @@
                                                                         CommandParameter="{Binding}">
                                                                     <Viewbox Width="15" Height="15" Stretch="Uniform">
                                                                         <Path Fill="{DynamicResource MutedTextBrush}"
-                                                                              Data="M8,3 C4.5,3 2,8 2,8 C2,8 4.5,13 8,13 C11.5,13 14,8 14,8 C14,8 11.5,3 8,3 Z M8,5 C9.65,5 11,6.35 11,8 C11,9.65 9.65,11 8,11 C6.35,11 5,9.65 5,8 C5,6.35 6.35,5 8,5 Z M8,6.4 C7.12,6.4 6.4,7.12 6.4,8 C6.4,8.88 7.12,9.6 8,9.6 C8.88,9.6 9.6,8.88 9.6,8 C9.6,7.12 8.88,6.4 8,6.4 Z" />
+                                                                              Data="{StaticResource IconOpenGeometry}" />
                                                                     </Viewbox>
                                                                 </Button>
                                                                 <Button Style="{StaticResource ShadcnGhostButtonStyle}"
@@ -860,7 +863,7 @@
                                                                         CommandParameter="{Binding}">
                                                                     <Viewbox Width="15" Height="15" Stretch="Uniform">
                                                                         <Path Fill="{DynamicResource MutedTextBrush}"
-                                                                              Data="M8,2 L14,7 L13,8.2 L12,7.35 L12,14 L9.5,14 L9.5,10 L6.5,10 L6.5,14 L4,14 L4,7.35 L3,8.2 L2,7 Z" />
+                                                                              Data="{StaticResource IconSendGeometry}" />
                                                                     </Viewbox>
                                                                 </Button>
                                                                 <Button Style="{StaticResource ShadcnGhostButtonStyle}"
@@ -872,7 +875,7 @@
                                                                         CommandParameter="{Binding}">
                                                                     <Viewbox Width="15" Height="15" Stretch="Uniform">
                                                                         <Path Fill="{DynamicResource MutedTextBrush}"
-                                                                              Data="M4,2 L12,2 L12,5 L4,5 Z M3,6 L13,6 C13.55,6 14,6.45 14,7 L14,11 L12,11 L12,14 L4,14 L4,11 L2,11 L2,7 C2,6.45 2.45,6 3,6 Z M5,10 L5,13 L11,13 L11,10 Z M11.5,7.25 C10.95,7.25 10.5,7.7 10.5,8.25 C10.5,8.8 10.95,9.25 11.5,9.25 C12.05,9.25 12.5,8.8 12.5,8.25 C12.5,7.7 12.05,7.25 11.5,7.25 Z" />
+                                                                              Data="{StaticResource IconPrinterGeometry}" />
                                                                     </Viewbox>
                                                                 </Button>
                                                             </StackPanel>
@@ -891,8 +894,8 @@
                     <Border Background="{DynamicResource PanelBrush}"
                             BorderBrush="{DynamicResource LineBrush}"
                             BorderThickness="1"
-                            CornerRadius="8"
-                            Padding="22"
+                            CornerRadius="12"
+                            Padding="20"
                             Margin="0,26,0,28"
                             Effect="{StaticResource SoftShadow}"
                             AllowDrop="True"
@@ -917,7 +920,7 @@
                                 </Grid.ColumnDefinitions>
                                 <Border Width="48"
                                         Height="48"
-                                        CornerRadius="8"
+                                        CornerRadius="10"
                                         Background="{Binding ActiveAccentSoftBrush}"
                                         BorderBrush="{Binding ActiveAccentBorderBrush}"
                                         BorderThickness="1"
@@ -931,9 +934,10 @@
                                 </Border>
                                 <StackPanel Grid.Column="1" Margin="14,1,0,0">
                                     <TextBlock Text="Dosyaları Dönüştür"
+                                               FontFamily="{StaticResource DisplayFont}"
                                                Foreground="{DynamicResource PrimaryTextBrush}"
-                                               FontSize="20"
-                                               FontWeight="Bold" />
+                                               FontSize="17"
+                                               FontWeight="SemiBold" />
                                     <TextBlock Text="Dosyalarınızı seçin, hedef formatı belirleyin ve çıktıyı istediğiniz klasöre alın."
                                                Foreground="{DynamicResource MutedTextBrush}"
                                                FontSize="13"
@@ -958,17 +962,18 @@
                                 </Grid.ColumnDefinitions>
 
                                 <Border Background="{DynamicResource PanelMutedBrush}"
-                                        CornerRadius="8"
+                                        CornerRadius="10"
                                         Padding="0"
                                         AllowDrop="True"
                                         DragOver="ConvertDropzone_DragOver"
                                         Drop="ConvertDropzone_Drop">
                                     <Grid MinHeight="210">
-                                        <Rectangle RadiusX="8"
-                                                   RadiusY="8"
-                                                   Stroke="{DynamicResource LineBrush}"
+                                        <Rectangle RadiusX="10"
+                                                   RadiusY="10"
+                                                   Stroke="{DynamicResource MutedTextBrush}"
+                                                   Opacity="0.6"
                                                    StrokeThickness="1.5"
-                                                   StrokeDashArray="5 4"
+                                                   StrokeDashArray="6 4"
                                                    Fill="Transparent" />
                                         <StackPanel HorizontalAlignment="Center"
                                                     VerticalAlignment="Center"
@@ -976,7 +981,7 @@
                                                     Margin="18">
                                             <Border Width="58"
                                                     Height="58"
-                                                    CornerRadius="8"
+                                                    CornerRadius="10"
                                                     Background="{DynamicResource PanelBrush}"
                                                     BorderBrush="{DynamicResource LineBrush}"
                                                     BorderThickness="1"
@@ -1019,13 +1024,14 @@
                                         Background="{DynamicResource PanelMutedBrush}"
                                         BorderBrush="{DynamicResource LineBrush}"
                                         BorderThickness="1"
-                                        CornerRadius="8"
+                                        CornerRadius="10"
                                         Padding="18">
                                     <StackPanel>
                                         <TextBlock Text="Hedef Format"
+                                                   FontFamily="{StaticResource DisplayFont}"
                                                    Foreground="{DynamicResource PrimaryTextBrush}"
-                                                   FontSize="18"
-                                                   FontWeight="Bold" />
+                                                   FontSize="15"
+                                                   FontWeight="SemiBold" />
                                         <TextBlock Text="Seçilen tüm dosyalar doküman veya görsel hedef formatına dönüştürülür."
                                                    Foreground="{DynamicResource MutedTextBrush}"
                                                    FontSize="12"
@@ -1044,7 +1050,7 @@
                                                     </Grid.ColumnDefinitions>
                                                     <TextBlock Text="{Binding SelectedConvertTargetFormat}"
                                                                Foreground="{DynamicResource PrimaryTextBrush}"
-                                                               FontSize="16"
+                                                               FontSize="13"
                                                                FontWeight="SemiBold"
                                                                VerticalAlignment="Center"
                                                                TextTrimming="CharacterEllipsis" />
@@ -1072,10 +1078,10 @@
                                                 <Border Background="{DynamicResource PanelBrush}"
                                                         BorderBrush="{DynamicResource LineBrush}"
                                                         BorderThickness="1"
-                                                        CornerRadius="8"
+                                                        CornerRadius="10"
                                                         Padding="0">
                                                     <Border.Effect>
-                                                        <DropShadowEffect BlurRadius="24" ShadowDepth="8" Opacity="0.20" Color="#000000" />
+                                                        <DropShadowEffect BlurRadius="28" ShadowDepth="6" Opacity="0.14" Color="#000000" />
                                                     </Border.Effect>
                                                     <Grid>
                                                         <Grid.RowDefinitions>
@@ -1084,7 +1090,7 @@
                                                         </Grid.RowDefinitions>
 
                                                         <Border Background="{DynamicResource PanelMutedBrush}"
-                                                                CornerRadius="8,8,0,0"
+                                                                CornerRadius="10,10,0,0"
                                                                 BorderBrush="{DynamicResource LineBrush}"
                                                                 BorderThickness="0,0,0,1"
                                                                 Padding="14,0">
@@ -1171,8 +1177,8 @@
 
                                         <TextBlock Text="Personel varsayılan kayıt klasörü"
                                                    Foreground="{DynamicResource PrimaryTextBrush}"
-                                                   FontSize="14"
-                                                   FontWeight="Bold"
+                                                   FontSize="12"
+                                                   FontWeight="SemiBold"
                                                    Margin="0,16,0,7" />
                                         <Border Style="{StaticResource InputWrapperBorderStyle}">
                                             <TextBox Text="{Binding ConvertOutputFolder, UpdateSourceTrigger=PropertyChanged}"
@@ -1197,7 +1203,7 @@
                                 </Grid.ColumnDefinitions>
                                 <TextBlock Text="{Binding ConvertFileCountText}"
                                            Foreground="{DynamicResource PrimaryTextBrush}"
-                                           FontSize="14"
+                                           FontSize="13"
                                            FontWeight="SemiBold"
                                            VerticalAlignment="Center" />
                                 <Button Grid.Column="1"
@@ -1222,7 +1228,7 @@
                             <Border Background="{DynamicResource PanelMutedBrush}"
                                     BorderBrush="{DynamicResource LineBrush}"
                                     BorderThickness="1"
-                                    CornerRadius="8"
+                                    CornerRadius="10"
                                     Margin="0,10,0,0"
                                     Padding="6">
                                 <ScrollViewer MaxHeight="300"
@@ -1286,8 +1292,7 @@
                                                                 <Run Text="{Binding Extension}" />
                                                             </TextBlock>
                                                             <ProgressBar Value="{Binding Progress}"
-                                                                         Maximum="100"
-                                                                         Height="5"
+                                                                         Style="{StaticResource TbTransferProgressBarStyle}"
                                                                          Margin="0,6,0,0" />
                                                         </StackPanel>
                                                         <StackPanel Grid.Column="3"
@@ -1322,7 +1327,7 @@
                                                                     CommandParameter="{Binding}">
                                                                 <Viewbox Width="15" Height="15" Stretch="Uniform">
                                                                     <Path Fill="{DynamicResource MutedTextBrush}"
-                                                                          Data="M8,2 L14,7 L13,8.2 L12,7.35 L12,14 L9.5,14 L9.5,10 L6.5,10 L6.5,14 L4,14 L4,7.35 L3,8.2 L2,7 Z" />
+                                                                          Data="{StaticResource IconSendGeometry}" />
                                                                 </Viewbox>
                                                             </Button>
                                                             <Button Style="{StaticResource ShadcnGhostButtonStyle}"
@@ -1335,7 +1340,7 @@
                                                                     CommandParameter="{Binding}">
                                                                 <Viewbox Width="15" Height="15" Stretch="Uniform">
                                                                     <Path Fill="{DynamicResource MutedTextBrush}"
-                                                                          Data="M4,2 L12,2 L12,5 L4,5 Z M3,6 L13,6 C13.55,6 14,6.45 14,7 L14,11 L12,11 L12,14 L4,14 L4,11 L2,11 L2,7 C2,6.45 2.45,6 3,6 Z M5,10 L5,13 L11,13 L11,10 Z M11.5,7.25 C10.95,7.25 10.5,7.7 10.5,8.25 C10.5,8.8 10.95,9.25 11.5,9.25 C12.05,9.25 12.5,8.8 12.5,8.25 C12.5,7.7 12.05,7.25 11.5,7.25 Z" />
+                                                                          Data="{StaticResource IconPrinterGeometry}" />
                                                                 </Viewbox>
                                                             </Button>
                                                             <Button Style="{StaticResource ShadcnGhostButtonStyle}"
@@ -1347,7 +1352,7 @@
                                                                     CommandParameter="{Binding}">
                                                                 <Viewbox Width="15" Height="15" Stretch="Uniform">
                                                                     <Path Fill="{DynamicResource MutedTextBrush}"
-                                                                          Data="M6,2 L10,2 L11,3 L14,3 L14,5 L2,5 L2,3 L5,3 Z M4,6 L12,6 L11.25,14 L4.75,14 Z M6,7.5 L7,7.5 L7,12.5 L6,12.5 Z M9,7.5 L10,7.5 L10,12.5 L9,12.5 Z" />
+                                                                          Data="{StaticResource IconTrashGeometry}" />
                                                                 </Viewbox>
                                                             </Button>
                                                         </StackPanel>
@@ -1368,7 +1373,7 @@
                             <Border Background="{DynamicResource PanelMutedBrush}"
                                     BorderBrush="{DynamicResource LineBrush}"
                                     BorderThickness="1"
-                                    CornerRadius="8"
+                                    CornerRadius="10"
                                     Padding="18"
                                     Margin="0,28,0,0"
                                     AllowDrop="True"
@@ -1383,7 +1388,7 @@
                                         </Grid.ColumnDefinitions>
                                         <Border Width="46"
                                                 Height="46"
-                                                CornerRadius="8"
+                                                CornerRadius="10"
                                                 Background="{Binding ActiveAccentSoftBrush}"
                                                 BorderBrush="{Binding ActiveAccentBorderBrush}"
                                                 BorderThickness="1"
@@ -1397,9 +1402,10 @@
                                         </Border>
                                         <StackPanel Grid.Column="1" Margin="14,0,0,0">
                                             <TextBlock Text="PDF Birleştir"
+                                                       FontFamily="{StaticResource DisplayFont}"
                                                        Foreground="{DynamicResource PrimaryTextBrush}"
-                                                       FontSize="20"
-                                                       FontWeight="Bold" />
+                                                       FontSize="17"
+                                                       FontWeight="SemiBold" />
                                             <TextBlock Text="Birden fazla PDF dosyasını seçin, liste sırasına göre tek PDF çıktısı oluşturun."
                                                        Foreground="{DynamicResource MutedTextBrush}"
                                                        FontSize="13"
@@ -1424,17 +1430,18 @@
                                         </Grid.ColumnDefinitions>
 
                                         <Border Background="{DynamicResource PanelBrush}"
-                                                CornerRadius="8"
+                                                CornerRadius="10"
                                                 Padding="0"
                                                 AllowDrop="True"
                                                 DragOver="PdfMergeDropzone_DragOver"
                                                 Drop="PdfMergeDropzone_Drop">
                                             <Grid MinHeight="190">
-                                                <Rectangle RadiusX="8"
-                                                           RadiusY="8"
-                                                           Stroke="{DynamicResource LineBrush}"
+                                                <Rectangle RadiusX="10"
+                                                           RadiusY="10"
+                                                           Stroke="{DynamicResource MutedTextBrush}"
+                                                           Opacity="0.6"
                                                            StrokeThickness="1.5"
-                                                           StrokeDashArray="5 4"
+                                                           StrokeDashArray="6 4"
                                                            Fill="Transparent" />
                                                 <StackPanel HorizontalAlignment="Center"
                                                             VerticalAlignment="Center"
@@ -1442,7 +1449,7 @@
                                                             Margin="18">
                                                     <Border Width="58"
                                                             Height="58"
-                                                            CornerRadius="8"
+                                                            CornerRadius="10"
                                                             Background="{DynamicResource PanelMutedBrush}"
                                                             BorderBrush="{DynamicResource LineBrush}"
                                                             BorderThickness="1"
@@ -1485,13 +1492,14 @@
                                                 Background="{DynamicResource PanelBrush}"
                                                 BorderBrush="{DynamicResource LineBrush}"
                                                 BorderThickness="1"
-                                                CornerRadius="8"
+                                                CornerRadius="10"
                                                 Padding="18">
                                             <StackPanel>
                                                 <TextBlock Text="PDF Çıktısı"
+                                                           FontFamily="{StaticResource DisplayFont}"
                                                            Foreground="{DynamicResource PrimaryTextBrush}"
-                                                           FontSize="18"
-                                                           FontWeight="Bold" />
+                                                           FontSize="15"
+                                                           FontWeight="SemiBold" />
                                                 <TextBlock Text="Çıktı adı ve kayıt klasörünü belirleyin."
                                                            Foreground="{DynamicResource MutedTextBrush}"
                                                            FontSize="12"
@@ -1500,8 +1508,8 @@
                                                            TextWrapping="Wrap" />
                                                 <TextBlock Text="Çıktı dosya adı"
                                                            Foreground="{DynamicResource PrimaryTextBrush}"
-                                                           FontSize="14"
-                                                           FontWeight="Bold"
+                                                           FontSize="12"
+                                                           FontWeight="SemiBold"
                                                            Margin="0,0,0,7" />
                                                 <Border Style="{StaticResource InputWrapperBorderStyle}">
                                                     <TextBox Text="{Binding PdfMergeOutputFileName, UpdateSourceTrigger=PropertyChanged}"
@@ -1510,8 +1518,8 @@
                                                 </Border>
                                                 <TextBlock Text="Kayıt klasörü"
                                                            Foreground="{DynamicResource PrimaryTextBrush}"
-                                                           FontSize="14"
-                                                           FontWeight="Bold"
+                                                           FontSize="12"
+                                                           FontWeight="SemiBold"
                                                            Margin="0,14,0,7" />
                                                 <Border Style="{StaticResource InputWrapperBorderStyle}">
                                                     <TextBox Text="{Binding ConvertOutputFolder, UpdateSourceTrigger=PropertyChanged}"
@@ -1536,7 +1544,7 @@
                                         </Grid.ColumnDefinitions>
                                         <TextBlock Text="{Binding PdfMergeFileCountText}"
                                                    Foreground="{DynamicResource PrimaryTextBrush}"
-                                                   FontSize="14"
+                                                   FontSize="13"
                                                    FontWeight="SemiBold"
                                                    VerticalAlignment="Center" />
                                         <Button Grid.Column="1"
@@ -1561,7 +1569,7 @@
                                     <Border Background="{DynamicResource PanelBrush}"
                                             BorderBrush="{DynamicResource LineBrush}"
                                             BorderThickness="1"
-                                            CornerRadius="8"
+                                            CornerRadius="10"
                                             Margin="0,10,0,0"
                                             Padding="6">
                                         <ScrollViewer MaxHeight="260"
@@ -1617,8 +1625,7 @@
                                                                         <Run Text="  •  PDF" />
                                                                     </TextBlock>
                                                                     <ProgressBar Value="{Binding Progress}"
-                                                                                 Maximum="100"
-                                                                                 Height="5"
+                                                                                 Style="{StaticResource TbTransferProgressBarStyle}"
                                                                                  Margin="0,6,0,0" />
                                                                 </StackPanel>
                                                                 <StackPanel Grid.Column="2"
@@ -1646,7 +1653,7 @@
                                                                         CommandParameter="{Binding}">
                                                                     <Viewbox Width="15" Height="15" Stretch="Uniform">
                                                                         <Path Fill="{DynamicResource MutedTextBrush}"
-                                                                              Data="M6,2 L10,2 L11,3 L14,3 L14,5 L2,5 L2,3 L5,3 Z M4,6 L12,6 L11.25,14 L4.75,14 Z M6,7.5 L7,7.5 L7,12.5 L6,12.5 Z M9,7.5 L10,7.5 L10,12.5 L9,12.5 Z" />
+                                                                              Data="{StaticResource IconTrashGeometry}" />
                                                                     </Viewbox>
                                                                 </Button>
                                                             </Grid>
@@ -1672,7 +1679,7 @@
                     <Border Background="{DynamicResource PanelBrush}"
                             BorderBrush="{DynamicResource LineBrush}"
                             BorderThickness="1"
-                            CornerRadius="8"
+                            CornerRadius="12"
                             Padding="20"
                             Margin="0,24,0,28"
                             Effect="{StaticResource SoftShadow}">
@@ -1701,8 +1708,8 @@
                                 <StackPanel>
                                     <TextBlock Text="Yazdırma Geçmişi"
                                        FontFamily="{StaticResource DisplayFont}"
-                                               FontSize="24"
-                                               FontWeight="Bold"
+                                               FontSize="17"
+                                               FontWeight="SemiBold"
                                                Foreground="{DynamicResource PrimaryTextBrush}" />
                                     <TextBlock Text="Son yazdırma işlemlerini buradan takip edebilirsiniz."
                                                Foreground="{DynamicResource MutedTextBrush}"
@@ -1721,13 +1728,13 @@
                             </Grid>
 
                             <Border Grid.Row="1"
-                                    Background="{DynamicResource ChipBrush}"
+                                    Background="{DynamicResource PanelAltBrush}"
                                     BorderBrush="{DynamicResource LineBrush}"
                                     BorderThickness="1"
-                                    CornerRadius="8,8,0,0"
+                                    CornerRadius="10,10,0,0"
                                     Margin="0,16,18,0"
-                                    Padding="16,0,43,0">
-                                <Grid Height="42">
+                                    Padding="16,0,16,0">
+                                <Grid Height="42" Margin="0,0,16,0">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="180" />
                                         <ColumnDefinition Width="2.5*" />
@@ -1747,7 +1754,7 @@
                                     Background="{DynamicResource PanelMutedBrush}"
                                     BorderBrush="{DynamicResource LineBrush}"
                                     BorderThickness="1,0,1,1"
-                                    CornerRadius="0,0,8,8"
+                                    CornerRadius="0,0,10,10"
                                     Margin="0,0,18,0"
                                     Padding="0,10,0,0"
                                     MinHeight="170">
@@ -1785,7 +1792,7 @@
                                                                 Background="{Binding ColorBackgroundBrush}"
                                                                 BorderBrush="{Binding ColorBorderBrush}"
                                                                 BorderThickness="1"
-                                                                CornerRadius="8"
+                                                                CornerRadius="6"
                                                                 Padding="12,5"
                                                                 MinWidth="74"
                                                                 HorizontalAlignment="Center"
@@ -1799,7 +1806,7 @@
                                                                 Background="{Binding StatusBackgroundBrush}"
                                                                 BorderBrush="{Binding StatusBorderBrush}"
                                                                 BorderThickness="1"
-                                                                CornerRadius="8"
+                                                                CornerRadius="6"
                                                                 Padding="12,5"
                                                                 MinWidth="96"
                                                                 HorizontalAlignment="Center"
@@ -1856,24 +1863,24 @@
                                             Background="{DynamicResource PanelBrush}"
                                             BorderBrush="{Binding PrintCardBorderBrush}"
                                             BorderThickness="{Binding PrintCardBorderThickness}"
-                                            CornerRadius="8"
+                                            CornerRadius="12"
                                             Effect="{StaticResource SoftShadow}">
                                         <Grid>
                                             <Grid.RowDefinitions>
                                                 <RowDefinition Height="196" />
                                                 <RowDefinition Height="*" />
                                             </Grid.RowDefinitions>
-                                            <Border Background="{Binding CoverBrush}" CornerRadius="8,8,0,0">
+                                            <Border Background="{Binding CoverBrush}" CornerRadius="12,12,0,0">
                                                 <Grid Margin="20">
                                                     <TextBlock Text="{Binding Kicker}" Foreground="#FDFDFD" FontWeight="SemiBold" FontSize="13" VerticalAlignment="Top" Opacity="0.9" />
-                                                    <Border Width="56" Height="56" CornerRadius="8" Background="#55FFFFFF" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                                    <Border Width="56" Height="56" CornerRadius="10" Background="#55FFFFFF" HorizontalAlignment="Center" VerticalAlignment="Center">
                                                         <TextBlock Text="&#xE749;" FontFamily="Segoe MDL2 Assets" Foreground="White" FontSize="23" HorizontalAlignment="Center" VerticalAlignment="Center" />
                                                     </Border>
                                                     <TextBlock Text="ToolBridge" Foreground="#FDFDFD" FontSize="12" FontWeight="Bold" HorizontalAlignment="Right" VerticalAlignment="Top" Opacity="0.82" />
                                                 </Grid>
                                             </Border>
                                             <StackPanel Grid.Row="1" Margin="16,14,16,10">
-                                                <TextBlock Text="{Binding Name}" FontSize="16" FontWeight="Bold" Foreground="{DynamicResource PrimaryTextBrush}" TextTrimming="CharacterEllipsis" />
+                                                <TextBlock Text="{Binding Name}" FontSize="15" FontWeight="SemiBold" Foreground="{DynamicResource PrimaryTextBrush}" TextTrimming="CharacterEllipsis" />
                                                 <TextBlock Text="{Binding IpAddress}" FontSize="13" Foreground="{DynamicResource MutedTextBrush}" Margin="0,5,0,0" />
                                             </StackPanel>
                                         </Grid>
@@ -1910,7 +1917,7 @@
                     <StackPanel Grid.Row="0">
                         <TextBlock Text="Ayarlar"
                                    FontFamily="{StaticResource DisplayFont}"
-                                   FontSize="40"
+                                   FontSize="26"
                                    FontWeight="SemiBold"
                                    Foreground="{DynamicResource PrimaryTextBrush}" />
                         <TextBlock Text="Uygulama yalnızca manuel eklediğiniz yazıcıları listeler. Aşağıdaki tüm yazıcılar otomatik aranmaz veya eklenmez. Varsayılan yaptığınız yazıcı uygulama açılışında otomatik seçilir."
@@ -1924,8 +1931,8 @@
                         <Border Background="{DynamicResource PanelMutedBrush}"
                                 BorderBrush="{DynamicResource LineBrush}"
                                 BorderThickness="1"
-                                CornerRadius="8"
-                                Padding="14"
+                                CornerRadius="10"
+                                Padding="16"
                                 Margin="0,18,0,0">
                             <Grid>
                                 <Grid.RowDefinitions>
@@ -1942,10 +1949,11 @@
 
                                     <StackPanel>
                                         <TextBlock Text="BC Fatura Hot Folder"
+                                                   FontFamily="{StaticResource DisplayFont}"
                                                    Foreground="{DynamicResource PrimaryTextBrush}"
                                                    FontSize="15"
-                                                   FontWeight="Bold" />
-                                        <TextBlock Text="Belirlenen klasore gelen PDF faturalar onay istemeden varsayilan ToolBridge yazicisina gonderilir."
+                                                   FontWeight="SemiBold" />
+                                        <TextBlock Text="Belirlenen klasöre gelen PDF faturalar onay istemeden varsayılan ToolBridge yazıcısına gönderilir."
                                                    Foreground="{DynamicResource MutedTextBrush}"
                                                    FontSize="12"
                                                    FontWeight="SemiBold"
@@ -1957,7 +1965,7 @@
                                             Background="{DynamicResource PanelBrush}"
                                             BorderBrush="{DynamicResource LineBrush}"
                                             BorderThickness="1"
-                                            CornerRadius="8"
+                                            CornerRadius="6"
                                             Padding="10,6"
                                             VerticalAlignment="Top">
                                         <TextBlock Text="{Binding BcDownloadWatcherModeText}"
@@ -1974,19 +1982,16 @@
                                     </Grid.ColumnDefinitions>
 
                                     <StackPanel Grid.Column="0">
-                                        <TextBlock Text="Yerel fatura klasoru"
+                                        <TextBlock Text="Yerel fatura klasörü"
                                                    Foreground="{DynamicResource MutedTextBrush}"
-                                                   FontSize="11"
-                                                   FontWeight="Bold"
+                                                   FontSize="12"
+                                                   FontWeight="SemiBold"
                                                    Margin="0,0,0,6" />
-                                        <TextBox Text="{Binding BcWatchFolder, UpdateSourceTrigger=PropertyChanged}"
-                                                 Background="{DynamicResource PanelBrush}"
-                                                 Foreground="{DynamicResource PrimaryTextBrush}"
-                                                 BorderBrush="{DynamicResource LineBrush}"
-                                                 BorderThickness="1"
-                                                 Padding="10,7"
-                                                 MinHeight="32" />
-                                        <TextBlock Text="Bu klasore gelen tum PDF dosyalari otomatik yazdirilir. Dosya adi filtresi gerekmez."
+                                        <Border Style="{StaticResource InputWrapperBorderStyle}">
+                                            <TextBox Text="{Binding BcWatchFolder, UpdateSourceTrigger=PropertyChanged}"
+                                                     Style="{StaticResource ShadcnTextBoxInputStyle}" />
+                                        </Border>
+                                        <TextBlock Text="Bu klasöre gelen tüm PDF dosyaları otomatik yazdırılır. Dosya adı filtresi gerekmez."
                                                    Foreground="{DynamicResource MutedTextBrush}"
                                                    FontSize="11"
                                                    FontWeight="SemiBold"
@@ -1995,11 +2000,11 @@
                                     </StackPanel>
 
                                     <StackPanel Grid.Column="1" Margin="10,18,0,0" Orientation="Horizontal">
-                                        <Button Content="Sec"
+                                        <Button Content="Seç"
                                                 Style="{StaticResource ShadcnSecondaryButtonStyle}"
                                                 Command="{Binding BrowseBcWatchFolderCommand}"
                                                 MinWidth="66" />
-                                        <Button Content="Ac"
+                                        <Button Content="Aç"
                                                 Style="{StaticResource ShadcnSecondaryButtonStyle}"
                                                 Command="{Binding OpenBcWatchFolderCommand}"
                                                 MinWidth="58"
@@ -2023,7 +2028,7 @@
                                               VerticalAlignment="Center" />
 
                                     <CheckBox Grid.Column="1"
-                                              Content="Yazdirilan faturayi arsivle"
+                                              Content="Yazdırılan faturayı arşivle"
                                               IsChecked="{Binding BcArchiveAfterPrint, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                               Foreground="{DynamicResource PrimaryTextBrush}"
                                               FontWeight="SemiBold"
@@ -2045,7 +2050,7 @@
                                     </StackPanel>
 
                                     <Button Grid.Column="3"
-                                            Content="Kaydet / Yeniden Baslat"
+                                            Content="Kaydet / Yeniden Başlat"
                                             Style="{StaticResource SettingsSoftGreenButtonStyle}"
                                             Command="{Binding SaveBcDownloadWatcherSettingsCommand}"
                                             MinWidth="170"
@@ -2060,8 +2065,8 @@
                             Background="{DynamicResource PanelBrush}"
                             BorderBrush="{DynamicResource LineBrush}"
                             BorderThickness="1"
-                            CornerRadius="8"
-                            Padding="22"
+                            CornerRadius="12"
+                            Padding="20"
                             Margin="0,26,0,6"
                             Effect="{StaticResource SoftShadow}">
                         <Grid>
@@ -2083,7 +2088,7 @@
                                     Background="{DynamicResource PanelMutedBrush}"
                                     BorderBrush="{DynamicResource LineBrush}"
                                     BorderThickness="1"
-                                    CornerRadius="8"
+                                    CornerRadius="10"
                                     Padding="14"
                                     MinHeight="310">
                                 <Grid>
@@ -2179,7 +2184,7 @@
                                                                                    TextTrimming="CharacterEllipsis" />
                                                                     </StackPanel>
                                                                     <TextBlock Text="{Binding DefaultLabel}"
-                                                                               Foreground="#22C55E"
+                                                                               Foreground="{DynamicResource SuccessBrush}"
                                                                                FontSize="11"
                                                                                FontWeight="Bold"
                                                                                Margin="18,4,0,0" />
@@ -2205,7 +2210,7 @@
                                                                         Background="{Binding ColorCategoryBackgroundBrush}"
                                                                         BorderBrush="{Binding ColorCategoryBorderBrush}"
                                                                         BorderThickness="1"
-                                                                        CornerRadius="8"
+                                                                        CornerRadius="6"
                                                                         Padding="10,6"
                                                                         HorizontalAlignment="Left"
                                                                         VerticalAlignment="Center">
@@ -2279,13 +2284,15 @@
                 <StackPanel Margin="22,30,8,24">
                     <TextBlock Text="Model"
                                        FontFamily="{StaticResource DisplayFont}"
-                               FontSize="20"
-                               FontWeight="Bold"
+                               FontSize="17"
+                               FontWeight="SemiBold"
                                Foreground="{DynamicResource PrimaryTextBrush}" />
 
                     <Border Height="210"
                             Background="{DynamicResource PanelBrush}"
-                            CornerRadius="8"
+                            BorderBrush="{DynamicResource LineBrush}"
+                            BorderThickness="1"
+                            CornerRadius="12"
                             Margin="0,16,0,20"
                             Effect="{StaticResource SoftShadow}">
                         <Grid Margin="20">
@@ -2294,7 +2301,7 @@
                                 <RowDefinition Height="Auto" />
                             </Grid.RowDefinitions>
                             <Border Background="{Binding SelectedPrintPrinterCoverBrush}"
-                                    CornerRadius="8"
+                                    CornerRadius="10"
                                     Effect="{StaticResource CardShadow}">
                                 <Grid>
                                     <TextBlock Text="&#xE749;"
@@ -2310,8 +2317,8 @@
                                         HorizontalAlignment="Center">
                                 <TextBlock Text="{Binding SelectedPrintPrinterTitle}"
                                            Foreground="{DynamicResource PrimaryTextBrush}"
-                                           FontSize="18"
-                                           FontWeight="Bold"
+                                           FontSize="15"
+                                           FontWeight="SemiBold"
                                            HorizontalAlignment="Center"
                                            TextAlignment="Center"
                                            TextTrimming="CharacterEllipsis" />
@@ -2322,14 +2329,14 @@
                     <Border Background="{DynamicResource PanelBrush}"
                             BorderBrush="{DynamicResource LineBrush}"
                             BorderThickness="1"
-                            CornerRadius="8"
-                            Padding="18"
+                            CornerRadius="12"
+                            Padding="20"
                             Effect="{StaticResource SoftShadow}">
                         <StackPanel>
                             <TextBlock Text="Yazdırma Ayarları"
                                        FontFamily="{StaticResource DisplayFont}"
-                                       FontSize="22"
-                                       FontWeight="Bold"
+                                       FontSize="17"
+                                       FontWeight="SemiBold"
                                        Foreground="{DynamicResource PrimaryTextBrush}" />
                             <TextBlock Text="Seçili cihaz için yazdırma tercihlerini belirleyin."
                                        Foreground="{DynamicResource MutedTextBrush}"
@@ -2409,8 +2416,8 @@
                     <Border Background="{DynamicResource PanelBrush}"
                             BorderBrush="{DynamicResource LineBrush}"
                             BorderThickness="1"
-                            CornerRadius="22"
-                            Padding="22"
+                            CornerRadius="12"
+                            Padding="20"
                             Effect="{StaticResource SoftShadow}">
                         <StackPanel>
                             <Grid>
@@ -2420,7 +2427,7 @@
                                 </Grid.ColumnDefinitions>
                                 <TextBlock Text="Gelen Transferler"
                                            FontFamily="{StaticResource DisplayFont}"
-                                           FontSize="22"
+                                           FontSize="17"
                                            FontWeight="SemiBold"
                                            Foreground="{DynamicResource PrimaryTextBrush}"
                                            VerticalAlignment="Center" />
@@ -2480,7 +2487,7 @@
                             <Border Background="{DynamicResource PanelMutedBrush}"
                                     BorderBrush="{DynamicResource LineBrush}"
                                     BorderThickness="1"
-                                    CornerRadius="14"
+                                    CornerRadius="10"
                                     Padding="12"
                                     Height="430"
                                     MaxHeight="430">
@@ -2505,7 +2512,7 @@
                                                     <Border Background="{DynamicResource PanelBrush}"
                                                             BorderBrush="{DynamicResource LineBrush}"
                                                             BorderThickness="1"
-                                                            CornerRadius="14"
+                                                            CornerRadius="10"
                                                             Padding="16"
                                                             MinHeight="92"
                                                             Margin="0,0,0,12"
@@ -2526,7 +2533,7 @@
                                                             <Border Width="8"
                                                                     Height="8"
                                                                     CornerRadius="4"
-                                                                    Background="#D97706"
+                                                                    Background="{DynamicResource WarningBrush}"
                                                                     Opacity="0.85"
                                                                     HorizontalAlignment="Left"
                                                                     VerticalAlignment="Center" />
@@ -2565,14 +2572,14 @@
                     <Border Background="{DynamicResource PanelBrush}"
                             BorderBrush="{DynamicResource LineBrush}"
                             BorderThickness="1"
-                            CornerRadius="18"
-                            Padding="18"
+                            CornerRadius="12"
+                            Padding="20"
                             Margin="0,18,0,0"
                             Effect="{StaticResource SoftShadow}">
                         <StackPanel>
                             <TextBlock Text="Transfer indirme klasörü"
                                        FontFamily="{StaticResource DisplayFont}"
-                                       FontSize="18"
+                                       FontSize="15"
                                        FontWeight="SemiBold"
                                        Foreground="{DynamicResource PrimaryTextBrush}" />
                             <TextBlock Text="Kabul edilen transfer dosyaları bu klasöre kaydedilir."
@@ -2581,12 +2588,12 @@
                                        FontWeight="SemiBold"
                                        TextWrapping="Wrap"
                                        Margin="0,6,0,12" />
-                            <TextBox Text="{Binding TransferDownloadFolder, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                     IsReadOnly="True"
-                                     Height="36"
-                                     Padding="10,0"
-                                     VerticalContentAlignment="Center"
-                                     ToolTip="Transfer edilen dosyalar bu klasöre iner." />
+                            <Border Style="{StaticResource InputWrapperBorderStyle}">
+                                <TextBox Text="{Binding TransferDownloadFolder, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                         Style="{StaticResource ShadcnTextBoxInputStyle}"
+                                         IsReadOnly="True"
+                                         ToolTip="Transfer edilen dosyalar bu klasöre iner." />
+                            </Border>
                             <Button Content="Transfer Klasörü Seç"
                                     Style="{StaticResource ShadcnSecondaryButtonStyle}"
                                     Command="{Binding BrowseTransferDownloadFolderCommand}"
@@ -2624,7 +2631,7 @@
                 <StackPanel Margin="22,30,8,24">
                     <TextBlock Text="Convert"
                                FontFamily="{StaticResource DisplayFont}"
-                               FontSize="24"
+                               FontSize="17"
                                FontWeight="SemiBold"
                                Foreground="{DynamicResource PrimaryTextBrush}" />
 
@@ -2632,31 +2639,32 @@
                     <Border Background="{DynamicResource PanelBrush}"
                             BorderBrush="{DynamicResource LineBrush}"
                             BorderThickness="1"
-                            CornerRadius="8"
-                            Padding="18"
+                            CornerRadius="12"
+                            Padding="20"
                             Margin="0,16,0,0"
                             Effect="{StaticResource SoftShadow}">
                         <StackPanel>
                             <TextBlock Text="Çıktı Transferi"
                                        FontFamily="{StaticResource DisplayFont}"
-                                       FontSize="22"
-                                       FontWeight="Bold"
+                                       FontSize="15"
+                                       FontWeight="SemiBold"
                                        Foreground="{DynamicResource PrimaryTextBrush}" />
 
                             <Border Background="{DynamicResource PanelMutedBrush}"
                                     BorderBrush="{DynamicResource LineBrush}"
                                     BorderThickness="1"
-                                    CornerRadius="8"
+                                    CornerRadius="10"
                                     Padding="0"
                                     AllowDrop="True"
                                     DragOver="ConvertTransferDropzone_DragOver"
                                     Drop="ConvertTransferDropzone_Drop">
                                 <Grid MinHeight="180">
-                                    <Rectangle RadiusX="8"
-                                               RadiusY="8"
-                                               Stroke="{DynamicResource LineBrush}"
+                                    <Rectangle RadiusX="10"
+                                               RadiusY="10"
+                                               Stroke="{DynamicResource MutedTextBrush}"
+                                               Opacity="0.6"
                                                StrokeThickness="1.4"
-                                               StrokeDashArray="5 4"
+                                               StrokeDashArray="6 4"
                                                Fill="Transparent" />
                                     <StackPanel HorizontalAlignment="Center"
                                                 VerticalAlignment="Center"
@@ -2664,7 +2672,7 @@
                                                 Margin="16">
                                         <Border Width="58"
                                                 Height="58"
-                                                CornerRadius="8"
+                                                CornerRadius="10"
                                                 Background="{DynamicResource PanelBrush}"
                                                 BorderBrush="{DynamicResource LineBrush}"
                                                 BorderThickness="1"
@@ -2713,35 +2721,9 @@
                                         Height="32"
                                         Padding="0"
                                         ToolTip="Gönderilecek çıktıları temizle">
-                                    <Viewbox Width="18" Height="18" Stretch="Uniform">
-                                        <Canvas Width="24" Height="24">
-                                            <Path Stroke="{DynamicResource MutedTextBrush}"
-                                                  StrokeThickness="1.8"
-                                                  StrokeStartLineCap="Round"
-                                                  StrokeEndLineCap="Round"
-                                                  StrokeLineJoin="Round"
-                                                  Fill="Transparent"
-                                                  Data="M9,6 L9,5 C9,4.4 9.4,4 10,4 L14,4 C14.6,4 15,4.4 15,5 L15,6" />
-                                            <Path Stroke="{DynamicResource MutedTextBrush}"
-                                                  StrokeThickness="1.8"
-                                                  StrokeStartLineCap="Round"
-                                                  StrokeEndLineCap="Round"
-                                                  Fill="Transparent"
-                                                  Data="M6.5,6 L17.5,6" />
-                                            <Path Stroke="{DynamicResource MutedTextBrush}"
-                                                  StrokeThickness="1.8"
-                                                  StrokeStartLineCap="Round"
-                                                  StrokeEndLineCap="Round"
-                                                  StrokeLineJoin="Round"
-                                                  Fill="Transparent"
-                                                  Data="M8,8 L8.8,19 C8.9,20.1 9.7,21 10.8,21 L13.2,21 C14.3,21 15.1,20.1 15.2,19 L16,8" />
-                                            <Path Stroke="{DynamicResource MutedTextBrush}"
-                                                  StrokeThickness="1.5"
-                                                  StrokeStartLineCap="Round"
-                                                  StrokeEndLineCap="Round"
-                                                  Fill="Transparent"
-                                                  Data="M10.5,10.5 L10.5,18 M13.5,10.5 L13.5,18" />
-                                        </Canvas>
+                                    <Viewbox Width="15" Height="15" Stretch="Uniform">
+                                        <Path Fill="{DynamicResource MutedTextBrush}"
+                                              Data="{StaticResource IconTrashGeometry}" />
                                     </Viewbox>
                                 </Button>
                             </Grid>
@@ -2749,7 +2731,7 @@
                             <Border Background="{DynamicResource PanelMutedBrush}"
                                     BorderBrush="{DynamicResource LineBrush}"
                                     BorderThickness="1"
-                                    CornerRadius="8"
+                                    CornerRadius="10"
                                     Padding="6"
                                     Margin="0,8,0,0">
                                 <ScrollViewer Height="168"
@@ -2820,7 +2802,7 @@
                                                                 CommandParameter="{Binding}">
                                                             <Viewbox Width="14" Height="14" Stretch="Uniform">
                                                                 <Path Fill="{DynamicResource MutedTextBrush}"
-                                                                      Data="M6,2 L10,2 L11,3 L14,3 L14,5 L2,5 L2,3 L5,3 Z M4,6 L12,6 L11.25,14 L4.75,14 Z M6,7.5 L7,7.5 L7,12.5 L6,12.5 Z M9,7.5 L10,7.5 L10,12.5 L9,12.5 Z" />
+                                                                      Data="{StaticResource IconTrashGeometry}" />
                                                             </Viewbox>
                                                         </Button>
                                                     </Grid>
@@ -2874,7 +2856,7 @@
                                                     <Border Width="8"
                                                             Height="8"
                                                             CornerRadius="4"
-                                                            Background="#22A55A"
+                                                            Background="{DynamicResource SuccessBrush}"
                                                             HorizontalAlignment="Center"
                                                             VerticalAlignment="Center" />
                                                     <TextBlock Grid.Column="1"
@@ -2891,7 +2873,7 @@
                                                         <Border Width="10"
                                                                 Height="10"
                                                                 CornerRadius="5"
-                                                                Background="#D97706"
+                                                                Background="{DynamicResource WarningBrush}"
                                                                 Margin="0,0,8,0"
                                                                 Visibility="{Binding TransferNotificationVisibility}"
                                                                 ToolTip="{Binding TransferNotificationText}" />
@@ -2951,14 +2933,14 @@
                     <Border Background="{DynamicResource PanelBrush}"
                             BorderBrush="{DynamicResource LineBrush}"
                             BorderThickness="1"
-                            CornerRadius="8"
-                            Padding="18"
+                            CornerRadius="12"
+                            Padding="20"
                             Effect="{StaticResource SoftShadow}">
                         <StackPanel>
                             <TextBlock Text="Manuel Yazıcı Ekle"
                                        FontFamily="{StaticResource DisplayFont}"
-                                       FontSize="21"
-                                       FontWeight="Bold"
+                                       FontSize="17"
+                                       FontWeight="SemiBold"
                                        Foreground="{DynamicResource PrimaryTextBrush}" />
                             <TextBlock Text="Ağ yazıcısını ad ve IP bilgisiyle kaydedin. Kuyruk adı opsiyoneldir."
                                        Foreground="{DynamicResource MutedTextBrush}"
@@ -3010,7 +2992,7 @@
                                     BorderBrush="{Binding ActiveAccentBrush}"
                                     Command="{Binding SavePrinterCommand}"
                                     HorizontalAlignment="Stretch"
-                                    MinHeight="38"
+                                    MinHeight="36"
                                     Margin="0,6,0,12" />
 
                             <Border Background="{DynamicResource PanelMutedBrush}"
@@ -3031,15 +3013,15 @@
                     <Border Background="{DynamicResource PanelBrush}"
                             BorderBrush="{DynamicResource LineBrush}"
                             BorderThickness="1"
-                            CornerRadius="8"
-                            Padding="16"
+                            CornerRadius="12"
+                            Padding="20"
                             Margin="0,18,0,0"
                             Effect="{StaticResource SoftShadow}">
                         <StackPanel>
                             <TextBlock Text="Tercihler"
                                        FontFamily="{StaticResource DisplayFont}"
-                                       FontSize="21"
-                                       FontWeight="Bold"
+                                       FontSize="17"
+                                       FontWeight="SemiBold"
                                        Foreground="{DynamicResource PrimaryTextBrush}" />
                             <TextBlock Text="Gece modu ve transfer alımı seçeneklerini buradan yönetebilirsiniz."
                                        Foreground="{DynamicResource MutedTextBrush}"
@@ -3051,7 +3033,7 @@
                             <Border Background="{DynamicResource PanelMutedBrush}"
                                     BorderBrush="{DynamicResource LineBrush}"
                                     BorderThickness="1"
-                                    CornerRadius="20"
+                                    CornerRadius="10"
                                     Padding="4">
                                 <StackPanel>
                                     <CheckBox Style="{StaticResource SettingsPreferenceCheckBoxStyle}"
@@ -3102,8 +3084,8 @@
                     <Border Background="{DynamicResource PanelBrush}"
                             BorderBrush="{DynamicResource LineBrush}"
                             BorderThickness="1"
-                            CornerRadius="8"
-                            Padding="16"
+                            CornerRadius="12"
+                            Padding="20"
                             Margin="0,18,0,0"
                             Effect="{StaticResource SoftShadow}">
                         <StackPanel>
@@ -3115,8 +3097,8 @@
                                 <StackPanel>
                                     <TextBlock Text="Hakk&#x0131;nda"
                                                FontFamily="{StaticResource DisplayFont}"
-                                               FontSize="21"
-                                               FontWeight="Bold"
+                                               FontSize="17"
+                                               FontWeight="SemiBold"
                                                Foreground="{DynamicResource PrimaryTextBrush}" />
                                     <TextBlock Text="ToolBridge kurumsal yazdırma, dönüştürme, PDF birleştirme ve LAN dosya transfer aracı."
                                                Foreground="{DynamicResource MutedTextBrush}"
@@ -3129,7 +3111,7 @@
                                         Background="{Binding ActiveAccentSoftBrush}"
                                         BorderBrush="{Binding ActiveAccentBorderBrush}"
                                         BorderThickness="1"
-                                        CornerRadius="10"
+                                        CornerRadius="6"
                                         Padding="10,6"
                                         VerticalAlignment="Top">
                                     <TextBlock Text="ORIGINAL"
@@ -3178,8 +3160,8 @@
                     <Border Background="{DynamicResource PanelBrush}"
                             BorderBrush="{DynamicResource LineBrush}"
                             BorderThickness="1"
-                            CornerRadius="8"
-                            Padding="16"
+                            CornerRadius="12"
+                            Padding="20"
                             Margin="0,18,0,0"
                             Effect="{StaticResource SoftShadow}">
                         <StackPanel>
@@ -3191,8 +3173,8 @@
                                 <StackPanel>
                                     <TextBlock Text="Sistem Durumu"
                                                FontFamily="{StaticResource DisplayFont}"
-                                               FontSize="21"
-                                               FontWeight="Bold"
+                                               FontSize="17"
+                                               FontWeight="SemiBold"
                                                Foreground="{DynamicResource PrimaryTextBrush}" />
                                     <TextBlock Text="{Binding ConvertEngineStatusSummary}"
                                                Foreground="{DynamicResource MutedTextBrush}"
@@ -3264,8 +3246,8 @@
                     <Border Background="{DynamicResource PanelBrush}"
                             BorderBrush="{DynamicResource LineBrush}"
                             BorderThickness="1"
-                            CornerRadius="8"
-                            Padding="16"
+                            CornerRadius="12"
+                            Padding="20"
                             Margin="0,18,0,0"
                             Effect="{StaticResource SoftShadow}">
                         <StackPanel>
@@ -3277,8 +3259,8 @@
                                 <StackPanel>
                                     <TextBlock Text="İş Kuyruğu"
                                                FontFamily="{StaticResource DisplayFont}"
-                                               FontSize="21"
-                                               FontWeight="Bold"
+                                               FontSize="17"
+                                               FontWeight="SemiBold"
                                                Foreground="{DynamicResource PrimaryTextBrush}" />
                                     <TextBlock Text="{Binding OperationQueueCountText}"
                                                Foreground="{DynamicResource MutedTextBrush}"
@@ -3318,7 +3300,7 @@
                                                     <Border Background="{DynamicResource PanelBrush}"
                                                             BorderBrush="{DynamicResource LineBrush}"
                                                             BorderThickness="1"
-                                                            CornerRadius="9"
+                                                            CornerRadius="8"
                                                             Padding="10"
                                                             Margin="0,0,0,10">
                                                         <Grid>
@@ -3384,14 +3366,14 @@
         <!-- Gelen transfer pop-up -->
         <Grid Grid.ColumnSpan="3"
               Panel.ZIndex="99"
-              Background="#99000000"
+              Background="{DynamicResource ScrimBrush}"
               Visibility="{Binding IncomingTransferModalVisibility}">
             <Border Width="560"
                     MaxHeight="640"
                     Background="{DynamicResource PanelBrush}"
                     BorderBrush="{DynamicResource LineBrush}"
                     BorderThickness="1"
-                    CornerRadius="16"
+                    CornerRadius="14"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center"
                     Effect="{StaticResource CardShadow}">
@@ -3405,8 +3387,8 @@
                     <StackPanel Grid.Row="0" Margin="28,26,28,14">
                         <TextBlock Text="{Binding IncomingTransferTitle}"
                                    FontFamily="{StaticResource DisplayFont}"
-                                   FontSize="24"
-                                   FontWeight="Bold"
+                                   FontSize="20"
+                                   FontWeight="SemiBold"
                                    Foreground="{DynamicResource PrimaryTextBrush}"
                                    TextWrapping="Wrap" />
                         <TextBlock Text="{Binding IncomingTransferSubtitle}"
@@ -3504,7 +3486,7 @@
                             Background="{DynamicResource PanelAltBrush}"
                             BorderBrush="{DynamicResource LineBrush}"
                             BorderThickness="0,1,0,0"
-                            CornerRadius="0,0,16,16"
+                            CornerRadius="0,0,14,14"
                             Padding="18">
                         <Grid>
                             <Grid.ColumnDefinitions>

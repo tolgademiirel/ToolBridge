@@ -1,8 +1,12 @@
-Microsoft Visual Studio Solution File, Format Version 12.00
+﻿Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MusicShell.Wpf", "src\MusicShell.Wpf\MusicShell.Wpf.csproj", "{8A8A0C2D-2B22-4D4C-A99D-7E32B26C0321}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{BBC98139-6A2B-452F-97BB-10EF20CF7367}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToolBridge.Api", "src\ToolBridge.Api\ToolBridge.Api.csproj", "{4DAB1101-CA03-428F-8C15-D438DF542A3F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -14,8 +18,15 @@ Global
 		{8A8A0C2D-2B22-4D4C-A99D-7E32B26C0321}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8A8A0C2D-2B22-4D4C-A99D-7E32B26C0321}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8A8A0C2D-2B22-4D4C-A99D-7E32B26C0321}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4DAB1101-CA03-428F-8C15-D438DF542A3F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4DAB1101-CA03-428F-8C15-D438DF542A3F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4DAB1101-CA03-428F-8C15-D438DF542A3F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4DAB1101-CA03-428F-8C15-D438DF542A3F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{4DAB1101-CA03-428F-8C15-D438DF542A3F} = {BBC98139-6A2B-452F-97BB-10EF20CF7367}
 	EndGlobalSection
 EndGlobal

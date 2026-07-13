@@ -7,8 +7,7 @@ param(
 )
 
 $ErrorActionPreference = "Continue"
-$ScriptRoot = Split-Path -Parent $MyInvocation.MyCommand.Path
-$RepoRoot = Split-Path -Parent $ScriptRoot
+$Root = Split-Path -Parent $MyInvocation.MyCommand.Path
 
 function Invoke-OptionalScript {
     param(
@@ -16,7 +15,7 @@ function Invoke-OptionalScript {
         [string[]]$Arguments = @()
     )
 
-    $path = Join-Path $ScriptRoot $ScriptName
+    $path = Join-Path $Root $ScriptName
     if (-not (Test-Path $path)) { return }
 
     Write-Host "Calistiriliyor: $ScriptName" -ForegroundColor Cyan
@@ -44,5 +43,5 @@ if ($IncludeLibreOffice) {
 }
 else {
     Write-Host "LibreOffice Portable otomatik hazirlama atlandi." -ForegroundColor DarkYellow
-    Write-Host "Gerekirse ayrica calistir: .\scripts\setup_libreoffice_portable.ps1" -ForegroundColor DarkGray
+    Write-Host "Gerekirse ayrica calistir: .\setup_libreoffice_portable.ps1" -ForegroundColor DarkGray
 }

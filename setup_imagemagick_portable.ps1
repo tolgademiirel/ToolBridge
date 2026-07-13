@@ -1,7 +1,6 @@
 $ErrorActionPreference = "Stop"
 
-$ScriptRoot = Split-Path -Parent $MyInvocation.MyCommand.Path
-$Root = Split-Path -Parent $ScriptRoot
+$Root = Split-Path -Parent $MyInvocation.MyCommand.Path
 $Package = Join-Path $Root "src\MusicShell.Wpf\Tools\Packages\ImageMagick-7.1.2-21-portable-Q16-x64.7z"
 $Target = Join-Path $Root "src\MusicShell.Wpf\Tools\ImageMagick"
 $Magick = Join-Path $Target "magick.exe"

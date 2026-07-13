@@ -1,282 +1,340 @@
-# ToolBridge
+﻿# ToolBridge WPF
 
-**ToolBridge**, kurumsal Windows ortamları için geliştirilen modern bir masaüstü yardımcı uygulamasıdır.
+ToolBridge, yazdırma, dosya transferi, convert ve ayar yönetimi için hazırlanmış modern .NET/WPF kurumsal araç uygulamasıdır.
 
-Uygulama; yazdırma, dosya dönüştürme, PDF birleştirme ve aynı yerel ağdaki kullanıcılar arasında dosya transferi gibi günlük operasyonel işleri tek arayüzde toplamayı hedefler.
+## 2026-07-03 — Kurumsal Tasarım Sistemi (v2 Modernizasyon)
 
-> Hedef: Kurumsal IT süreçlerinde sık tekrarlanan doküman ve dosya işlemlerini sade, hızlı ve yönetilebilir hâle getirmek.
+Arayüz uçtan uca modern kurumsal tasarım sistemine geçirildi; hiçbir işlev/binding değişmedi.
 
----
+- **Marka aksanı**: Apple Music kırmızısı (#FA233B) → kurumsal mavi **#2563EB**; nötrler slate ailesine geçti (Surface #F6F7F9, Line #E4E8EE, PrimaryText #161A22).
+- **Modül aksanları**: Yazdırma amber **#D97706**, Transfer mavi **#2563EB**, Convert **mor #7C3AED** (eski kırmızı, hata rengiyle çakışıyordu), Ayarlar emerald **#059669**.
+- **Semantik token'lar**: SuccessBrush/WarningBrush/DangerBrush/InfoBrush (+Soft/Border), ScrimBrush — üç farklı yeşil tek #16A34A'da birleştirildi; tüm hardcoded hex'ler token'lara bağlandı (XAML + C# modelleri + ViewModel).
+- **Tipografi**: Inter kaldırıldı → Segoe UI Variable; ölçek: sayfa başlığı 26, bölüm 17, kart 15, gövde 13.
+- **Geometri**: köşe yarıçapı ölçeği kart 12 / iç panel 10 / buton-input 8 / chip 6 / modal 14 (eski 0–22 karmaşası giderildi).
+- **Navigasyon**: glow/blur efekti yerine düz kurumsal nav (aktif kart + 3px aksan çubuğu + renkli ikon).
+- **Scrollbar**: C# ile gizlenen scrollbar'lar kaldırıldı; ince (10px) modern thumb'lı XAML stili eklendi.
+- **Koyu tema**: yeni koyu palet (#101318 zemin, #171B22 kart, mavi #3B82F6 aksan); açık/koyu geçişi `ApplyVisualTheme` ile aynı mekanizmada.
+- **Diğer**: BC Fatura panelindeki bozuk ASCII Türkçe metinler düzeltildi; ham TextBox'lar ortak input desenine geçirildi; tekrarlanan ikon Path'leri Geometry resource oldu; app.manifest'e PerMonitorV2 DPI + longPathAware eklendi.
 
-## 🚀 Öne Çıkan Özellikler
+Tam yedek: `D:\PROJE DOSYALARIM\ToolBridge_YEDEK_2026-07-03`
 
-- PDF, Word, Excel, PowerPoint, görsel ve metin dosyaları için yazdırma akışları
-- SumatraPDF destekli sessiz PDF yazdırma
-- Microsoft Office / LibreOffice destekli Office belge işleme
-- PDF, DOCX, XLSX, PPTX ve görsel formatlar arasında dönüştürme
-- PDF birleştirme
-- LAN üzerinden online kullanıcı keşfi
-- Aynı ağdaki kullanıcılara dosya transferi
-- Yazıcı kayıt, seçim ve varsayılan yazıcı yönetimi
-- İş kuyruğu ve işlem durumu takibi
-- Gece modu desteği
-- Scrollbar görselleri gizlenmiş sade arayüz
-- Full publish paketinde harici araç desteği
+## İçerik
 
----
+- Kaynak kodlu WPF uygulama projesi
+- MVVM benzeri yapı
+- Harici NuGet bağımlılığı yok
+- Örnek veri ile çalışan arayüz
+- Sol menü, ana işlem alanı, işlem kuyruğu ve online kullanıcı bölümü
 
-## 🧩 Kullanım Senaryoları
+## Gereksinimler
 
-ToolBridge özellikle aşağıdaki iş akışları için tasarlanmıştır:
+- Windows 10/11
+- Visual Studio 2022
+- .NET 8 SDK
 
-- Kurumsal yazdırma işlemlerini merkezi arayüzden yönetmek
-- PDF ve Office dokümanlarını hızlıca dönüştürmek
-- Birden fazla PDF dosyasını tek dosyada birleştirmek
-- Aynı yerel ağdaki kullanıcılara dosya göndermek
-- Sık kullanılan yazıcıları manuel kaydedip kolay seçim yapmak
-- IT destek süreçlerinde küçük ama etkili otomasyonlar sağlamak
-
----
-
-## 🛠️ Teknolojiler
-
-- **.NET 8**
-- **C#**
-- **WPF**
-- **XAML**
-- **PowerShell**
-- **Windows Printing APIs**
-- **LAN UDP/TCP dosya transfer akışı**
-- **Portable external tools**
-
----
-
-## ⚙️ Harici Araç Desteği
-
-Full publish paketinde aşağıdaki motorlar kullanılabilir:
-
-| Araç | Kullanım Alanı |
-|---|---|
-| LibreOffice Portable | Office belge dönüştürme ve alternatif yazdırma akışı |
-| SumatraPDF | Sessiz PDF yazdırma |
-| ImageMagick | Görsel dönüştürme |
-| Docnet.Core / pdfium | PDF işleme desteği |
-| 7-Zip | Paket açma ve build hazırlık işlemleri |
-| FFmpeg | Video / medya dönüştürme senaryoları |
-| Calibre | E-kitap dönüştürme senaryoları |
-| Inkscape | SVG / vektörel dönüşümler |
-| FontForge | Font dönüşüm senaryoları |
-
-> Harici araçlar repository içine normal commit edilmez. Full publish paketinde veya release asset olarak yönetilir.
-
-Harici araçların beklenen yolları ve manuel doğrulama bilgileri için:
-
-```text
-tools-manifest.json
-```
-
----
-
-## 📦 Full Publish
-
-Full Windows x64 paketi almak için proje kökünde PowerShell ile çalıştırın:
+## Çalıştırma
 
 ```powershell
-powershell.exe -ExecutionPolicy Bypass -File .\publish.ps1 -Runtime win-x64
+cd ToolBridge_WPF_Source
+dotnet restore .\MusicShell.sln
+dotnet build .\MusicShell.sln
+cd .\src\MusicShell.Wpf
+dotnet run
 ```
 
-Başarılı işlem sonunda çalıştırılacak dosya:
+Alternatif olarak `MusicShell.sln` dosyasını Visual Studio ile açıp `F5` tuşuna basabilirsiniz.
+
+## Docker API (Ubuntu 22.04)
+
+Linux/Docker hedefi için WPF uygulamasından ayrı, hafif `ToolBridge.Api` servisi eklendi. Servis Ubuntu 22.04 tabanlı .NET 8 `jammy` imajlarıyla build edilir, Docker bridge network içinde `8080` portundan çalışır ve dış erişim `/api` altında tutulur.
+
+```bash
+docker compose up --build -d
+curl http://SUNUCU_IP:8080/api/health
+curl http://SUNUCU_IP:8080/api/status
+curl http://SUNUCU_IP:8080/api/network
+```
+
+Port değiştirmek gerekirse:
+
+```bash
+TOOLBRIDGE_API_PORT=8090 docker compose up --build -d
+```
+
+Varsayılan compose ayarı 2-4 GB RAM'li sunucular için düşük kaynak profiline göre hazırlanmıştır:
+
+- `mem_limit: 512m`
+- `cpus: 1.0`
+- `DOTNET_GCServer=0`
+- `DOTNET_GCHeapHardLimitPercent=35`
+
+Not: Mevcut WPF arayüzü `net8.0-windows` hedeflidir ve Linux container içinde çalıştırılmaz. Docker tarafındaki geliştirmeler `src/ToolBridge.Api` projesinde yapılmalıdır.
+
+## Publish
+
+Önerilen publish yöntemi kaynak kökteki script üzerinden çalıştırmaktır:
+
+```powershell
+.\publish.ps1 -Runtime win-x64
+```
+
+DOCX/XLSX/PPTX dönüşümlerinde LibreOffice Portable da publish içine girsin istenirse:
+
+```powershell
+.\publish.ps1 -Runtime win-x64 -PrepareLibreOffice
+```
+
+7-Zip/NanaZip yoksa ve PortableApps kurucusunu sessiz fallback ile denemek gerekirse:
+
+```powershell
+.\publish.ps1 -Runtime win-x64 -PrepareLibreOffice -UseLibreOfficeInstallerFallback
+```
+
+7-Zip destekli hazırlık akışı:
+
+```powershell
+.\setup_7zip_build_tool.ps1
+```
+
+`7z*-x64.exe` dosyası `src\MusicShell.Wpf\Tools\Packages`, proje kökü, `Packages` veya `Downloads` altında bulunursa sadece publish hazırlığı için `build_tools\7zip` altına kurulur. Bu klasör publish zip'ine eklenmez; son kullanıcıdan 7-Zip kurulumu istenmez.
+
+
+Çalıştırılacak dosya:
 
 ```text
 .\publish\ToolBridge.exe
 ```
 
-Oluşan ZIP paketi:
+Script işlem sonunda ayrıca şu paketi üretir:
 
 ```text
-ToolBridge_Full_publish_win-x64.zip
+ToolBridge_publish_win-x64.zip
 ```
 
-Full publish paketinde `publish\Tools` klasörü de oluşur ve gerekli harici motorlar buradan çalışır.
-
-Lite paket veya CI smoke test için:
-
-```powershell
-powershell.exe -ExecutionPolicy Bypass -File .\publish.ps1 -Runtime win-x64 -Lite -SkipExternalTools -NoStrictToolCheck
-```
-
----
-
-## 🧪 Geliştirici Modunda Çalıştırma
-
-```powershell
-dotnet restore .\ToolBridge.sln
-dotnet build .\ToolBridge.sln
-dotnet run --project .\src\MusicShell.Wpf\MusicShell.Wpf.csproj
-```
-
-Alternatif olarak `ToolBridge.sln` dosyasını Visual Studio 2022 ile açıp `F5` tuşuna basabilirsiniz.
-
-> Not: Geriye uyumluluk için `MusicShell.sln` dosyası korunur. Yeni kullanımda önerilen çözüm dosyası `ToolBridge.sln` dosyasıdır.
-
----
-
-## ✅ Gereksinimler
-
-Geliştirme ortamı için:
-
-- Windows 10 / Windows 11
-- .NET 8 SDK
-- Visual Studio 2022 veya uyumlu IDE
-- PowerShell
-
-Full publish hazırlığı için:
-
-- LibreOffice Portable paketi
-- ImageMagick portable paketi
-- SumatraPDF.exe
-- Docnet.Core.dll
-- pdfium.dll
-- 7-Zip / NanaZip
-
----
-
-## 📁 Proje Yapısı
+## Proje Yapısı
 
 ```text
-ToolBridge/
-├─ README.md
-├─ ToolBridge.sln
-├─ MusicShell.sln
-├─ publish.ps1
-├─ tools-manifest.json
-├─ docs/
-│  └─ ARCHITECTURE.md
-├─ .github/
-│  └─ workflows/
-│     └─ dotnet-build.yml
-├─ scripts/
-│  ├─ setup_external_tools.ps1
-│  ├─ setup_7zip_build_tool.ps1
-│  ├─ setup_imagemagick_portable.ps1
-│  ├─ setup_libreoffice_portable.ps1
-│  └─ setup_firewall_toolbridge_presence.ps1
-└─ src/
-   └─ MusicShell.Wpf/
-      ├─ Assets/
-      ├─ Docs/
-      ├─ Infrastructure/
-      ├─ Models/
-      ├─ Services/
-      ├─ ViewModels/
-      ├─ Tools/
-      ├─ App.xaml
-      └─ MainWindow.xaml
+MusicShell.sln
+src/
+  MusicShell.Wpf/
+    App.xaml
+    MainWindow.xaml
+    Models/
+    ViewModels/
+    Infrastructure/
 ```
 
-Kök dizinde yalnızca proje giriş dosyaları tutulur. Yardımcı PowerShell scriptleri `scripts/` klasörü altında toplanmıştır.
+## Son Güncelleme
 
----
+- Üst mini oynatıcı/boş kontrol alanı kaldırıldı.
+- Uygulama açılışta maksimize olacak şekilde ayarlandı.
+- Sol menüdeki `Ara` kutusu ve `Arama` bölümü kaldırıldı.
+- Menü sırası `Yazdırma`, `Transfer`, `Convert`, `Ayarlar` olarak güncellendi.
+- Sol menüye `Online Kullanıcılar` bölümü eklendi.
+- Sol menüye glow-menu mantığı uyarlandı.
+- Menü öğeleri için aktif seçim, hover glow, item bazlı radial gradient ve ikon rengi eklendi.
+- Yazdırma, Transfer, Convert ve Ayarlar için bağımsız vurgu/aktif durum davranışı hazırlandı.
+- Ana içerik ve sağ panel ToolBridge kullanım senaryosuna göre güncellendi.
 
-## 🌐 LAN Online Kullanıcılar
 
-ToolBridge çalışan bilgisayarlar aynı yerel ağda olduklarında UDP broadcast ile birbirini görür.
+## v3 Güncellemesi
+
+Bu sürümde sol menü, React/Tailwind tabanlı glow-menu davranışı WPF/XAML karşılığıyla yeniden düzenlendi.
+
+- `activeItem` mantığı WPF tarafında `NavItem.IsActive` ile çalışır.
+- Her menü öğesinde ayrı ikon rengi ve radial glow efekti bulunur.
+- Hover sırasında seçili kart hissi, glow yayılımı ve cam/pill vurgusu oluşur.
+- Seçim değişimi `SelectNavCommand` üzerinden yapılır.
+- Harici NuGet paketi kullanılmadı; çözüm saf WPF kaynak koduyla çalışır.
+
+## v4 Güncellemesi
+
+Bu sürümde hover/aktif vurgu rengi menü öğesine özel hale getirildi.
+
+- `Yazdırma`: turuncu fosforlu vurgu
+- `Transfer`: mavi fosforlu vurgu
+- `Convert`: kırmızı fosforlu vurgu
+- `Ayarlar`: yeşil fosforlu vurgu
+- Sabit turuncu border davranışı kaldırıldı; border rengi artık ilgili menü öğesinin `IconBrush` değerinden gelir.
+- Radial glow opaklığı artırılarak hover sırasında renk daha net görünür hale getirildi.
+
+## Button Tasarım Standardı
+
+Uygulamadaki yeni buton gerektiren alanlarda `App.xaml` içindeki shadcn/21st.dev mantığına uyarlanmış WPF buton stilleri kullanılmalıdır:
+
+- `ShadcnButtonStyle` - birincil aksiyon
+- `ShadcnSecondaryButtonStyle` - ikincil aksiyon
+- `ShadcnOutlineButtonStyle` - çizgili/nötr aksiyon
+- `ShadcnGhostButtonStyle` - arka plansız hafif aksiyon
+- `ShadcnDestructiveButtonStyle` - silme/tehlikeli aksiyon
+- `ShadcnIconButtonStyle` - sadece ikon kullanılan butonlar
+
+Bu stiller rounded-lg, hafif shadow, hover, pressed, disabled ve keyboard focus ring davranışlarını merkezi olarak yönetir.
+
+## v10 Güncellemesi
+
+Bu sürümde Yazdırma ekranına 21st.dev upload/download bileşeninin çalışma mantığı WPF/XAML tarafına uyarlanarak dosya yükleme alanı eklendi.
+
+- Dosya yükleme kartı Yazdırma başlığının altına konumlandırıldı.
+- Sürükle-bırak, Windows dosya seçici ve Ctrl+V ile panodan dosya ekleme desteği eklendi.
+- Maksimum dosya boyutu 50 MB olarak ayarlandı.
+- 50 MB üzerindeki dosyalar listeye alınmaz ve kullanıcıya uyarı gösterilir.
+- Yüklenen dosya adı, dosya boyutu ve uzantısı listelenir.
+- Tekil dosya kaldırma ve tüm listeyi temizleme aksiyonları eklendi.
+- Yeni butonlarda merkezi `ShadcnButtonStyle` / `ShadcnGhostButtonStyle` standartları kullanıldı.
+
+
+## v11 Güncellemesi
+
+Bu sürümde Yazdırma ekranındaki yüklenen dosyalar listesi sabit yüksekliğe alındı.
+
+- Dosya listesi `MaxHeight=280` olacak şekilde sınırlandı.
+- Çok sayıda dosya eklendiğinde sayfa aşağıya doğru uzamaz.
+- Liste kendi içinde sağdaki dikey kaydırma çubuğu ile gezilebilir.
+- Yatay kaydırma kapalıdır; uzun dosya adları mevcut kart genişliği içinde kırpılır.
+
+## v12 Güncellemesi
+
+Bu sürümde Yazdırma ekranı başlık alanı sadeleştirildi.
+
+- Yazdırma başlığı altındaki açıklama metni PDF/Word/Excel/PowerPoint/görsel dosya yükleme mantığını açıklayacak şekilde güncellendi.
+- Sağ üstteki `Yeni İşlem` ve `Raporlar` butonları kaldırıldı.
+
+## v14 - Cihazlar Bölümü
+
+- Yazdırma ekranındaki **Hızlı İşlemler** başlığı **Cihazlar** olarak değiştirildi.
+- Kartlar artık Windows sistemine ekli yazıcı adlarından otomatik beslenir.
+- Yazıcı bulunamazsa arayüzün boş kalmaması için örnek olarak `RENKLİ` ve `SİYAH BEYAZ` cihazları gösterilir.
+
+## v15 - Ayarlar / Manuel Yazıcı Yönetimi
+
+Bu sürümde sol menüdeki **Ayarlar** sekmesi ayrı bir yazıcı yönetim ekranına bağlandı.
+
+- **Ayarlar** seçildiğinde ana panelde `Kayıtlı Yazıcılar` sayfası açılır.
+- Sağ panelde `Manuel Yazıcı Ekle` formu bulunur.
+- Yazıcı adı, IP numarası ve opsiyonel Windows yazıcı kuyruğu bilgisi girilebilir.
+- IP adresi doğrulaması yapılır; hatalı IP kayıt edilmez.
+- Aynı yazıcı adı veya aynı IP ikinci kez eklenemez.
+- Seçilen yazıcı `Varsayılan Yap` butonuyla varsayılan yazıcı olarak işaretlenir.
+- Kayıtlar kullanıcı profilinde `%APPDATA%\ToolBridge\printers.json` dosyasında saklanır.
+- Yazdırma ekranındaki **Cihazlar** kartları artık manuel kayıtlı yazıcılardan beslenir.
+
+## v16 - Ayarlar Ekranı ve Input Düzeni
+
+Bu sürümde Ayarlar ekranı sadeleştirildi ve manuel yazıcı formu 21st.dev/shadcn input-wrapper mantığının WPF karşılığıyla yeniden düzenlendi.
+
+- Ana ayarlar kartı başlığı `Ayarlar` olarak değiştirildi.
+- Seçili yazıcı aksiyonlarına `Cihazı Kaldır` butonu eklendi.
+- Yazıcı silme işlemi `%APPDATA%\ToolBridge\printers.json` kaydını da günceller.
+- Seçili yazıcı vurgu rengi sadeleştirildi; iç arka plan beyaz kaldı, dış turuncu border vurgusu korundu.
+- Manuel yazıcı ekleme formunda merkezi input stilleri kullanıldı:
+  - `InputWrapperBorderStyle`
+  - `ShadcnTextBoxInputStyle`
+  - `InputIconStyle`
+
+## v17 - Aktif Menü Rengine Bağlı Sayfa Aksanı
+
+Bu sürümde sayfa içindeki seçim, form ve buton vurguları aktif menü rengine bağlandı.
+
+- Aktif menü rengi `MainViewModel.ActiveAccentBrush`, `ActiveAccentSoftBrush`, `ActiveAccentBorderBrush` ve `ActiveAccentRingBrush` ile merkezi hale getirildi.
+- **Ayarlar** sekmesi seçildiğinde sayfa aksanı yeşil tona geçer.
+- Manuel yazıcı ekleme formundaki `Yazıcı adı`, `IP numarası` ve `Windows yazıcı kuyruğu` alanlarının çerçeveleri aktif menü rengine göre görünür.
+- Kayıtlı yazıcı seçimi yeşil dış vurgu ile gösterilir; iç arka plan sade beyaz kalır.
+- `Varsayılan Yap` butonu ve ayarlar panelindeki ilgili aksiyonlarda focus/pressed durumunda aktif menünün fosforlu ring rengi kullanılır.
+- İleride eklenecek kategori sayfalarında aynı aktif renk sistemi kullanılabilir.
+
+
+## v18 Notları
+
+- Ayarlar ekranında yeşil aksan yalnızca menü seçimi ve seçili yazıcı vurgusunda bırakıldı.
+- Sağ ayarlar panelindeki Manuel Yazıcı Ekle kartı, shadcn Card / Input / Button düzenine benzer sade WPF kart yapısıyla yeniden düzenlendi.
+- Transfer Alımı ve Görünüm kartları nötr beyaz/gri stile döndürüldü.
+
+
+## v19 Notu
+- Ayarlar sekmesinde sağ panel kartları, manuel yazıcı ekleme input çerçeveleri ve ilgili buton focus/outline vurguları aktif menü rengine bağlandı. Ayarlar ekranında bu aksan rengi yeşildir.
+
+## v22 - Ayarlar sayfası görsel düzeltmeleri
+
+- Varsayılan Yap butonunun normal durumda görünmemesine neden olan WPF template opacity sorunu giderildi.
+- Ayarlar sayfasındaki tablo ve sağ paneldeki fosforlu/aktif çerçeve vurguları nötr stile çekildi.
+- Manuel Yazıcı Ekle bölümündeki Yazıcıyı Kaydet butonunun form altında her durumda görünür olması sağlandı.
+- Form inputlarının focus/hover çerçeveleri sade gri tonlara alındı.
+
+
+## v23 Güncellemesi
+- Varsayılan Yap butonu, Yazıcıyı Kaydet butonuyla aynı yeşil primary stile geçirildi.
+- Transfer Alımı ve Gece Modu kontrolleri, Ark UI checkbox referansına uygun WPF checkbox stiline çevrildi.
+- Ayarlar sayfasındaki ilgili XAML dosyaları kontrol edildi; React/TypeScript kodları projeye dahil edilmedi.
+
+## v28 - Yazdırma butonu ve ayar paneli sadeleştirme
+
+- Yazdırma ayarlarından `Parça sınırı` alanı kaldırıldı.
+- Yazdırma ayarları kartının altındaki açıklama metni kaldırıldı.
+- Yüklenen dosyalar başlığındaki `Listeyi Temizle` butonunun yanına `Yazdır` butonu eklendi.
+- `Yazdır` butonu seçili yazıcı kuyruğuna yüklenen dosyaları göndermek için Windows `printto`/`print` shell komutlarını kullanır.
+- Dosyanın yazdırılabilmesi için Windows üzerinde ilgili dosya türüne atanmış varsayılan uygulamanın yazdırma desteği olmalıdır.
+
+## v31 - Doğrudan Yazdırma ve Kalıcı Ayarlar
+
+- Yazdır butonu artık `UseShellExecute/printto` ile belgeyi görünür şekilde açmaya çalışmaz.
+- PDF için önce SumatraPDF varsa sessiz yazdırma denenir; yoksa yazıcının IP adresine RAW 9100/PDF Direct Print gönderimi denenir.
+- Word, Excel ve PowerPoint dosyalarında Microsoft Office kuruluysa uygulamalar görünmez modda kullanılarak yazdırma gönderilir.
+- Görsel ve metin dosyaları WPF üzerinden seçili Windows yazıcı kuyruğuna doğrudan gönderilir.
+- Yazdırma bittiğinde kullanıcıya sonuç bildirimi gösterilir.
+- Renk, taraf, kopya, kağıt ebatı, kenar boşluğu, ölçeklendirme ve sayfa aralığı ayarları `%APPDATA%\ToolBridge\print-settings.json` dosyasına kaydedilir. Uygulama kapatılıp açıldığında son ayarlar korunur.
+
+Not: PDF Direct Print/RAW 9100 yazdırma, yazıcının PDF veya ilgili dosya formatını doğrudan işleyebilmesine bağlıdır. Office belgeleri için Microsoft Office kurulumu gerekir.
+
+## v32 - PDF Yazdırma ve Donma Sorunu Düzeltmesi
+
+- Yazdırma işlemi UI thread üzerinden çıkarıldı; dosyalar arka planda STA thread ile sırayla yazdırılır.
+- Çoklu doküman yazdırırken ekranın donmasına neden olan senkron yazdırma akışı düzeltildi.
+- Yazdırma sırasında buton geçici olarak pasif olur ve metin `Yazdırılıyor` durumuna geçer.
+- PDF yazdırma akışı genişletildi:
+  - Önce uygulama klasörü / Tools klasörü / sistem kurulumu içinde SumatraPDF aranır.
+  - SumatraPDF yoksa Adobe Reader/Acrobat komut satırı yazdırması denenir.
+  - Ardından Windows varsayılan PDF uygulamasının `PrintTo` desteği denenir.
+  - Son çare olarak PDF Direct destekli yazıcılar için RAW 9100 gönderimi denenir.
+- Hata mesajları artık hangi PDF yazdırma yönteminin başarısız olduğunu detaylı gösterir.
+
+PDF için en stabil sessiz yazdırma deneyimi istenirse `SumatraPDF.exe`, publish klasörüne doğrudan veya `Tools\SumatraPDF.exe` yoluna konulabilir.
+
+## v33 - CloudConvert Benzeri Convert Motoru
+
+- Convert hedef format listesi genişletildi: Archive, Audio, CAD, Document, Ebook, Font, Image, Presentation, Spreadsheet ve Video formatları eklendi.
+- Kaynak format dosya uzantısından otomatik algılanır; kullanıcı yalnızca hedef formatı seçer.
+- Dönüştürme işlemi UI thread dışında çalışır; çoklu dosyada ekran kilitlenmez.
+- Uygulama yerel dönüştürme motorlarını sırayla dener: 7-Zip, LibreOffice, ImageMagick, FFmpeg, Calibre, Inkscape, FontForge ve Microsoft Office.
+- Uygun motor yüklü değilse işlem başarısız olur ve hata detayında hangi motorun eksik olduğu gösterilir.
+- Motorlar publish klasöründeki `Tools` dizininden, standart kurulum yollarından veya `PATH` değişkeninden aranır.
+- Detaylı motor listesi için `src/MusicShell.Wpf/Docs/CONVERT_ENGINES.md` dosyasına bakılabilir.
+
+## 2026-05-09 - Convert Çıktı Transferi
+- Convert sağ paneline dönüştürülen çıktıların bırakılabileceği transfer kutusu eklendi.
+- Çıktılar, kutuya sürüklendikten sonra online kullanıcıya tek tıkla gönderim kuyruğuna alınabilir.
+
+
+## 2026-05-09 - Convert Transfer Sağ Panel Revizyonu
+- Convert sağ panelindeki tekrar eden İşlem Takibi kartı kaldırıldı.
+- Sağ panel yalnızca Çıktı Transferi ve Online Kullanıcılar akışına indirildi.
+- Online kullanıcı kartına tıklayarak gönderim kuyruğuna alma davranışı korundu.
+- Hedef kullanıcının transfer alımı kapalıysa gönderim komutu çalışmayacak şekilde kontrol eklendi.
+
+## LAN Online Kullanıcılar
+
+Demo online kullanıcılar kaldırılmıştır. ToolBridge çalışan bilgisayarlar aynı yerel ağda olduklarında UDP broadcast ile birbirini görür.
 
 - UDP port: `47892`
-- TCP transfer portu: `47893`
 - Uygulama açılınca kullanıcı online görünür.
 - Uygulama kapanınca offline paketi gönderilir.
-- Offline paketi alınamazsa kullanıcı kısa süre içinde listeden düşer.
-- Windows Firewall UDP broadcast veya TCP transfer trafiğini engellerse ToolBridge için izin verilmelidir.
+- Offline paketi alınamazsa kullanıcı yaklaşık 12 saniye içinde listeden düşer.
+- Windows Firewall UDP broadcast trafiğini engellerse ToolBridge veya UDP `47892` için izin verilmelidir.
 
-Firewall izin scripti:
+### Firewall izin komutu
+
+Kurumsal ağda online kullanıcılar görünmüyorsa PowerShell'i yönetici olarak açıp şu script çalıştırılabilir:
 
 ```powershell
-powershell.exe -ExecutionPolicy Bypass -File .\scripts\setup_firewall_toolbridge_presence.ps1
+powershell.exe -ExecutionPolicy Bypass -File .\setup_firewall_toolbridge_presence.ps1
 ```
-
----
-
-## 🧹 Transfer Staging Temizliği
-
-Gelen transferler önce yerel uygulama veri klasöründeki staging alanına alınır. Uygulama açılışında 24 saatten eski staging klasörleri otomatik temizlenir.
-
-İlgili servis:
-
-```text
-src/MusicShell.Wpf/Services/TransferStagingCleanupService.cs
-```
-
----
-
-## 🧱 Mimari Notlar
-
-Bakım ve refactor planı için:
-
-```text
-docs/ARCHITECTURE.md
-```
-
-Bu dokümanda `MainViewModel` içindeki sorumlulukların servis bazlı ayrılması, PDF birleştirme stratejisi ve staging temizliği notları bulunur.
-
----
-
-## 🔐 Repository Notları
-
-Aşağıdaki içerikler repository içine commit edilmemelidir:
-
-```text
-publish/
-ToolBridge_Full_publish_win-x64.zip
-src/MusicShell.Wpf/Tools/LibreOfficePortable/
-src/MusicShell.Wpf/Tools/ImageMagick/
-src/MusicShell.Wpf/Tools/SumatraPDF.exe
-src/MusicShell.Wpf/Tools/*.dll
-build_tools/
-```
-
-Büyük uygulama paketleri için önerilen yöntem:
-
-```text
-GitHub Releases > Release asset olarak ZIP yükleme
-```
-
----
-
-## ✅ CI / Build Kontrolü
-
-GitHub Actions workflow dosyası eklenmiştir:
-
-```text
-.github/workflows/dotnet-build.yml
-```
-
-Workflow; `ToolBridge.sln` üzerinden restore/build yapar ve lite publish smoke test çalıştırır.
-
----
-
-## 🧭 Yol Haritası
-
-- Daha gelişmiş hata raporlama ekranı
-- Release notlarının otomatik üretilmesi
-- Kurumsal dağıtım için MSI / installer paketi
-- Merkezi ayar profili desteği
-- Daha detaylı log görüntüleme arayüzü
-- Mac/Linux desteği için alternatif UI araştırması
-- `MainViewModel` sorumluluklarının servis bazlı ayrılması
-- PDF birleştirme için kayıpsız merge yönteminin ana akışa alınması
-
----
-
-## 👤 Geliştirici
-
-**Tolga Demirel**
-
-- GitHub: [@tolgademiirel](https://github.com/tolgademiirel)
-- E-posta: **tolgademiirel@gmail.com**
-
----
-
-## 📄 Lisans
-
-Bu proje kişisel ve kurumsal ihtiyaçlara göre geliştirilen özel bir masaüstü yardımcı uygulamasıdır. Lisans ve dağıtım koşulları proje sahibinin kararına bağlıdır.

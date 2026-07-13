@@ -2,15 +2,15 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <!-- ToolBridge UI Tokens: sekmeler arasında aynı punto, boşluk ve kart davranışı için merkezi kaynak. -->
-    <sys:Double xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="TbFontSizePageTitle">28</sys:Double>
-    <sys:Double xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="TbFontSizeSectionTitle">20</sys:Double>
+    <sys:Double xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="TbFontSizePageTitle">26</sys:Double>
+    <sys:Double xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="TbFontSizeSectionTitle">17</sys:Double>
     <sys:Double xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="TbFontSizeBody">13</sys:Double>
     <sys:Double xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="TbFontSizeSmall">12</sys:Double>
     <sys:Double xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="TbButtonHeight">32</sys:Double>
     <sys:Double xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="TbIconButtonSize">32</sys:Double>
-    <CornerRadius x:Key="TbCardRadius">8</CornerRadius>
-    <CornerRadius x:Key="TbPanelRadius">12</CornerRadius>
-    <Thickness x:Key="TbCardPadding">22</Thickness>
+    <CornerRadius x:Key="TbCardRadius">12</CornerRadius>
+    <CornerRadius x:Key="TbPanelRadius">10</CornerRadius>
+    <Thickness x:Key="TbCardPadding">20</Thickness>
     <Thickness x:Key="TbRowPadding">12,8</Thickness>
 
     <Style x:Key="TbSectionTitleTextBlockStyle" TargetType="TextBlock">
@@ -92,7 +92,7 @@
         <Setter Property="Height" Value="6" />
         <Setter Property="Minimum" Value="0" />
         <Setter Property="Maximum" Value="100" />
-        <Setter Property="Background" Value="{DynamicResource PanelMutedBrush}" />
+        <Setter Property="Background" Value="{DynamicResource ChipBrush}" />
         <Setter Property="Foreground" Value="{DynamicResource AccentBrush}" />
         <Setter Property="BorderBrush" Value="Transparent" />
         <Setter Property="BorderThickness" Value="0" />

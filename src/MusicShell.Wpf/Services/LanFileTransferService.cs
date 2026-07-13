@@ -22,16 +22,26 @@ public sealed class LanFileTransferService : IDisposable
     private const int MaxHeaderBytes = 1024 * 1024;
     private const int BufferSize = 1024 * 1024;
 
+    // Güvenlik sınırları: kötü niyetli/bozuk bir gönderici diski doldurmasın
+    // ya da bağlantı seli ile alıcının kaynaklarını tüketmesin.
+    private const int MaxFilesPerTransfer = 1024;
+    private const long MaxTotalTransferBytes = 50L * 1024 * 1024 * 1024; // 50 GB
+    private const long MinimumFreeDiskMarginBytes = 512L * 1024 * 1024;  // 512 MB güvenlik payı
+    private const int MaxConcurrentInboundTransfers = 6;
+
     private readonly string _localPresenceId;
     private readonly string _localDisplayName;
+    private readonly Func<bool> _isReceiveEnabled;
+    private readonly SemaphoreSlim _inboundLimiter = new(MaxConcurrentInboundTransfers, MaxConcurrentInboundTransfers);
     private readonly CancellationTokenSource _shutdown = new();
     private TcpListener? _listener;
     private Task? _acceptTask;
 
-    public LanFileTransferService(string localPresenceId, string localDisplayName)
+    public LanFileTransferService(string localPresenceId, string localDisplayName, Func<bool>? isReceiveEnabled = null)
     {
         _localPresenceId = localPresenceId?.Trim() ?? string.Empty;
         _localDisplayName = localDisplayName?.Trim() ?? string.Empty;
+        _isReceiveEnabled = isReceiveEnabled ?? (() => true);
     }
 
     public event EventHandler<LanFileTransferReceivedEventArgs>? TransferReceived;
@@ -163,6 +173,17 @@ public sealed class LanFileTransferService : IDisposable
 
     private async Task HandleClientAsync(TcpClient client, CancellationToken cancellationToken)
     {
+        // Eşzamanlı gelen transfer sayısını sınırla: bağlantı seli ile kaynak tüketimini engeller.
+        if (!await _inboundLimiter.WaitAsync(0, cancellationToken).ConfigureAwait(false))
+        {
+            using (client)
+            {
+                await TrySendRejectionAsync(client, "Alıcı şu anda meşgul. Lütfen daha sonra tekrar deneyin.", cancellationToken);
+            }
+
+            return;
+        }
+
         var stagingFolder = string.Empty;
 
         try
@@ -171,64 +192,90 @@ public sealed class LanFileTransferService : IDisposable
             {
                 client.NoDelay = true;
                 await using var stream = client.GetStream();
-                var header = await ReadJsonFrameAsync<TransferHeader>(stream, cancellationToken);
-                ValidateHeader(header);
 
-                stagingFolder = CreateStagingFolder();
-                var receivedFiles = new List<LanFileTransferReceivedFile>();
-
-                foreach (var fileHeader in header!.Files)
+                try
                 {
-                    cancellationToken.ThrowIfCancellationRequested();
-                    var safeFileName = SanitizeFileName(fileHeader.FileName);
-                    var stagedPath = GetUniqueFilePath(stagingFolder, safeFileName);
-                    var checksum = await ReceiveFileAsync(stream, stagedPath, fileHeader.SizeBytes, cancellationToken);
+                    var header = await ReadJsonFrameAsync<TransferHeader>(stream, cancellationToken);
+                    ValidateHeader(header);
 
-                    if (!string.IsNullOrWhiteSpace(fileHeader.Sha256) &&
-                        !string.Equals(fileHeader.Sha256, checksum, StringComparison.OrdinalIgnoreCase))
+                    // Onay kapısı: kullanıcı transfer alımını kapattıysa hiçbir dosya diske yazılmaz.
+                    if (!_isReceiveEnabled())
                     {
-                        throw new IOException($"Checksum doğrulaması başarısız: {safeFileName}");
+                        await WriteJsonFrameAsync(stream, new TransferResponse(false, "Alıcıda transfer alımı kapalı."), cancellationToken);
+                        return;
                     }
 
-                    receivedFiles.Add(new LanFileTransferReceivedFile(
-                        safeFileName,
-                        stagedPath,
-                        fileHeader.SizeBytes,
-                        checksum));
+                    stagingFolder = CreateStagingFolder();
+                    var receivedFiles = new List<LanFileTransferReceivedFile>();
+
+                    foreach (var fileHeader in header!.Files)
+                    {
+                        cancellationToken.ThrowIfCancellationRequested();
+                        var safeFileName = SanitizeFileName(fileHeader.FileName);
+                        var stagedPath = GetUniqueFilePath(stagingFolder, safeFileName);
+                        var checksum = await ReceiveFileAsync(stream, stagedPath, fileHeader.SizeBytes, cancellationToken);
+
+                        if (!string.IsNullOrWhiteSpace(fileHeader.Sha256) &&
+                            !string.Equals(fileHeader.Sha256, checksum, StringComparison.OrdinalIgnoreCase))
+                        {
+                            throw new IOException($"Checksum doğrulaması başarısız: {safeFileName}");
+                        }
+
+                        receivedFiles.Add(new LanFileTransferReceivedFile(
+                            safeFileName,
+                            stagedPath,
+                            fileHeader.SizeBytes,
+                            checksum));
+                    }
+
+                    TransferReceived?.Invoke(this, new LanFileTransferReceivedEventArgs(
+                        header.SenderPresenceId?.Trim() ?? string.Empty,
+                        string.IsNullOrWhiteSpace(header.SenderName) ? "Ağ kullanıcısı" : header.SenderName.Trim(),
+                        header.RecipientPresenceId?.Trim() ?? string.Empty,
+                        string.IsNullOrWhiteSpace(header.RecipientName) ? _localDisplayName : header.RecipientName.Trim(),
+                        stagingFolder,
+                        receivedFiles));
+
+                    await WriteJsonFrameAsync(stream, new TransferResponse(true, "Transfer alıcı bilgisayara ulaştı."), cancellationToken);
                 }
+                catch (Exception ex)
+                {
+                    AppLogger.LogException("LAN dosya transferi alınamadı", ex);
 
-                TransferReceived?.Invoke(this, new LanFileTransferReceivedEventArgs(
-                    header.SenderPresenceId?.Trim() ?? string.Empty,
-                    string.IsNullOrWhiteSpace(header.SenderName) ? "Ağ kullanıcısı" : header.SenderName.Trim(),
-                    header.RecipientPresenceId?.Trim() ?? string.Empty,
-                    string.IsNullOrWhiteSpace(header.RecipientName) ? _localDisplayName : header.RecipientName.Trim(),
-                    stagingFolder,
-                    receivedFiles));
+                    // Gönderene yalnızca genel bir mesaj döner; yerel yol/iç hata detayı sızdırılmaz.
+                    try
+                    {
+                        await WriteJsonFrameAsync(stream, new TransferResponse(false, "Transfer alıcı tarafından işlenemedi."), CancellationToken.None);
+                    }
+                    catch
+                    {
+                        // Yanıt gönderilemezse bağlantı kapanır; gönderici tarafında bağlantı hatası gösterilir.
+                    }
 
-                await WriteJsonFrameAsync(stream, new TransferResponse(true, "Transfer alıcı bilgisayara ulaştı."), cancellationToken);
+                    if (!string.IsNullOrWhiteSpace(stagingFolder))
+                    {
+                        TryDeleteDirectory(stagingFolder);
+                    }
+                }
             }
         }
-        catch (Exception ex)
+        finally
         {
-            AppLogger.LogException("LAN dosya transferi alınamadı", ex);
+            _inboundLimiter.Release();
+        }
+    }
 
-            try
-            {
-                if (client.Connected)
-                {
-                    await using var stream = client.GetStream();
-                    await WriteJsonFrameAsync(stream, new TransferResponse(false, ex.Message), CancellationToken.None);
-                }
-            }
-            catch
-            {
-                // Yanıt gönderilemezse bağlantı kapanır; gönderici tarafında bağlantı hatası gösterilir.
-            }
-
-            if (!string.IsNullOrWhiteSpace(stagingFolder))
-            {
-                TryDeleteDirectory(stagingFolder);
-            }
+    private static async Task TrySendRejectionAsync(TcpClient client, string message, CancellationToken cancellationToken)
+    {
+        try
+        {
+            client.NoDelay = true;
+            await using var stream = client.GetStream();
+            await WriteJsonFrameAsync(stream, new TransferResponse(false, message), cancellationToken);
+        }
+        catch
+        {
+            // Reddetme yanıtı gönderilemese de bağlantı kapanır; gönderici hata görür.
         }
     }
 
@@ -252,9 +299,55 @@ public sealed class LanFileTransferService : IDisposable
             throw new InvalidDataException("Transfer paketinde dosya yok.");
         }
 
+        if (header.Files.Count > MaxFilesPerTransfer)
+        {
+            throw new InvalidDataException("Transfer paketinde çok fazla dosya var.");
+        }
+
         if (header.Files.Any(file => file.SizeBytes < 0 || string.IsNullOrWhiteSpace(file.FileName)))
         {
             throw new InvalidDataException("Transfer paketinde geçersiz dosya bilgisi var.");
+        }
+
+        long totalBytes = 0;
+        foreach (var file in header.Files)
+        {
+            totalBytes += file.SizeBytes;
+            if (totalBytes < 0 || totalBytes > MaxTotalTransferBytes)
+            {
+                throw new InvalidDataException("Transfer paketi izin verilen toplam boyutu aşıyor.");
+            }
+        }
+
+        EnsureSufficientDiskSpace(totalBytes);
+    }
+
+    private static void EnsureSufficientDiskSpace(long requiredBytes)
+    {
+        try
+        {
+            var stagingRoot = Path.Combine(
+                Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
+                "ToolBridge");
+            var pathRoot = Path.GetPathRoot(Path.GetFullPath(stagingRoot));
+            if (string.IsNullOrWhiteSpace(pathRoot))
+            {
+                return;
+            }
+
+            var drive = new DriveInfo(pathRoot);
+            if (drive.IsReady && drive.AvailableFreeSpace < requiredBytes + MinimumFreeDiskMarginBytes)
+            {
+                throw new IOException("Gelen transfer için yeterli disk alanı yok.");
+            }
+        }
+        catch (IOException)
+        {
+            throw;
+        }
+        catch
+        {
+            // Disk durumu okunamazsa transfer engellenmez; asıl yazma sırasında hata yine yakalanır.
         }
     }
 
@@ -418,6 +511,9 @@ public sealed class LanFileTransferService : IDisposable
         finally
         {
             _shutdown.Dispose();
+            // _inboundLimiter bilerek Dispose edilmiyor: AvailableWaitHandle hiç kullanılmadığından
+            // dispose gerekmez ve kapanışta hâlâ çalışan bir handler'ın Release() çağrısıyla
+            // ObjectDisposedException oluşmasını önler.
         }
     }
 

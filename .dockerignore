@@ -1,0 +1,13 @@
+.git
+.vs
+.vscode
+bin
+obj
+publish
+*.zip
+*.user
+*.suo
+desktop.ini
+src/MusicShell.Wpf/bin
+src/MusicShell.Wpf/obj
+src/MusicShell.Wpf/Tools

@@ -10,7 +10,7 @@ public sealed class PrinterDeviceItem : ObservableObject
     private bool _isSelected;
     private bool _isPrintSelected;
     private int _number;
-    private Brush _coverBrush = Solid("#FF7A00");
+    private Brush _coverBrush = Solid("#2563EB");
 
     public string Name { get; init; } = string.Empty;
     public string IpAddress { get; init; } = string.Empty;
@@ -78,7 +78,7 @@ public sealed class PrinterDeviceItem : ObservableObject
         }
     }
 
-    public Brush PrintCardBorderBrush => IsPrintSelected ? Solid("#F59E0B") : Solid("#00000000");
+    public Brush PrintCardBorderBrush => IsPrintSelected ? Solid("#D97706") : Solid("#00000000");
     public Thickness PrintCardBorderThickness => IsPrintSelected ? new Thickness(2) : new Thickness(0);
 
     public string QueueValue => string.IsNullOrWhiteSpace(QueueName) ? Name : QueueName;
@@ -109,26 +109,26 @@ public sealed class PrinterDeviceItem : ObservableObject
 
     public Brush ColorCategoryBrush => ColorCategory switch
     {
-        "Renkli" => Solid("#F59E0B"),
+        "Renkli" => Solid("#D97706"),
         "Siyah Beyaz" => Solid("#475569"),
-        _ => Solid("#22C55E")
+        _ => Solid("#16A34A")
     };
 
     public Brush ColorCategoryBorderBrush => ColorCategory switch
     {
-        "Renkli" => IsDarkTheme() ? Solid("#92400E") : Solid("#FCD34D"),
+        "Renkli" => IsDarkTheme() ? Solid("#92610E") : Solid("#F0CD96"),
         "Siyah Beyaz" => IsDarkTheme() ? Solid("#475569") : Solid("#CBD5E1"),
-        _ => IsDarkTheme() ? Solid("#166534") : Solid("#86EFAC")
+        _ => IsDarkTheme() ? Solid("#166534") : Solid("#A7DDBC")
     };
 
     public Brush ColorCategoryBackgroundBrush => ColorCategory switch
     {
-        "Renkli" => IsDarkTheme() ? Solid("#261704") : Solid("#FFFBEB"),
-        "Siyah Beyaz" => IsDarkTheme() ? Solid("#1E293B") : Solid("#F8FAFC"),
-        _ => IsDarkTheme() ? Solid("#0B2415") : Solid("#F0FDF4")
+        "Renkli" => IsDarkTheme() ? Solid("#2A1F0A") : Solid("#FDF3E3"),
+        "Siyah Beyaz" => IsDarkTheme() ? Solid("#1E242D") : Solid("#F4F6F9"),
+        _ => IsDarkTheme() ? Solid("#0B2415") : Solid("#EAF7EF")
     };
 
-    public Brush RowBorderBrush => IsSelected ? ResourceBrush("LineBrush", "#DADAE3") : ResourceBrush("LineBrush", "#E9E9EF");
+    public Brush RowBorderBrush => IsSelected ? ResourceBrush("LineBrush", "#D7DDE6") : ResourceBrush("LineBrush", "#E4E8EE");
     public Brush RowBackgroundBrush => ResourceBrush("PanelBrush", "#FFFFFF");
 
     public void RefreshTheme()

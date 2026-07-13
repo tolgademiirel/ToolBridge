@@ -29,7 +29,7 @@ public sealed partial class MainViewModel
     private string _bcWatchFolder = GetDefaultBcWatchFolder();
     private string _bcFileNameFilters = "*.pdf";
     private string _bcDownloadWatcherStatusMessage = "BC fatura hot folder pasif. Aktif hale getirip klasoru kontrol edin.";
-    private Brush _bcDownloadWatcherStatusBrush = Solid("#777783");
+    private Brush _bcDownloadWatcherStatusBrush = Solid("#717A89");
 
     public ICommand BrowseBcWatchFolderCommand { get; private set; } = null!;
     public ICommand SaveBcDownloadWatcherSettingsCommand { get; private set; } = null!;
@@ -581,7 +581,7 @@ public sealed partial class MainViewModel
     private void SetBcDownloadWatcherStatus(string message, bool isError)
     {
         BcDownloadWatcherStatusMessage = message;
-        BcDownloadWatcherStatusBrush = isError ? Solid("#EF4444") : Solid("#22C55E");
+        BcDownloadWatcherStatusBrush = isError ? Solid("#DC2626") : Solid("#16A34A");
         OnPropertyChanged(nameof(BcDownloadWatcherPrinterText));
     }
 

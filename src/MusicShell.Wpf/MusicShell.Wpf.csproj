@@ -6,6 +6,8 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <EnableWindowsTargeting>true</EnableWindowsTargeting>
+    <!-- Kullanılmayan .NET dil uydu-derlemeleri publish çıktısına girmez (arayüz metinleri XAML/kodda gömülü). -->
+    <SatelliteResourceLanguages>en</SatelliteResourceLanguages>
     <AssemblyName>ToolBridge</AssemblyName>
     <RootNamespace>ToolBridge</RootNamespace>
     <ApplicationManifest>app.manifest</ApplicationManifest>
@@ -40,7 +42,7 @@
     diğer yardımcı dosyaların tamamını kapsar.
   -->
   <ItemGroup>
-    <None Include="Tools\**\*" Condition="Exists('Tools')">
+    <None Include="Tools\**\*" Exclude="Tools\Packages\**\*" Condition="Exists('Tools')">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <Link>Tools\%(RecursiveDir)%(Filename)%(Extension)</Link>

@@ -68,18 +68,18 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
 
     private string _selectedPage = PagePrint;
     private string _uploadStatusMessage = "Dosya yüklemek için sürükleyip bırakın veya dosya seçin.";
-    private Brush _uploadStatusBrush = Solid("#777783");
+    private Brush _uploadStatusBrush = Solid("#717A89");
     private PrinterDeviceItem? _selectedRegisteredPrinter;
     private PrinterDeviceItem? _selectedPrintPrinter;
     private string _manualPrinterName = string.Empty;
     private string _manualPrinterIp = string.Empty;
     private string _manualPrinterQueue = string.Empty;
     private string _settingsStatusMessage = "Durum: Ready";
-    private Brush _settingsStatusBrush = Solid("#777783");
-    private Brush _activeAccentBrush = Solid("#FA233B");
-    private Brush _activeAccentSoftBrush = Solid("#FFE8EC");
-    private Brush _activeAccentBorderBrush = Solid("#FF9AA8");
-    private Brush _activeAccentRingBrush = Solid("#80FA233B");
+    private Brush _settingsStatusBrush = Solid("#717A89");
+    private Brush _activeAccentBrush = Solid("#2563EB");
+    private Brush _activeAccentSoftBrush = Solid("#EFF4FE");
+    private Brush _activeAccentBorderBrush = Solid("#B6CDF8");
+    private Brush _activeAccentRingBrush = Solid("#802563EB");
     private bool _isTransferReceiveEnabled = true;
     private bool _isDarkModeEnabled;
     private bool _isPrinting;
@@ -97,9 +97,9 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
     private bool _isLoadingPrintSettings;
     private bool _isLoadingConvertSettings;
     private string _convertStatusMessage = "Dönüştürmek için dosya seçin ve personel varsayılan kayıt klasörünü seçin.";
-    private Brush _convertStatusBrush = Solid("#777783");
+    private Brush _convertStatusBrush = Solid("#717A89");
     private string _pdfMergeStatusMessage = "PDF birleştirmek için en az 2 PDF dosyası seçin.";
-    private Brush _pdfMergeStatusBrush = Solid("#777783");
+    private Brush _pdfMergeStatusBrush = Solid("#717A89");
     private string _pdfMergeOutputFileName = "Birlesik_PDF.pdf";
     private string _selectedConvertTargetFormat = "PDF";
     private bool _isConvertFormatPopupOpen;
@@ -108,13 +108,13 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
     private string _convertOutputFolder = string.Empty;
     private string _transferDownloadFolder = string.Empty;
     private string _convertTransferStatusMessage = string.Empty;
-    private Brush _convertTransferStatusBrush = Solid("#777783");
+    private Brush _convertTransferStatusBrush = Solid("#717A89");
     private OnlineUserItem? _selectedTransferRecipient;
     private string _leftOnlineUserSearchText = string.Empty;
     private string _transferOnlineUserSearchText = string.Empty;
     private string _convertOnlineUserSearchText = string.Empty;
     private string _transferStatusMessage = "Dosya göndermek için önce ağdaki personel listesinden alıcı seçin.";
-    private Brush _transferStatusBrush = Solid("#777783");
+    private Brush _transferStatusBrush = Solid("#717A89");
     private PendingTransferItem? _selectedIncomingTransfer;
     private bool _isIncomingTransferModalOpen;
     private bool _isTransferInProgress;
@@ -135,46 +135,46 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
             {
                 Icon = "\uE749",
                 Title = PagePrint,
-                IconBrush = Solid("#F59E0B"),
-                GlowBrush = RadialGlow("#72F59E0B", "#38D97706", "#00924500"),
-                AccentBrush = Solid("#F59E0B"),
-                AccentSoftBrush = Solid("#FFFBEB"),
-                AccentBorderBrush = Solid("#FCD34D"),
-                AccentRingBrush = Solid("#80F59E0B"),
+                IconBrush = Solid("#D97706"),
+                GlowBrush = RadialGlow("#72D97706", "#38B45309", "#0092400E"),
+                AccentBrush = Solid("#D97706"),
+                AccentSoftBrush = Solid("#FDF3E3"),
+                AccentBorderBrush = Solid("#F0CD96"),
+                AccentRingBrush = Solid("#80D97706"),
                 IsActive = true
             },
             new()
             {
                 Icon = "\uE8AB",
                 Title = PageTransfer,
-                IconBrush = Solid("#3B82F6"),
-                GlowBrush = RadialGlow("#723B82F6", "#382563EB", "#001D4ED8"),
-                AccentBrush = Solid("#3B82F6"),
-                AccentSoftBrush = Solid("#EFF6FF"),
-                AccentBorderBrush = Solid("#93C5FD"),
-                AccentRingBrush = Solid("#803B82F6")
+                IconBrush = Solid("#2563EB"),
+                GlowBrush = RadialGlow("#722563EB", "#381D4ED8", "#001E40AF"),
+                AccentBrush = Solid("#2563EB"),
+                AccentSoftBrush = Solid("#EFF4FE"),
+                AccentBorderBrush = Solid("#B6CDF8"),
+                AccentRingBrush = Solid("#802563EB")
             },
             new()
             {
                 Icon = "\uE8B7",
                 Title = PageConvert,
-                IconBrush = Solid("#EF4444"),
-                GlowBrush = RadialGlow("#72EF4444", "#38DC2626", "#00B91C1C"),
-                AccentBrush = Solid("#EF4444"),
-                AccentSoftBrush = Solid("#FEF2F2"),
-                AccentBorderBrush = Solid("#FCA5A5"),
-                AccentRingBrush = Solid("#80EF4444")
+                IconBrush = Solid("#7C3AED"),
+                GlowBrush = RadialGlow("#727C3AED", "#386D28D9", "#005B21B6"),
+                AccentBrush = Solid("#7C3AED"),
+                AccentSoftBrush = Solid("#F4F0FD"),
+                AccentBorderBrush = Solid("#CDB9F4"),
+                AccentRingBrush = Solid("#807C3AED")
             },
             new()
             {
                 Icon = "\uE713",
                 Title = PageSettings,
-                IconBrush = Solid("#22C55E"),
-                GlowBrush = RadialGlow("#7222C55E", "#3816A34A", "#0015803D"),
-                AccentBrush = Solid("#22C55E"),
-                AccentSoftBrush = Solid("#F0FDF4"),
-                AccentBorderBrush = Solid("#86EFAC"),
-                AccentRingBrush = Solid("#8022C55E")
+                IconBrush = Solid("#059669"),
+                GlowBrush = RadialGlow("#72059669", "#38047857", "#00065F46"),
+                AccentBrush = Solid("#059669"),
+                AccentSoftBrush = Solid("#E9F7F1"),
+                AccentBorderBrush = Solid("#9BD9C2"),
+                AccentRingBrush = Solid("#80059669")
             }
         };
 
@@ -710,7 +710,7 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
     public string SelectedPrintPrinterTitle => SelectedPrintPrinter?.Name ?? "Yazıcı seçilmedi";
     public string SelectedPrintPrinterSubtitle => SelectedPrintPrinter?.IpAddress ?? "Yazdırma sayfasından bir cihaz seçin";
     public string SelectedPrintPrinterQueueText => SelectedPrintPrinter is null ? "Kuyruk bekleniyor" : $"Kuyruk: {SelectedPrintPrinter.QueueValue}";
-    public Brush SelectedPrintPrinterCoverBrush => SelectedPrintPrinter?.CoverBrush ?? Gradient("#94A3B8", "#E5E7EB");
+    public Brush SelectedPrintPrinterCoverBrush => SelectedPrintPrinter?.CoverBrush ?? Gradient("#64748B", "#CBD5E1");
     public string PrintSettingsHeaderText => "Yazdırma Ayarları";
 
     public string SelectedPrintColor
@@ -2475,7 +2475,7 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
                 return;
             }
 
-            _fileTransferService = new LanFileTransferService(_currentPresenceId, _currentUserDisplayName);
+            _fileTransferService = new LanFileTransferService(_currentPresenceId, _currentUserDisplayName, () => IsTransferReceiveEnabled);
             _fileTransferService.TransferReceived += FileTransferService_TransferReceived;
             _fileTransferService.Start();
             AppLogger.Log($"LAN dosya transfer servisi başlatıldı. Port: {LanFileTransferService.TransferPort}");
@@ -2496,6 +2496,8 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
     {
         if (!IsTransferReceiveEnabled)
         {
+            // Yarış durumunda diske düşmüş olabilecek geçici dosyaları geride bırakma.
+            TryDeleteDirectory(transfer.StagingFolder);
             SetTransferStatus($"{transfer.SenderName} tarafından gönderilen transfer reddedildi. Transfer alımı kapalı.", true);
             return;
         }
@@ -3041,13 +3043,13 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
     private void SetTransferStatus(string message, bool isError)
     {
         TransferStatusMessage = message;
-        TransferStatusBrush = isError ? Solid("#DC2626") : Solid("#777783");
+        TransferStatusBrush = isError ? Solid("#DC2626") : Solid("#717A89");
     }
 
     private void SetConvertTransferStatus(string message, bool isError)
     {
         ConvertTransferStatusMessage = message;
-        ConvertTransferStatusBrush = isError ? Solid("#DC2626") : Solid("#777783");
+        ConvertTransferStatusBrush = isError ? Solid("#DC2626") : Solid("#717A89");
         SetTransferStatus(message, isError);
     }
 
@@ -6033,11 +6035,56 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
             return string.Empty;
         }
 
-        return value.Replace("&", "&amp;")
-            .Replace("<", "&lt;")
-            .Replace(">", "&gt;")
-            .Replace("\"", "&quot;")
-            .Replace("'", "&apos;");
+        // Hem XML varlıklarını kaçışlar hem de XML 1.0'da GEÇERSİZ karakterleri temizler.
+        // XML 1.0'da yalnızca \t \n \r, 0x20-0xD7FF, 0xE000-0xFFFD ve geçerli surrogate
+        // çiftleri izinlidir. PDF metin çıkarımı sıkça kontrol karakteri (0x00-0x1F),
+        // eşsiz surrogate veya U+FFFE/FFFF üretir; bunlar escape edilse bile XML'i bozar
+        // ve Word "dosya bozuk" hatası verir. Bu yüzden burada ayıklıyoruz.
+        var builder = new StringBuilder(value.Length + 16);
+        for (var i = 0; i < value.Length; i++)
+        {
+            var character = value[i];
+
+            switch (character)
+            {
+                case '&': builder.Append("&amp;"); continue;
+                case '<': builder.Append("&lt;"); continue;
+                case '>': builder.Append("&gt;"); continue;
+                case '"': builder.Append("&quot;"); continue;
+                case '\'': builder.Append("&apos;"); continue;
+                case '\t':
+                case '\n':
+                case '\r':
+                    builder.Append(character);
+                    continue;
+            }
+
+            if (character < 0x20)
+            {
+                continue; // geçersiz kontrol karakteri -> at
+            }
+
+            if (char.IsHighSurrogate(character))
+            {
+                if (i + 1 < value.Length && char.IsLowSurrogate(value[i + 1]))
+                {
+                    builder.Append(character);
+                    builder.Append(value[i + 1]);
+                    i++;
+                }
+
+                continue; // eşi olmayan yüksek surrogate -> at
+            }
+
+            if (char.IsLowSurrogate(character) || character == (char)0xFFFE || character == (char)0xFFFF)
+            {
+                continue; // eşsiz düşük surrogate / non-character -> at
+            }
+
+            builder.Append(character);
+        }
+
+        return builder.ToString();
     }
 
     private static string EscapeRtf(string value)
@@ -8370,6 +8417,16 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
 
     private static string Quote(string value)
     {
+        value ??= string.Empty;
+
+        // Sondaki ters bölü(ler) kapanış tırnağını kaçışlamasın diye ikiye katlanır
+        // (Windows CommandLineToArgvW kuralı). Sonu '\' ile biten dizin yolları için önemlidir.
+        var trailingBackslashes = value.Length - value.TrimEnd('\\').Length;
+        if (trailingBackslashes > 0)
+        {
+            value += new string('\\', trailingBackslashes);
+        }
+
         return $"\"{value.Replace("\"", "\\\"")}\"";
     }
 
@@ -8542,7 +8599,7 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
 
         try
         {
-            var arguments = $"-silent -print-to \"{printerQueueName}\" -print-settings \"{BuildSumatraPrintSettings()}\" \"{filePath}\"";
+            var arguments = $"-silent -print-to {Quote(printerQueueName)} -print-settings {Quote(BuildSumatraPrintSettings())} {Quote(filePath)}";
             using var process = Process.Start(new ProcessStartInfo
             {
                 FileName = sumatraPath,
@@ -8741,7 +8798,7 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
             using var process = Process.Start(new ProcessStartInfo
             {
                 FileName = adobePath,
-                Arguments = $"/t \"{filePath}\" \"{printerQueueName}\"",
+                Arguments = $"/t {Quote(filePath)} {Quote(printerQueueName)}",
                 UseShellExecute = false,
                 CreateNoWindow = true,
                 WindowStyle = ProcessWindowStyle.Hidden
@@ -8785,7 +8842,7 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
             {
                 FileName = filePath,
                 Verb = "printto",
-                Arguments = $"\"{printerQueueName}\"",
+                Arguments = Quote(printerQueueName),
                 UseShellExecute = true,
                 CreateNoWindow = true,
                 WindowStyle = ProcessWindowStyle.Hidden
@@ -9555,8 +9612,8 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
             ColorBackgroundBrush = GetHistoryColorBackgroundBrush(colorText),
             StatusText = status,
             StatusBrush = isError ? Solid("#DC2626") : Solid("#16A34A"),
-            StatusBorderBrush = isError ? Solid("#FCA5A5") : Solid("#86EFAC"),
-            StatusBackgroundBrush = isError ? Solid("#FEF2F2") : Solid("#F0FDF4")
+            StatusBorderBrush = isError ? Solid("#F2B8B8") : Solid("#A7DDBC"),
+            StatusBackgroundBrush = isError ? Solid("#FDECEC") : Solid("#EAF7EF")
         });
     }
 
@@ -9569,27 +9626,27 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
 
     private static Brush GetHistoryColorBrush(string colorText)
     {
-        return colorText == "Renkli" ? Solid("#F59E0B") : Solid("#64748B");
+        return colorText == "Renkli" ? Solid("#D97706") : Solid("#475569");
     }
 
     private Brush GetHistoryColorBorderBrush(string colorText)
     {
         if (IsDarkModeEnabled)
         {
-            return colorText == "Renkli" ? Solid("#92400E") : Solid("#475569");
+            return colorText == "Renkli" ? Solid("#92610E") : Solid("#475569");
         }
 
-        return colorText == "Renkli" ? Solid("#F59E0B") : Solid("#CBD5E1");
+        return colorText == "Renkli" ? Solid("#F0CD96") : Solid("#CBD5E1");
     }
 
     private Brush GetHistoryColorBackgroundBrush(string colorText)
     {
         if (IsDarkModeEnabled)
         {
-            return colorText == "Renkli" ? Solid("#261704") : Solid("#1E293B");
+            return colorText == "Renkli" ? Solid("#2A1F0A") : Solid("#1E242D");
         }
 
-        return colorText == "Renkli" ? Solid("#FFFBEB") : Solid("#F8FAFC");
+        return colorText == "Renkli" ? Solid("#FDF3E3") : Solid("#F4F6F9");
     }
 
     private void ClearPrintHistory()
@@ -9601,19 +9658,19 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
     private void SetUploadStatus(string message, bool isError)
     {
         UploadStatusMessage = message;
-        UploadStatusBrush = isError ? Solid("#DC2626") : Solid("#777783");
+        UploadStatusBrush = isError ? Solid("#DC2626") : Solid("#717A89");
     }
 
     private void SetConvertStatus(string message, bool isError)
     {
         ConvertStatusMessage = message;
-        ConvertStatusBrush = isError ? Solid("#DC2626") : Solid("#777783");
+        ConvertStatusBrush = isError ? Solid("#DC2626") : Solid("#717A89");
     }
 
     private void SetPdfMergeStatus(string message, bool isError)
     {
         PdfMergeStatusMessage = message;
-        PdfMergeStatusBrush = isError ? Solid("#DC2626") : Solid("#777783");
+        PdfMergeStatusBrush = isError ? Solid("#DC2626") : Solid("#717A89");
     }
 
     private void NavigateToPage(string pageTitle)
@@ -9678,20 +9735,20 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
         return pageTitle switch
         {
             "Yazdırma" => isDarkMode
-                ? ("#F59E0B", "#D97706", "#261704", "#92400E", "#80F59E0B")
-                : ("#F59E0B", "#D97706", "#FFFBEB", "#FCD34D", "#80F59E0B"),
+                ? ("#F59E0B", "#D97706", "#2A1F0A", "#92610E", "#80F59E0B")
+                : ("#D97706", "#B45309", "#FDF3E3", "#F0CD96", "#80D97706"),
             "Transfer" => isDarkMode
                 ? ("#3B82F6", "#2563EB", "#0B1B33", "#1D4ED8", "#803B82F6")
-                : ("#3B82F6", "#2563EB", "#EFF6FF", "#93C5FD", "#803B82F6"),
+                : ("#2563EB", "#1D4ED8", "#EFF4FE", "#B6CDF8", "#802563EB"),
             "Convert" => isDarkMode
-                ? ("#EF4444", "#DC2626", "#2A1116", "#7F1D1D", "#80EF4444")
-                : ("#EF4444", "#DC2626", "#FEF2F2", "#FCA5A5", "#80EF4444"),
+                ? ("#8B5CF6", "#7C3AED", "#1E1533", "#5B21B6", "#808B5CF6")
+                : ("#7C3AED", "#6D28D9", "#F4F0FD", "#CDB9F4", "#807C3AED"),
             "Ayarlar" => isDarkMode
-                ? ("#22C55E", "#16A34A", "#0B2415", "#166534", "#8022C55E")
-                : ("#22C55E", "#16A34A", "#F0FDF4", "#86EFAC", "#8022C55E"),
+                ? ("#10B981", "#059669", "#0B2415", "#166534", "#8010B981")
+                : ("#059669", "#047857", "#E9F7F1", "#9BD9C2", "#80059669"),
             _ => isDarkMode
-                ? ("#FA233B", "#E01E35", "#2A1116", "#7F1D1D", "#80FA233B")
-                : ("#FA233B", "#E01E35", "#FFE8EC", "#FF9AA8", "#80FA233B")
+                ? ("#3B82F6", "#2563EB", "#0B1B33", "#1D4ED8", "#803B82F6")
+                : ("#2563EB", "#1D4ED8", "#EFF4FE", "#B6CDF8", "#802563EB")
         };
     }
 
@@ -9858,7 +9915,7 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
     private void SetSettingsStatus(string message, bool isError)
     {
         SettingsStatusMessage = message;
-        SettingsStatusBrush = isError ? Solid("#DC2626") : Solid("#777783");
+        SettingsStatusBrush = isError ? Solid("#DC2626") : Solid("#717A89");
     }
 
     private void LoadPrintSettings()
@@ -10106,11 +10163,11 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
 
         var colorPairs = new[]
         {
-            ("#FF7A00", "#FACC15"),
-            ("#06B6D4", "#2563EB"),
-            ("#7C3AED", "#EC4899"),
-            ("#22C55E", "#14B8A6"),
-            ("#64748B", "#111827")
+            ("#2563EB", "#0EA5E9"),
+            ("#7C3AED", "#A78BFA"),
+            ("#D97706", "#F59E0B"),
+            ("#059669", "#34D399"),
+            ("#475569", "#94A3B8")
         };
 
         for (var index = 0; index < RegisteredPrinters.Count; index++)
@@ -10175,59 +10232,59 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
 
     private static void ApplyLightPalette()
     {
-        SetResourceBrush("AccentBrush", "#FA233B");
-        SetResourceBrush("AccentSoftBrush", "#FFE8EC");
-        SetResourceBrush("SurfaceBrush", "#F5F5F7");
-        SetResourceBrush("SurfaceAltBrush", "#F2F2F7");
+        SetResourceBrush("AccentBrush", "#2563EB");
+        SetResourceBrush("AccentSoftBrush", "#EFF4FE");
+        SetResourceBrush("SurfaceBrush", "#F6F7F9");
+        SetResourceBrush("SurfaceAltBrush", "#EEF1F5");
         SetResourceBrush("PanelBrush", "#FFFFFF");
-        SetResourceBrush("PanelAltBrush", "#FBFBFD");
-        SetResourceBrush("PanelMutedBrush", "#F5F5F7");
-        SetResourceBrush("LineBrush", "#E5E5EA");
-        SetResourceBrush("MutedTextBrush", "#86868B");
-        SetResourceBrush("PrimaryTextBrush", "#1D1D1F");
-        SetResourceBrush("SoftTextBrush", "#515154");
-        SetResourceBrush("ChipBrush", "#F2F2F7");
+        SetResourceBrush("PanelAltBrush", "#FAFBFC");
+        SetResourceBrush("PanelMutedBrush", "#F3F5F8");
+        SetResourceBrush("LineBrush", "#E4E8EE");
+        SetResourceBrush("MutedTextBrush", "#717A89");
+        SetResourceBrush("PrimaryTextBrush", "#161A22");
+        SetResourceBrush("SoftTextBrush", "#3F4753");
+        SetResourceBrush("ChipBrush", "#EEF1F5");
 
-        SetResourceBrush("ButtonPrimaryBrush", "#FA233B");
+        SetResourceBrush("ButtonPrimaryBrush", "#2563EB");
         SetResourceBrush("ButtonPrimaryForegroundBrush", "#FFFFFF");
-        SetResourceBrush("ButtonPrimaryHoverBrush", "#E01E35");
-        SetResourceBrush("ButtonSecondaryBrush", "#F2F2F7");
-        SetResourceBrush("ButtonSecondaryHoverBrush", "#E8E8ED");
-        SetResourceBrush("ButtonOutlineHoverBrush", "#FFE8EC");
-        SetResourceBrush("ButtonGhostHoverBrush", "#F2F2F7");
-        SetResourceBrush("ButtonDestructiveBrush", "#EF4444");
-        SetResourceBrush("ButtonDestructiveHoverBrush", "#DC2626");
-        SetResourceBrush("ButtonRingBrush", "#80FA233B");
+        SetResourceBrush("ButtonPrimaryHoverBrush", "#1D4ED8");
+        SetResourceBrush("ButtonSecondaryBrush", "#EEF1F5");
+        SetResourceBrush("ButtonSecondaryHoverBrush", "#E2E7EE");
+        SetResourceBrush("ButtonOutlineHoverBrush", "#EFF4FE");
+        SetResourceBrush("ButtonGhostHoverBrush", "#EEF1F5");
+        SetResourceBrush("ButtonDestructiveBrush", "#DC2626");
+        SetResourceBrush("ButtonDestructiveHoverBrush", "#B91C1C");
+        SetResourceBrush("ButtonRingBrush", "#802563EB");
         SetResourceBrush("ButtonDarkHoverBrush", "#2A3342");
     }
 
     private static void ApplyDarkAmberMinimalPalette()
     {
-        // Apple Music esintili koyu minimal palet: kırmızı vurgu, düşük kontrastlı kartlar, yumuşak ayraçlar.
-        SetResourceBrush("AccentBrush", "#FA233B");
-        SetResourceBrush("AccentSoftBrush", "#2A1116");
-        SetResourceBrush("SurfaceBrush", "#111114");
-        SetResourceBrush("SurfaceAltBrush", "#151518");
-        SetResourceBrush("PanelBrush", "#1C1C1E");
-        SetResourceBrush("PanelAltBrush", "#202024");
-        SetResourceBrush("PanelMutedBrush", "#18181B");
-        SetResourceBrush("LineBrush", "#2C2C30");
-        SetResourceBrush("MutedTextBrush", "#9B9BA1");
-        SetResourceBrush("PrimaryTextBrush", "#F5F5F7");
-        SetResourceBrush("SoftTextBrush", "#D1D1D6");
-        SetResourceBrush("ChipBrush", "#242428");
+        // Kurumsal koyu palet: mavi vurgu, düşük kontrastlı kartlar, yumuşak ayraçlar.
+        SetResourceBrush("AccentBrush", "#3B82F6");
+        SetResourceBrush("AccentSoftBrush", "#0B1B33");
+        SetResourceBrush("SurfaceBrush", "#101318");
+        SetResourceBrush("SurfaceAltBrush", "#0C0F13");
+        SetResourceBrush("PanelBrush", "#171B22");
+        SetResourceBrush("PanelAltBrush", "#1B2028");
+        SetResourceBrush("PanelMutedBrush", "#1E242D");
+        SetResourceBrush("LineBrush", "#2A323E");
+        SetResourceBrush("MutedTextBrush", "#8B94A3");
+        SetResourceBrush("PrimaryTextBrush", "#F2F4F8");
+        SetResourceBrush("SoftTextBrush", "#C6CCD6");
+        SetResourceBrush("ChipBrush", "#232A35");
 
-        SetResourceBrush("ButtonPrimaryBrush", "#FA233B");
+        SetResourceBrush("ButtonPrimaryBrush", "#3B82F6");
         SetResourceBrush("ButtonPrimaryForegroundBrush", "#FFFFFF");
-        SetResourceBrush("ButtonPrimaryHoverBrush", "#E01E35");
-        SetResourceBrush("ButtonSecondaryBrush", "#242428");
-        SetResourceBrush("ButtonSecondaryHoverBrush", "#2F2F35");
-        SetResourceBrush("ButtonOutlineHoverBrush", "#2A1116");
-        SetResourceBrush("ButtonGhostHoverBrush", "#242428");
+        SetResourceBrush("ButtonPrimaryHoverBrush", "#2563EB");
+        SetResourceBrush("ButtonSecondaryBrush", "#232A35");
+        SetResourceBrush("ButtonSecondaryHoverBrush", "#2A323E");
+        SetResourceBrush("ButtonOutlineHoverBrush", "#0B1B33");
+        SetResourceBrush("ButtonGhostHoverBrush", "#232A35");
         SetResourceBrush("ButtonDestructiveBrush", "#EF4444");
         SetResourceBrush("ButtonDestructiveHoverBrush", "#DC2626");
-        SetResourceBrush("ButtonRingBrush", "#80FA233B");
-        SetResourceBrush("ButtonDarkHoverBrush", "#242428");
+        SetResourceBrush("ButtonRingBrush", "#803B82F6");
+        SetResourceBrush("ButtonDarkHoverBrush", "#2A323E");
     }
 
     private static void SetResourceBrush(string key, string color)

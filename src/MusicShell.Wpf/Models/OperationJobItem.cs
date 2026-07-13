@@ -119,10 +119,10 @@ public sealed class OperationJobItem : ObservableObject, IDisposable
         get
         {
             if (HasError) return Solid("#DC2626");
-            if (IsCancelled) return Solid("#F59E0B");
+            if (IsCancelled) return Solid("#D97706");
             if (IsCompleted) return Solid("#16A34A");
-            if (IsRunning) return Solid("#3B82F6");
-            return Solid("#777783");
+            if (IsRunning) return Solid("#2563EB");
+            return Solid("#717A89");
         }
     }
 

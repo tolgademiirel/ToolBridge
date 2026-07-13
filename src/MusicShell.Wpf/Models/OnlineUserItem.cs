@@ -139,9 +139,9 @@ public sealed class OnlineUserItem : ObservableObject
         }
     }
 
-    public Brush SelectionBorderBrush => IsSelectedForTransfer ? Solid("#3B82F6") : ResourceBrush("LineBrush", "#E5E7EB");
+    public Brush SelectionBorderBrush => IsSelectedForTransfer ? Solid("#2563EB") : ResourceBrush("LineBrush", "#E4E8EE");
     public Thickness SelectionBorderThickness => IsSelectedForTransfer ? new Thickness(2) : new Thickness(1);
-    public Brush SelectionBackgroundBrush => IsSelectedForTransfer ? ResourceBrush("PanelMutedBrush", "#EFF6FF") : ResourceBrush("PanelBrush", "#FFFFFF");
+    public Brush SelectionBackgroundBrush => IsSelectedForTransfer ? ResourceBrush("PanelMutedBrush", "#EFF4FE") : ResourceBrush("PanelBrush", "#FFFFFF");
 
     public bool HasTransferNotification
     {

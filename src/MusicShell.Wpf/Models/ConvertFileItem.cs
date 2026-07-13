@@ -9,7 +9,7 @@ public sealed class ConvertFileItem : ObservableObject
 {
     private int _progress;
     private string _statusText = "Hazır";
-    private Brush _statusBrush = Solid("#777783");
+    private Brush _statusBrush = Solid("#717A89");
     private string _outputPath = string.Empty;
     private bool _isSelectedForPrintPool;
 
@@ -71,7 +71,7 @@ public sealed class ConvertFileItem : ObservableObject
     {
         Progress = 0;
         StatusText = "Hazır";
-        StatusBrush = Solid("#777783");
+        StatusBrush = Solid("#717A89");
         OutputPath = string.Empty;
     }
 
@@ -79,7 +79,7 @@ public sealed class ConvertFileItem : ObservableObject
     {
         Progress = 45;
         StatusText = "Dönüştürülüyor";
-        StatusBrush = Solid("#F59E0B");
+        StatusBrush = Solid("#D97706");
     }
 
     public void MarkCompleted(string outputPath)

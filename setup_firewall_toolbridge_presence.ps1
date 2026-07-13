@@ -38,6 +38,7 @@ function Ensure-FirewallRule {
 Ensure-FirewallRule -Name $PresenceRuleName -Protocol UDP -Port $PresencePort
 Ensure-FirewallRule -Name $TransferRuleName -Protocol TCP -Port $TransferPort
 
+# ToolBridge outbound UDP presence rule for restricted corporate networks.
 if (-not (Get-NetFirewallRule -DisplayName 'ToolBridge LAN Presence UDP Outbound' -ErrorAction SilentlyContinue)) {
     New-NetFirewallRule -DisplayName 'ToolBridge LAN Presence UDP Outbound' -Direction Outbound -Action Allow -Protocol UDP -LocalPort Any -RemotePort $PresencePort | Out-Null
     Write-Host 'Firewall rule added: ToolBridge LAN Presence UDP Outbound / UDP 47892'

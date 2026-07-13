@@ -3,26 +3,49 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-        <FontFamily x:Key="AppFont">Inter, Segoe UI Variable Text, Segoe UI</FontFamily>
-        <FontFamily x:Key="DisplayFont">Inter, Segoe UI Variable Display, Segoe UI</FontFamily>
-        <FontFamily x:Key="BodyFont">Inter, Segoe UI Variable Text, Segoe UI</FontFamily>
-        <FontFamily x:Key="MenuFont">Inter, Segoe UI</FontFamily>
+        <FontFamily x:Key="AppFont">Segoe UI Variable Text, Segoe UI</FontFamily>
+        <FontFamily x:Key="DisplayFont">Segoe UI Variable Display, Segoe UI</FontFamily>
+        <FontFamily x:Key="BodyFont">Segoe UI Variable Text, Segoe UI</FontFamily>
+        <FontFamily x:Key="MenuFont">Segoe UI Variable Text, Segoe UI</FontFamily>
 
-        <SolidColorBrush x:Key="AccentBrush" Color="#FA233B" />
-        <SolidColorBrush x:Key="AccentSoftBrush" Color="#FFE8EC" />
-        <SolidColorBrush x:Key="SurfaceBrush" Color="#F5F5F7" />
+        <SolidColorBrush x:Key="AccentBrush" Color="#2563EB" />
+        <SolidColorBrush x:Key="AccentSoftBrush" Color="#EFF4FE" />
+        <SolidColorBrush x:Key="SurfaceBrush" Color="#F6F7F9" />
         <SolidColorBrush x:Key="PanelBrush" Color="#FFFFFF" />
-        <SolidColorBrush x:Key="LineBrush" Color="#E5E5EA" />
-        <SolidColorBrush x:Key="MutedTextBrush" Color="#86868B" />
-        <SolidColorBrush x:Key="PrimaryTextBrush" Color="#1D1D1F" />
-        <SolidColorBrush x:Key="SoftTextBrush" Color="#515154" />
-        <SolidColorBrush x:Key="ChipBrush" Color="#F2F2F7" />
-        <SolidColorBrush x:Key="SurfaceAltBrush" Color="#F2F2F7" />
-        <SolidColorBrush x:Key="PanelAltBrush" Color="#FBFBFD" />
-        <SolidColorBrush x:Key="PanelMutedBrush" Color="#F5F5F7" />
+        <SolidColorBrush x:Key="LineBrush" Color="#E4E8EE" />
+        <SolidColorBrush x:Key="MutedTextBrush" Color="#717A89" />
+        <SolidColorBrush x:Key="PrimaryTextBrush" Color="#161A22" />
+        <SolidColorBrush x:Key="SoftTextBrush" Color="#3F4753" />
+        <SolidColorBrush x:Key="ChipBrush" Color="#EEF1F5" />
+        <SolidColorBrush x:Key="SurfaceAltBrush" Color="#EEF1F5" />
+        <SolidColorBrush x:Key="PanelAltBrush" Color="#FAFBFC" />
+        <SolidColorBrush x:Key="PanelMutedBrush" Color="#F3F5F8" />
 
-        <DropShadowEffect x:Key="SoftShadow" BlurRadius="26" ShadowDepth="8" Opacity="0.10" Color="#000000" />
-        <DropShadowEffect x:Key="CardShadow" BlurRadius="30" ShadowDepth="10" Opacity="0.18" Color="#111111" />
+        <!-- Semantik durum token'ları -->
+        <SolidColorBrush x:Key="SuccessBrush" Color="#16A34A" />
+        <SolidColorBrush x:Key="SuccessSoftBrush" Color="#EAF7EF" />
+        <SolidColorBrush x:Key="SuccessBorderBrush" Color="#A7DDBC" />
+        <SolidColorBrush x:Key="WarningBrush" Color="#D97706" />
+        <SolidColorBrush x:Key="WarningSoftBrush" Color="#FDF3E3" />
+        <SolidColorBrush x:Key="WarningBorderBrush" Color="#F0CD96" />
+        <SolidColorBrush x:Key="DangerBrush" Color="#DC2626" />
+        <SolidColorBrush x:Key="DangerSoftBrush" Color="#FDECEC" />
+        <SolidColorBrush x:Key="DangerBorderBrush" Color="#F2B8B8" />
+        <SolidColorBrush x:Key="InfoBrush" Color="#2563EB" />
+        <SolidColorBrush x:Key="InfoSoftBrush" Color="#EFF4FE" />
+        <SolidColorBrush x:Key="InfoBorderBrush" Color="#B6CDF8" />
+        <SolidColorBrush x:Key="NeutralStatusBrush" Color="#717A89" />
+        <SolidColorBrush x:Key="FocusRingBrush" Color="#802563EB" />
+        <SolidColorBrush x:Key="ScrimBrush" Color="#66111827" />
+
+        <DropShadowEffect x:Key="SoftShadow" BlurRadius="20" ShadowDepth="3" Opacity="0.05" Color="#000000" />
+        <DropShadowEffect x:Key="CardShadow" BlurRadius="24" ShadowDepth="6" Opacity="0.12" Color="#111111" />
+
+        <!-- MainWindow'da tekrar eden ikon path'leri için merkezi geometri kaynakları -->
+        <Geometry x:Key="IconTrashGeometry">M6,2 L10,2 L11,3 L14,3 L14,5 L2,5 L2,3 L5,3 Z M4,6 L12,6 L11.25,14 L4.75,14 Z M6,7.5 L7,7.5 L7,12.5 L6,12.5 Z M9,7.5 L10,7.5 L10,12.5 L9,12.5 Z</Geometry>
+        <Geometry x:Key="IconPrinterGeometry">M4,2 L12,2 L12,5 L4,5 Z M3,6 L13,6 C13.55,6 14,6.45 14,7 L14,11 L12,11 L12,14 L4,14 L4,11 L2,11 L2,7 C2,6.45 2.45,6 3,6 Z M5,10 L5,13 L11,13 L11,10 Z M11.5,7.25 C10.95,7.25 10.5,7.7 10.5,8.25 C10.5,8.8 10.95,9.25 11.5,9.25 C12.05,9.25 12.5,8.8 12.5,8.25 C12.5,7.7 12.05,7.25 11.5,7.25 Z</Geometry>
+        <Geometry x:Key="IconOpenGeometry">M8,3 C4.5,3 2,8 2,8 C2,8 4.5,13 8,13 C11.5,13 14,8 14,8 C14,8 11.5,3 8,3 Z M8,5 C9.65,5 11,6.35 11,8 C11,9.65 9.65,11 8,11 C6.35,11 5,9.65 5,8 C5,6.35 6.35,5 8,5 Z M8,6.4 C7.12,6.4 6.4,7.12 6.4,8 C6.4,8.88 7.12,9.6 8,9.6 C8.88,9.6 9.6,8.88 9.6,8 C9.6,7.12 8.88,6.4 8,6.4 Z</Geometry>
+        <Geometry x:Key="IconSendGeometry">M8,2 L14,7 L13,8.2 L12,7.35 L12,14 L9.5,14 L9.5,10 L6.5,10 L6.5,14 L4,14 L4,7.35 L3,8.2 L2,7 Z</Geometry>
 
 
         <!--
@@ -86,22 +109,115 @@
 
 
         <!--
+            Modern ince scrollbar: ok butonları yok, transparan track üzerinde
+            yuvarlatılmış thumb. Tüm ScrollViewer'lara implicit olarak uygulanır.
+        -->
+        <Style x:Key="ToolBridgeScrollBarThumbStyle" TargetType="{x:Type Thumb}">
+            <Setter Property="IsTabStop" Value="False" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Thumb}">
+                        <Border x:Name="ThumbRoot"
+                                Background="#66717A89"
+                                CornerRadius="4"
+                                Margin="2" />
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="ThumbRoot" Property="Background" Value="#B3717A89" />
+                            </Trigger>
+                            <Trigger Property="IsDragging" Value="True">
+                                <Setter TargetName="ThumbRoot" Property="Background" Value="#B3717A89" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <ControlTemplate x:Key="ToolBridgeVerticalScrollBarTemplate" TargetType="{x:Type ScrollBar}">
+            <Grid Background="Transparent" SnapsToDevicePixels="True">
+                <Track x:Name="PART_Track" IsDirectionReversed="True">
+                    <Track.DecreaseRepeatButton>
+                        <RepeatButton Command="{x:Static ScrollBar.PageUpCommand}"
+                                      Height="0"
+                                      Focusable="False"
+                                      IsTabStop="False"
+                                      Visibility="Collapsed" />
+                    </Track.DecreaseRepeatButton>
+                    <Track.Thumb>
+                        <Thumb Style="{StaticResource ToolBridgeScrollBarThumbStyle}" />
+                    </Track.Thumb>
+                    <Track.IncreaseRepeatButton>
+                        <RepeatButton Command="{x:Static ScrollBar.PageDownCommand}"
+                                      Height="0"
+                                      Focusable="False"
+                                      IsTabStop="False"
+                                      Visibility="Collapsed" />
+                    </Track.IncreaseRepeatButton>
+                </Track>
+            </Grid>
+        </ControlTemplate>
+
+        <ControlTemplate x:Key="ToolBridgeHorizontalScrollBarTemplate" TargetType="{x:Type ScrollBar}">
+            <Grid Background="Transparent" SnapsToDevicePixels="True">
+                <Track x:Name="PART_Track" IsDirectionReversed="False">
+                    <Track.DecreaseRepeatButton>
+                        <RepeatButton Command="{x:Static ScrollBar.PageLeftCommand}"
+                                      Width="0"
+                                      Focusable="False"
+                                      IsTabStop="False"
+                                      Visibility="Collapsed" />
+                    </Track.DecreaseRepeatButton>
+                    <Track.Thumb>
+                        <Thumb Style="{StaticResource ToolBridgeScrollBarThumbStyle}" />
+                    </Track.Thumb>
+                    <Track.IncreaseRepeatButton>
+                        <RepeatButton Command="{x:Static ScrollBar.PageRightCommand}"
+                                      Width="0"
+                                      Focusable="False"
+                                      IsTabStop="False"
+                                      Visibility="Collapsed" />
+                    </Track.IncreaseRepeatButton>
+                </Track>
+            </Grid>
+        </ControlTemplate>
+
+        <Style TargetType="{x:Type ScrollBar}">
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Focusable" Value="False" />
+            <Setter Property="Width" Value="10" />
+            <Setter Property="MinWidth" Value="10" />
+            <Setter Property="Template" Value="{StaticResource ToolBridgeVerticalScrollBarTemplate}" />
+            <Style.Triggers>
+                <Trigger Property="Orientation" Value="Horizontal">
+                    <Setter Property="Width" Value="Auto" />
+                    <Setter Property="MinWidth" Value="0" />
+                    <Setter Property="Height" Value="10" />
+                    <Setter Property="MinHeight" Value="10" />
+                    <Setter Property="Template" Value="{StaticResource ToolBridgeHorizontalScrollBarTemplate}" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+
+        <!--
             ToolBridge Button System
             21st.dev / shadcn button modelinin WPF karşılığıdır.
             Yeni buton gereken alanlarda aşağıdaki stiller kullanılmalıdır:
             ShadcnButtonStyle, ShadcnSecondaryButtonStyle, ShadcnOutlineButtonStyle,
             ShadcnGhostButtonStyle, ShadcnDestructiveButtonStyle, ShadcnIconButtonStyle.
         -->
-        <SolidColorBrush x:Key="ButtonPrimaryBrush" Color="#FA233B" />
+        <SolidColorBrush x:Key="ButtonPrimaryBrush" Color="#2563EB" />
         <SolidColorBrush x:Key="ButtonPrimaryForegroundBrush" Color="#FFFFFF" />
-        <SolidColorBrush x:Key="ButtonPrimaryHoverBrush" Color="#E01E35" />
-        <SolidColorBrush x:Key="ButtonSecondaryBrush" Color="#F2F2F7" />
-        <SolidColorBrush x:Key="ButtonSecondaryHoverBrush" Color="#E8E8ED" />
-        <SolidColorBrush x:Key="ButtonOutlineHoverBrush" Color="#FFE8EC" />
-        <SolidColorBrush x:Key="ButtonGhostHoverBrush" Color="#F2F2F7" />
-        <SolidColorBrush x:Key="ButtonDestructiveBrush" Color="#EF4444" />
-        <SolidColorBrush x:Key="ButtonDestructiveHoverBrush" Color="#DC2626" />
-        <SolidColorBrush x:Key="ButtonRingBrush" Color="#80FA233B" />
+        <SolidColorBrush x:Key="ButtonPrimaryHoverBrush" Color="#1D4ED8" />
+        <SolidColorBrush x:Key="ButtonSecondaryBrush" Color="#EEF1F5" />
+        <SolidColorBrush x:Key="ButtonSecondaryHoverBrush" Color="#E2E7EE" />
+        <SolidColorBrush x:Key="ButtonOutlineHoverBrush" Color="#EFF4FE" />
+        <SolidColorBrush x:Key="ButtonGhostHoverBrush" Color="#EEF1F5" />
+        <SolidColorBrush x:Key="ButtonDestructiveBrush" Color="#DC2626" />
+        <SolidColorBrush x:Key="ButtonDestructiveHoverBrush" Color="#B91C1C" />
+        <SolidColorBrush x:Key="ButtonRingBrush" Color="#802563EB" />
         <SolidColorBrush x:Key="ButtonDarkHoverBrush" Color="#2A3342" />
 
         <Style x:Key="ShadcnButtonStyle" TargetType="Button">
@@ -509,8 +625,8 @@
                                 <Setter Property="Foreground" Value="{DynamicResource PrimaryTextBrush}" />
                             </Trigger>
                             <Trigger Property="IsPressed" Value="True">
-                                <Setter TargetName="Root" Property="Background" Value="#22C55E" />
-                                <Setter TargetName="Root" Property="BorderBrush" Value="#22C55E" />
+                                <Setter TargetName="Root" Property="Background" Value="{DynamicResource SuccessBrush}" />
+                                <Setter TargetName="Root" Property="BorderBrush" Value="{DynamicResource SuccessBrush}" />
                                 <Setter Property="Foreground" Value="White" />
                             </Trigger>
                             <Trigger Property="IsKeyboardFocused" Value="True">
@@ -1069,9 +1185,10 @@
             </Setter>
         </Style>
 
+        <!-- Modern kurumsal nav item: transparan rest, ChipBrush hover, aktifte panel kart + sol accent bar -->
         <Style x:Key="GlowNavButtonStyle" TargetType="Button">
-            <Setter Property="Height" Value="50" />
-            <Setter Property="Margin" Value="0,4" />
+            <Setter Property="Height" Value="44" />
+            <Setter Property="Margin" Value="0,3" />
             <Setter Property="Padding" Value="0" />
             <Setter Property="HorizontalContentAlignment" Value="Stretch" />
             <Setter Property="VerticalContentAlignment" Value="Center" />
@@ -1083,65 +1200,54 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
-                        <Border x:Name="Outer"
+                        <Border x:Name="Root"
                                 Background="Transparent"
-                                CornerRadius="18"
-                                Padding="2"
-                                ClipToBounds="False">
-                            <Grid ClipToBounds="False">
-                                <!-- Prompttaki radial-gradient + glow davranışının WPF karşılığı -->
-                                <Border x:Name="GlowLayer"
-                                        Background="{Binding GlowBrush}"
-                                        CornerRadius="18"
-                                        Opacity="0"
-                                        Margin="10,7">
-                                    <Border.Effect>
-                                        <BlurEffect Radius="4" />
-                                    </Border.Effect>
-                                </Border>
+                                BorderBrush="Transparent"
+                                BorderThickness="1"
+                                CornerRadius="8"
+                                SnapsToDevicePixels="True">
+                            <Grid x:Name="ContentHost" Margin="9,0,12,0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="9" />
+                                    <ColumnDefinition Width="26" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
 
-                                <Border x:Name="GlassLayer"
-                                        Background="{DynamicResource PanelBrush}"
-                                        BorderBrush="{Binding IconBrush}"
-                                        BorderThickness="1"
-                                        CornerRadius="16"
-                                        Opacity="0" />
+                                <Rectangle x:Name="ActiveBar"
+                                           Width="3"
+                                           Height="18"
+                                           RadiusX="1.5"
+                                           RadiusY="1.5"
+                                           Fill="{Binding IconBrush}"
+                                           HorizontalAlignment="Left"
+                                           VerticalAlignment="Center"
+                                           Visibility="Collapsed" />
 
-                                <Grid x:Name="ContentHost"
-                                      Margin="14,0">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="30" />
-                                        <ColumnDefinition Width="*" />
-                                    </Grid.ColumnDefinitions>
+                                <TextBlock x:Name="IconGlyph"
+                                           Grid.Column="1"
+                                           Text="{Binding Icon}"
+                                           FontFamily="Segoe MDL2 Assets"
+                                           FontSize="16"
+                                           Foreground="{DynamicResource MutedTextBrush}"
+                                           HorizontalAlignment="Center"
+                                           VerticalAlignment="Center" />
 
-                                    <TextBlock x:Name="IconGlyph"
-                                               Text="{Binding Icon}"
-                                               FontFamily="Segoe MDL2 Assets"
-                                               FontSize="17"
-                                               Foreground="{Binding IconBrush}"
-                                               HorizontalAlignment="Center"
-                                               VerticalAlignment="Center" />
-
-                                    <TextBlock x:Name="MenuLabel"
-                                               Grid.Column="1"
-                                               FontFamily="{StaticResource MenuFont}"
-                                               Text="{Binding Title}"
-                                               FontSize="14"
-                                               FontWeight="SemiBold"
-                                               Foreground="{TemplateBinding Foreground}"
-                                               VerticalAlignment="Center"
-                                               Margin="10,0,0,0" />
-                                </Grid>
+                                <TextBlock x:Name="MenuLabel"
+                                           Grid.Column="2"
+                                           FontFamily="{StaticResource MenuFont}"
+                                           Text="{Binding Title}"
+                                           FontSize="13"
+                                           FontWeight="SemiBold"
+                                           Foreground="{DynamicResource SoftTextBrush}"
+                                           VerticalAlignment="Center"
+                                           Margin="10,0,0,0" />
                             </Grid>
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
-                                <Setter TargetName="GlowLayer" Property="Opacity" Value="0.34" />
-                                <Setter TargetName="GlowLayer" Property="Margin" Value="2,3" />
-                                <Setter TargetName="GlassLayer" Property="Opacity" Value="0.86" />
-                                <Setter TargetName="GlassLayer" Property="Background" Value="{DynamicResource PanelBrush}" />
-                                <Setter TargetName="GlassLayer" Property="Effect" Value="{StaticResource SoftShadow}" />
-                                <Setter Property="Foreground" Value="{DynamicResource PrimaryTextBrush}" />
+                                <Setter TargetName="Root" Property="Background" Value="{DynamicResource ChipBrush}" />
+                                <Setter TargetName="IconGlyph" Property="Foreground" Value="{DynamicResource SoftTextBrush}" />
+                                <Setter TargetName="MenuLabel" Property="Foreground" Value="{DynamicResource PrimaryTextBrush}" />
                             </Trigger>
 
                             <Trigger Property="IsPressed" Value="True">
@@ -1149,12 +1255,12 @@
                             </Trigger>
 
                             <DataTrigger Binding="{Binding IsActive}" Value="True">
-                                <Setter TargetName="GlowLayer" Property="Opacity" Value="0.28" />
-                                <Setter TargetName="GlowLayer" Property="Margin" Value="3,4" />
-                                <Setter TargetName="GlassLayer" Property="Opacity" Value="0.92" />
-                                <Setter TargetName="GlassLayer" Property="Background" Value="{DynamicResource PanelBrush}" />
-                                <Setter TargetName="GlassLayer" Property="Effect" Value="{StaticResource SoftShadow}" />
-                                <Setter Property="Foreground" Value="{DynamicResource PrimaryTextBrush}" />
+                                <Setter TargetName="Root" Property="Background" Value="{DynamicResource PanelBrush}" />
+                                <Setter TargetName="Root" Property="BorderBrush" Value="{DynamicResource LineBrush}" />
+                                <Setter TargetName="Root" Property="Effect" Value="{StaticResource SoftShadow}" />
+                                <Setter TargetName="ActiveBar" Property="Visibility" Value="Visible" />
+                                <Setter TargetName="IconGlyph" Property="Foreground" Value="{Binding IconBrush}" />
+                                <Setter TargetName="MenuLabel" Property="Foreground" Value="{DynamicResource PrimaryTextBrush}" />
                             </DataTrigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>

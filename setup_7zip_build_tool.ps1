@@ -4,8 +4,7 @@ param(
 
 $ErrorActionPreference = "Stop"
 
-$ScriptRoot = Split-Path -Parent $MyInvocation.MyCommand.Path
-$Root = Split-Path -Parent $ScriptRoot
+$Root = Split-Path -Parent $MyInvocation.MyCommand.Path
 $BuildToolsRoot = Join-Path $Root "build_tools"
 $SevenZipTarget = Join-Path $BuildToolsRoot "7zip"
 $LocalSevenZip = Join-Path $SevenZipTarget "7z.exe"
@@ -91,6 +90,7 @@ Write-Host "Sadece publish hazirligi icin yerel klasore kuruluyor: $SevenZipTarg
 New-Item -ItemType Directory -Path $SevenZipTarget -Force | Out-Null
 
 try {
+    # 7-Zip installer NSIS tabanlidir. /D hedef yolu son arguman olmalidir.
     $argumentLine = "/S /D=$SevenZipTarget"
     $process = Start-Process -FilePath $installer -ArgumentList $argumentLine -Wait -PassThru
     if ($process.ExitCode -ne 0) {
