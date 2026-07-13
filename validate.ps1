@@ -45,10 +45,7 @@ $projectDir = Split-Path -Parent $project
 $requiredFiles = @(
     (Join-Path $projectDir 'MainWindow.xaml'),
     (Join-Path $projectDir 'App.xaml'),
-    (Join-Path $projectDir 'Styles\ToolBridge.UI.xaml'),
-    (Join-Path $projectDir 'Tools\SumatraPDF.exe'),
-    (Join-Path $projectDir 'Tools\Docnet.Core.dll'),
-    (Join-Path $projectDir 'Tools\pdfium.dll')
+    (Join-Path $projectDir 'Styles\ToolBridge.UI.xaml')
 )
 
 foreach ($file in $requiredFiles) {
@@ -58,6 +55,9 @@ foreach ($file in $requiredFiles) {
 }
 
 $optionalTools = @(
+    @{ Name = 'SumatraPDF'; Path = (Join-Path $projectDir 'Tools\SumatraPDF.exe') },
+    @{ Name = 'Docnet.Core'; Path = (Join-Path $projectDir 'Tools\Docnet.Core.dll') },
+    @{ Name = 'PDFium'; Path = (Join-Path $projectDir 'Tools\pdfium.dll') },
     @{ Name = 'ImageMagick'; Path = (Join-Path $projectDir 'Tools\ImageMagick\magick.exe') },
     @{ Name = 'LibreOffice Portable'; Path = (Join-Path $projectDir 'Tools\LibreOfficePortable\App\libreoffice\program\soffice.exe') }
 )

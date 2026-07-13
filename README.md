@@ -14,7 +14,7 @@ Arayüz uçtan uca modern kurumsal tasarım sistemine geçirildi; hiçbir işlev
 - **Navigasyon**: glow/blur efekti yerine düz kurumsal nav (aktif kart + 3px aksan çubuğu + renkli ikon).
 - **Scrollbar**: C# ile gizlenen scrollbar'lar kaldırıldı; ince (10px) modern thumb'lı XAML stili eklendi.
 - **Koyu tema**: yeni koyu palet (#101318 zemin, #171B22 kart, mavi #3B82F6 aksan); açık/koyu geçişi `ApplyVisualTheme` ile aynı mekanizmada.
-- **Diğer**: BC Fatura panelindeki bozuk ASCII Türkçe metinler düzeltildi; ham TextBox'lar ortak input desenine geçirildi; tekrarlanan ikon Path'leri Geometry resource oldu; app.manifest'e PerMonitorV2 DPI + longPathAware eklendi.
+- **Diğer**: Ham TextBox'lar ortak input desenine geçirildi; tekrarlanan ikon Path'leri Geometry resource oldu; app.manifest'e PerMonitorV2 DPI + longPathAware eklendi.
 
 Tam yedek: `D:\PROJE DOSYALARIM\ToolBridge_YEDEK_2026-07-03`
 

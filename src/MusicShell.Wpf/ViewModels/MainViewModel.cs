@@ -354,8 +354,6 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
         ClearCompletedJobsCommand = new RelayCommand(_ => { AppLogger.Audit("JOB_CLEAR_COMPLETED"); ClearCompletedJobs(); }, _ => OperationJobs.Any(job => job.IsCompleted || job.IsCancelled));
         ToggleTransferReceiveCommand = new RelayCommand(_ => { IsTransferReceiveEnabled = !IsTransferReceiveEnabled; AppLogger.Audit("SETTING_TRANSFER_RECEIVE", $"Enabled={IsTransferReceiveEnabled}"); });
         ToggleDarkModeCommand = new RelayCommand(_ => { IsDarkModeEnabled = !IsDarkModeEnabled; AppLogger.Audit("SETTING_DARK_MODE", $"Enabled={IsDarkModeEnabled}"); });
-    
-        InitializeBcDownloadWatcher();
 }
 
     public ObservableCollection<NavItem> PrimaryNavigation { get; }
@@ -10339,7 +10337,6 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
 
     public void Dispose()
     {
-        try { DisposeBcDownloadWatcher(); } catch (Exception ex) { AppLogger.LogException("BC download watcher dispose failed", ex); }
         try
         {
             DisposeOperationJobs();
@@ -10476,4 +10473,3 @@ public sealed partial class MainViewModel : ObservableObject, IDisposable
         public bool IsDefault { get; set; }
     }
 }
-
