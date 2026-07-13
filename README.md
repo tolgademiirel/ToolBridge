@@ -2,7 +2,21 @@
 
 ToolBridge, Windows üzerinde yazdırma, dosya transferi, belge dönüştürme ve yazıcı ayarları için geliştirilmiş modern .NET/WPF kurumsal araç uygulamasıdır.
 
-Bu repo tek aktif uygulama çatısı altında tutulur. README içinde uzayan ayrı sürüm başlıkları kullanılmaz; güncel durum ve tüm ana yetenekler aşağıdaki bölümlerde birlikte anlatılır.
+Bu repo tek aktif uygulama çatısı altında tutulur. README içinde uzayan ayrı sürüm başlıkları kullanılmaz; güncel durum ve tüm ana yetenekler aşağıdaki tek çatı bölümünde toplanır.
+
+## Tüm Güncellemeler Tek Çatı Altında
+
+Uygulamadaki geçmiş güncellemeler artık ayrı ayrı sürüm başlıkları halinde tutulmaz. Hepsi aşağıdaki ana ürün başlıklarında birleştirilmiştir:
+
+- **Arayüz ve tasarım sistemi**: modern kurumsal görünüm, açık/koyu tema, merkezi buton/input stilleri, modül bazlı aksan renkleri ve sade navigasyon.
+- **Yazdırma altyapısı**: arka planda çalışan yazdırma kuyruğu, PDF/Office/görsel/metin yazdırma, SumatraPDF/Adobe/PrintTo/PDF Direct Print denemeleri ve yazdırma geçmişi.
+- **Transfer altyapısı**: aynı yerel ağdaki ToolBridge kullanıcılarını görme, dosya gönderme, gelen transferleri kabul/reddetme ve transfer geçmişinden işlem yapma.
+- **Convert altyapısı**: dosya uzantısından kaynak format algılama, yerel dönüştürme motorlarını sırayla deneme, eksik motorları Sistem Durumu ekranında gösterme ve çıktıları transfer/yazdırma akışına bağlama.
+- **Yazıcı ve kullanıcı ayarları**: manuel yazıcı ekleme, varsayılan yazıcı seçme, yazdırma ayarlarını ve kullanıcı tercihlerini profil altında saklama.
+- **Docker API**: WPF uygulamasından ayrı çalışan hafif `ToolBridge.Api` servisiyle sağlık, durum ve ağ bilgisi uçları.
+- **Kaldırılan özellikler**: Business Central / BC fatura hot folder eklentisi uygulamadan çıkarılmıştır.
+
+Yeni bir geliştirme yapıldığında README'ye yeni sürüm başlığı eklenmez; ilgili madde bu tek çatı altında veya aşağıdaki mevcut modül başlıklarında güncellenir.
 
 ## Güncel Uygulama Özeti
 
@@ -181,4 +195,4 @@ powershell.exe -ExecutionPolicy Bypass -File .\setup_firewall_toolbridge_presenc
 
 ## Dokümantasyon Politikası
 
-README, uygulamanın tek güncel özetidir. Geçmişe ait detaylı teknik raporlar `src\MusicShell.Wpf\Docs` altında referans olarak tutulabilir; ancak yeni özellikler README'de yeni sürüm başlıkları açılarak değil, mevcut modül başlıkları güncellenerek anlatılmalıdır.
+README, uygulamanın tek güncel özetidir. Geçmişe ait detaylı teknik raporlar `src\MusicShell.Wpf\Docs` altında referans olarak tutulabilir; ancak yeni özellikler README'de yeni sürüm başlıkları açılarak değil, mevcut tek çatı ve modül başlıkları güncellenerek anlatılmalıdır.
